@@ -8,9 +8,9 @@ public class Main {
 
     private static void menuPrint()
     {
-        System.out.println("Escolha uma ação\n1.Adcionar funcionário ao Sistema\n" +
+        System.out.println("\n\n>>>> Escolha uma ação:\n\n1.Adcionar funcionário ao Sistema\n" +
                 "2.Remover funcionário do Sistema\n3.Acessar informações de um funcio" +
-                "nário\n4.Sair do" +
+                "nário\n4.Modificar Informacoes de funcionario\n5.Sair do" +
                 " Sistema");
     }
     private static void setCode(int[] code) {
@@ -166,6 +166,9 @@ public class Main {
                     }
                     break;
                 case 4:
+                   //modificar
+
+                case 5:
                     play = false;
                     System.out.println("Saindo do sistema, bom dia!");
                     break;
