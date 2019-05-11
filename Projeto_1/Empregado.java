@@ -4,12 +4,14 @@ public class Empregado {
     public String address;
     public String type;
     public double salary;
-//    public double hour_salary;
-//    public double month_salary;
-//    public double comission;
+    public boolean sindicaty;
     public String code;
 
-    //verifica codigo
+
+    //    public double hour_salary;
+    //    public double month_salary;
+    //    public double comission;
+    //    verifica codigo
 
 
     //set
@@ -29,10 +31,20 @@ public class Empregado {
         this.code = code;
     }
 
+    public void setSindicaty(boolean sindicaty) {
+        this.sindicaty = sindicaty;
+    }
+
+    //verifica se é sindicato
+    public boolean isSindicaty() {
+        return sindicaty;
+    }
+
+
+
     public void delete () {
         //this.name = name;
     }
-
 
     public void tabelinha(){
         System.out.println("Funcionário: " + this.name + "\nEndereco = "
@@ -44,6 +56,9 @@ public class Empregado {
     public String getName() {
         return name;
     }
+    public String getCode() {
+        return this.code;
+    }
     public String getAddress() {
         return address;
     }
@@ -54,4 +69,5 @@ public class Empregado {
     public double getSalary() {
         return salary;
     }
+
 }
