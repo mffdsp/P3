@@ -6,7 +6,7 @@ public class Empregado {
     public double salary;
     public boolean sindicaty;
     public String code;
-
+    public String sindicatyc;
 
     //    public double hour_salary;
     //    public double month_salary;
@@ -34,6 +34,9 @@ public class Empregado {
     public void setSindicaty(boolean sindicaty) {
         this.sindicaty = sindicaty;
     }
+    public void setSindicatyc (String sindicatyc){
+        this.sindicatyc = sindicatyc;
+    }
 
     //verifica se é sindicato
     public boolean isSindicaty() {
@@ -59,10 +62,12 @@ public class Empregado {
     public String getCode() {
         return this.code;
     }
+    public String getSindicatyc (){
+        return sindicatyc;
+    }
     public String getAddress() {
         return address;
     }
-
     public String getType() {
         return type;
     }
