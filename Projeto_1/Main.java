@@ -6,19 +6,19 @@ public class Main {
     final int MAX = 100;
 
 
-    public static void menuPrint()
+    private static void menuPrint()
     {
         System.out.println("Escolha uma ação\n1.Adcionar funcionário ao Sistema\n" +
                 "2.Remover funcionário do Sistema\n3.Acessar informações de um funcio" +
                 "nário\n4.Sair do" +
                 " Sistema");
     }
-    public static void setCode(int[] code) {
+    private static void setCode(int[] code) {
         for(int i = 0; i < 100; i++) {
             code[i] = 0;
         }
     }
-    public static int getPos(int[] code) {
+    private static int getPos(int[] code) {
         int i = 1;
         while(code[i] == 1) {
             i += 1;
@@ -27,7 +27,7 @@ public class Main {
         return i;
     }
 
-    public static int getIndex(String codigo){
+    private static int getIndex(String codigo){
         int i = 0;
         int index = 0;
         while(i < codigo.length() - 4 )
@@ -37,7 +37,7 @@ public class Main {
         }
         return index;
     }
-    public static void rmvF(String codigo, int[] codeusage, Empregado[] empregado) {
+    private static void rmvF(String codigo, int[] codeusage) {
         int index = getIndex(codigo);
 
         //encontra indice por codigo
@@ -48,7 +48,7 @@ public class Main {
         }else System.out.println("Codigo de acesso nao associado!");
 
     }
-    public static void codeRecover(String word, Empregado[] empregado, int[] usage){
+    private static void codeRecover(String word, Empregado[] empregado, int[] usage){
         boolean achouum = false;
         for(int i = 0; i < 100; i++)
         {
@@ -56,7 +56,7 @@ public class Main {
             {
                 if(empregado[i].getName().toLowerCase().contains(word.toLowerCase()))
                 {
-                    if(achouum == false)
+                    if(!achouum)
                     {
                         System.out.println("Lista de Funcionarios similares a busca:\n");
                         achouum = true;
@@ -65,13 +65,14 @@ public class Main {
                 }
             }
         }
-        if(achouum == false)
+        if(!achouum)
         {
             System.out.println("Nenhum funcionario foi encontrado");
         }
     }
-    public static void codeSearch(String code, Empregado[] empregado, int[] usage){
-        boolean achouum = false;
+    private static void codeSearch(String code, Empregado[] empregado, int[] usage){
+        boolean achouum;
+        achouum = false;
         for(int i = 0; i < 100; i++)
         {
             if(usage[i] == 1)
@@ -86,7 +87,7 @@ public class Main {
             }
 
         }
-        if(achouum == false)
+        if(!achouum)
         {
             System.out.println("\n\nNenhum funcionario foi encontrado");
         }
@@ -98,7 +99,7 @@ public class Main {
         int sindqnt = 1;
         int[] codeused = new int[100];
         setCode(codeused);
-        int codigo = 100;
+        //int codigo = 100;
         Scanner input = new Scanner(System.in);
         Empregado[] empregado = new Empregado[100];
         Calendar time = Calendar.getInstance();
@@ -138,12 +139,11 @@ public class Main {
                         sindqnt += 1;
                     } else empregado[pos].setSindicaty(false);
                     System.out.println("Registrado com sucesso\n\n\nCodigo de acesso = " + empregado[pos].getCode() + "\n\n\n");
-                    action = -1;
                     break;
                 case 2:
                     System.out.println("Insira o código de registro: \n");
                     String buscadel = input.nextLine();
-                    rmvF(buscadel, codeused, empregado);
+                    rmvF(buscadel, codeused);
                     break;
                     //something
                 case 3:
