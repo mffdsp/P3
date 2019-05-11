@@ -19,12 +19,34 @@ public class Main {
         }
     }
     public static int getPos(int[] code) {
-        int i = 0;
+        int i = 1;
         while(code[i] == 1) {
             i += 1;
         }
         code[i] = 1;
         return i;
+    }
+
+    public static int getIndex(String codigo){
+        int i = 0;
+        int index = 0;
+        while(i < codigo.length() - 4 )
+        {
+            index += Math.pow(10,i) * Character.getNumericValue(codigo.charAt(i + 4));
+            i += 1;
+        }
+        return index;
+    }
+    public static void rmvF(String codigo, int[] codeusage, Empregado[] empregado) {
+        int index = getIndex(codigo);
+
+        //encontra indice por codigo
+        if(codeusage[index] == 1)
+        {
+            System.out.println("Removido com Sucesso");
+            codeusage[index] = 0;//remove o carinha
+        }else System.out.println("Codigo de acesso nao associado!");
+
     }
     public static void codeRecover(String word, Empregado[] empregado, int[] usage){
         boolean achouum = false;
@@ -73,6 +95,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        int sindqnt = 1;
         int[] codeused = new int[100];
         setCode(codeused);
         int codigo = 100;
@@ -92,7 +115,7 @@ public class Main {
 
             switch (action) {
                 case 1:
-                    int pos = getPos(codeused);
+                    int pos = getPos(codeused) ;
                     empregado[pos] = new Empregado();
                     System.out.print("Insira o nome do funcionário: ");
                     empregado[pos].setName(input.nextLine());
@@ -109,11 +132,19 @@ public class Main {
                             "1 - SIM / 2 - NAO\n");
                     if(input.nextInt() == 1){
                         empregado[pos].setSindicaty(true);
+                        empregado[pos].setSindicatyc("120" + sindqnt);
+                        System.out.println("Usuario Associado ao Sindicato com Codigo sindical = " +
+                                empregado[pos].getSindicatyc());
+                        sindqnt += 1;
                     } else empregado[pos].setSindicaty(false);
-                    System.out.println("Registrado com sucesso\n\n\nCodigo de acesso = " + empregado[pos].getCode());
+                    System.out.println("Registrado com sucesso\n\n\nCodigo de acesso = " + empregado[pos].getCode() + "\n\n\n");
                     action = -1;
                     break;
                 case 2:
+                    System.out.println("Insira o código de registro: \n");
+                    String buscadel = input.nextLine();
+                    rmvF(buscadel, codeused, empregado);
+                    break;
                     //something
                 case 3:
                     System.out.print("Digite a opcao para acessar informacoes:\n\n\n1 - Buscar por código " +
@@ -128,11 +159,12 @@ public class Main {
                             codeSearch(busca, empregado, codeused);
                             break;
                         case 2:
-                            System.out.println("aaaInsira pelo menos uma parte do nome do funcionario \n");
+                            System.out.println("Insira pelo menos uma parte do nome do funcionario \n");
                             String recuperar = input.nextLine();
                             codeRecover(recuperar, empregado, codeused);
                             break;
                     }
+                    break;
                 case 4:
                     play = false;
                     System.out.println("Saindo do sistema, bom dia!");
