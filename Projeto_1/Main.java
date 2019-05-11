@@ -93,7 +93,31 @@ public class Main {
         }
         System.out.println("\n\n");
     }
+    private static void funcModify(String codigo, Empregado[] empregado, int[] usage){
+        Scanner input = new Scanner(System.in);
+        int index = getIndex(codigo);
+        if(usage[index] == 1)
+        {
 
+            System.out.println("\nOpcoes de modificacao:\n1.Modificar nome\n2.Modificar endereco\n" +
+                    "3.Modificar tipo de pagamento\n4.Modificar metodo de pagamento\n5.Modificar Associacao ao sindicato" +
+                    "\n6.Modificar Codigo sindical\n7.Modificar Taxa sindical\n");
+            int sw = input.nextInt();
+            switch(sw)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
+        }
+        else System.out.println("\n\nNenhum funcionario foi encontrado");
+
+    }
     public static void main(String[] args) {
 
         int sindqnt = 1;
@@ -166,8 +190,12 @@ public class Main {
                     }
                     break;
                 case 4:
-                   //modificar
+                    //modificar
+                    System.out.println("Insira o código de registro: \n");
+                    String codif = input.nextLine();
 
+                    funcModify(codif,empregado, codeused);
+                    break;
                 case 5:
                     play = false;
                     System.out.println("Saindo do sistema, bom dia!");
