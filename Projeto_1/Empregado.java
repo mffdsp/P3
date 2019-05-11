@@ -43,17 +43,17 @@ public class Empregado {
         return sindicaty;
     }
 
-
-
     public void delete () {
         //this.name = name;
     }
 
     public void tabelinha(){
-        System.out.println("Funcionário: " + this.name + "\nEndereco = "
-        + this.address + "\nTipo de salario aplicado: " + this.type
-        + "Valor = RS " + this.salary +
-                "\nCódigo de Registo : " + this.code);
+
+        System.out.println("---------------------------------------------------------\n" +
+                "Funcionário: " + this.name + "\nEndereco = "
+        + this.address + "\nTipo de salario aplicado (" + this.type
+        + ") : Valor = RS " + this.salary +
+                "\nCódigo de Registo : " + this.code+ "\n---------------------------------------------------------\n");
     }
     //get
     public String getName() {
