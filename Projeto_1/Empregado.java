@@ -3,34 +3,55 @@ public class Empregado {
     public String name;
     public String address;
     public String type;
-    public double hour_salary;
-    public double month_salary;
-    public double comission;
-    public int code;
+    public double salary;
+//    public double hour_salary;
+//    public double month_salary;
+//    public double comission;
+    public String code;
+
+    //verifica codigo
 
 
-        public void addName (String name){
-            this.name = name;
-        }
-        public void addAdress (String address){
-            this.address = address;
-        }
-        public void addType (String type){
-            this.type = type;
-        }
-        public void addSalary ( int hour_salary, int month_salary){
-            this.hour_salary = hour_salary;
-            this.month_salary = month_salary;
-        }
-        public void addCode ( int code){
-            this.code = code;
-        }
-        public void addComission ( double comission){
-            this.comission = comission;
-        }
-        public void delete () {
-            //this.name = name;
-        }
+    //set
+    public void setName (String name){
+        this.name = name;
+    }
+    public void setAdress (String address){
+        this.address = address;
+    }
+    public void setType (String type){
+        this.type = type;
+    }
+    public void setSalary ( double salary){
+        this.salary = salary;
+    }
+    public void setCode ( String code){
+        this.code = code;
+    }
+
+    public void delete () {
+        //this.name = name;
+    }
 
 
+    public void tabelinha(){
+        System.out.println("Funcionário: " + this.name + "\nEndereco = "
+        + this.address + "\nTipo de salario aplicado: " + this.type
+        + "Valor = RS " + this.salary +
+                "\nCódigo de Registo : " + this.code);
+    }
+    //get
+    public String getName() {
+        return name;
+    }
+    public String getAddress() {
+        return address;
+    }
+
+    public String getType() {
+        return type;
+    }
+    public double getSalary() {
+        return salary;
+    }
 }
