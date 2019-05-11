@@ -51,8 +51,8 @@ public class Empregado {
 
         System.out.println("---------------------------------------------------------\n" +
                 "Funcionário: " + this.name + "\nEndereco = "
-        + this.address + "\nTipo de salario aplicado (" + this.type
-        + ") : Valor = RS " + this.salary +
+                + this.address + "\nTipo de salario aplicado (" + this.type
+                + ") : Valor = RS " + this.salary +
                 "\nCódigo de Registo : " + this.code+ "\n---------------------------------------------------------\n");
     }
     //get
