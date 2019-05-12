@@ -7,7 +7,7 @@ public class Empregado {
     public boolean sindicaty;
     public String code;
     public String sindicatyc;
-
+    public double sindtax;
     //    public double hour_salary;
     //    public double month_salary;
     //    public double comission;
@@ -36,6 +36,9 @@ public class Empregado {
     }
     public void setSindicatyc (String sindicatyc){
         this.sindicatyc = sindicatyc;
+    }
+    public void setSindtax (double tax){
+        this.sindtax = tax;
     }
 
     //verifica se é sindicato
@@ -73,6 +76,9 @@ public class Empregado {
     }
     public double getSalary() {
         return salary;
+    }
+    public double getSindtax (){
+        return this.sindtax;
     }
 
 }
