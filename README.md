@@ -1,12 +1,8 @@
-# <img src="source/icon.png" width="45" align="left">
+# <img src="source/icon.png" width="45" align="left"> # P3
 
 
 
 
-
-
-
-# P3
 
 
 Coisinhas
