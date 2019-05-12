@@ -10,8 +10,9 @@ public class Main {
     {
         System.out.println("\n\n>>>> Escolha uma ação:\n\n1.Adcionar funcionário ao Sistema\n" +
                 "2.Remover funcionário do Sistema\n3.Acessar informações de um funcio" +
-                "nário\n4.Modificar Informacoes de funcionario\n5.Sair do" +
-                " Sistema");
+                "nário\n4.Modificar Informacoes de funcionario\n5.Listar todos os funcionarios cadastrados" +
+                "\n6.Rodar folha de pagamento\n7.Sair do" +
+                " Sistema\n");
     }
     private static void setCode(int[] code) {
         for(int i = 0; i < 100; i++) {
@@ -25,6 +26,26 @@ public class Main {
         }
         code[i] = 1;
         return i;
+    }
+    private static void showAll(Empregado[] empregado, int[] usage) {
+        boolean achouum = false;
+
+        for(int i = 1; i < 100; i++)
+        {
+            if(usage[i] == 1)
+            {
+                if(!achouum)
+                {
+                    System.out.println("\n\nLista de Funcionarios :\n");
+                    achouum = true;
+                }
+                System.out.println("> " +  empregado[i].getName() + " - " + empregado[i].getCode());
+            }
+        }
+        if(!achouum)
+        {
+            System.out.println("\n\nNenhum funcionario registrado!\n\n");
+        }
     }
 
     private static int getIndex(String codigo){
@@ -61,7 +82,7 @@ public class Main {
                         System.out.println("Lista de Funcionarios similares a busca:\n");
                         achouum = true;
                     }
-                    System.out.println(">>>" +  empregado[i].getName() + " - " + empregado[i].getCode());
+                    System.out.println("> " +  empregado[i].getName() + " - " + empregado[i].getCode());
                 }
             }
         }
@@ -93,31 +114,69 @@ public class Main {
         }
         System.out.println("\n\n");
     }
-    private static void funcModify(String codigo, Empregado[] empregado, int[] usage){
+
+    private static int funcModify(String codigo, Empregado[] empregado, int[] usage, int sindqnt){
         Scanner input = new Scanner(System.in);
         int index = getIndex(codigo);
+        boolean bk = false;
         if(usage[index] == 1)
         {
-
+            while(!bk) {
             System.out.println("\nOpcoes de modificacao:\n1.Modificar nome\n2.Modificar endereco\n" +
-                    "3.Modificar tipo de pagamento\n4.Modificar metodo de pagamento\n5.Modificar Associacao ao sindicato" +
-                    "\n6.Modificar Codigo sindical\n7.Modificar Taxa sindical\n");
+                    "3.Modificar tipo de pagamento\n4.Modificar Valor de pagamento\n" +
+                    "5.Modificar Associacao sindical\n6.Modificar Taxa sindical\n7.Voltar para mainMenu");
             int sw = input.nextInt();
-            switch(sw)
-            {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                default:
-                    break;
+            input.nextLine();
+                switch (sw) {
+                    case 1:
+                        System.out.print("Insira o nome do funcionário: ");
+                        empregado[index].setName(input.nextLine());
+                        break;
+                    case 2:
+                        System.out.print("Insira o Endereco do funcionário: ");
+                        empregado[index].setAdress(input.nextLine());
+                        break;
+                    case 3:
+                        System.out.print("Insira o tipo de salario atribuido ao funcionário\n" +
+                                "(Horario, Mensal, Comissionado)\n");
+                        empregado[index].setType(input.nextLine());
+                        break;
+                    case 4:
+                        System.out.print("Insira o Salario do funcionário: "
+                                + "\n");
+                        empregado[index].setSalary(input.nextDouble());
+                        break;
+                    case 5:
+                        System.out.print("O funcionario esta associado ao Sindicato de sua categoria ?\n" +
+                                "1 - SIM / 2 - NAO\n");
+                        if(!empregado[index].isSindicaty())
+                        {
+                            if(input.nextInt() == 1){
+                                empregado[index].setSindicaty(true);
+                                empregado[index].setSindicatyc("120" + sindqnt);
+                                System.out.println("Usuario Associado ao Sindicato com Codigo sindical = " +
+                                        empregado[index].getSindicatyc());
+                                sindqnt += 1;
+                            } else empregado[index].setSindicaty(false);
+                        }
+                        break;
+                    case 6:
+                        System.out.print("Insira a taxa sindical: ");
+                        empregado[index].setSindtax(input.nextDouble());
+                        break;
+                    case 7:
+                        bk = true;
+                        break;
+                    default:
+                        System.out.print("Comando invalido: ");
+                        break;
+                }
             }
         }
         else System.out.println("\n\nNenhum funcionario foi encontrado");
-
+        return sindqnt;
     }
+
     public static void main(String[] args) {
 
         int sindqnt = 1;
@@ -147,7 +206,7 @@ public class Main {
                     System.out.print("Insira o Endereco do funcionário: ");
                     empregado[pos].setAdress(input.nextLine());
                     System.out.print("Insira o tipo de salario atribuido ao funcionário\n" +
-                           "(hourly, salaried, commissioned)\n");
+                           "(Horario, Mensal, Comissionado)\n");
                     empregado[pos].setType(input.nextLine());
                     System.out.print("Insira o Salario do funcionário: "
                             + "\n");
@@ -162,7 +221,7 @@ public class Main {
                                 empregado[pos].getSindicatyc());
                         sindqnt += 1;
                     } else empregado[pos].setSindicaty(false);
-                    System.out.println("Registrado com sucesso\n\n\nCodigo de acesso = " + empregado[pos].getCode() + "\n\n\n");
+                    System.out.println("Registrado com sucesso\n\n\nCodigo de acesso = " + empregado[pos].getCode() + "\n");
                     break;
                 case 2:
                     System.out.println("Insira o código de registro: \n");
@@ -194,9 +253,19 @@ public class Main {
                     System.out.println("Insira o código de registro: \n");
                     String codif = input.nextLine();
 
-                    funcModify(codif,empregado, codeused);
+                    sindqnt = funcModify(codif,empregado, codeused, sindqnt);
                     break;
                 case 5:
+                    showAll(empregado, codeused);
+                    break;
+                case 6:
+                    //Rodar folha de pagamento;
+                    //Para horistas, se for sexta
+
+                    //Para mensal, Se for ultimo dia util do mes
+
+                    //Para comissionados, comissao%porvenda
+                case 7:
                     play = false;
                     System.out.println("Saindo do sistema, bom dia!");
                     break;
