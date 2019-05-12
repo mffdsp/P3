@@ -1,4 +1,5 @@
 import java.sql.SQLOutput;
+import java.time.DayOfWeek;
 import java.util.Scanner;
 import java.util.Calendar;
 
@@ -36,7 +37,8 @@ public class Main {
             {
                 if(!achouum)
                 {
-                    System.out.println("\n\nLista de Funcionarios :\n");
+                    System.out.println("\n\nLista de Funcionarios :\n" + "----------------------------------" +
+                            "-----------------------\n");
                     achouum = true;
                 }
                 System.out.println("> " +  empregado[i].getName() + " - " + empregado[i].getCode());
@@ -45,7 +47,7 @@ public class Main {
         if(!achouum)
         {
             System.out.println("\n\nNenhum funcionario registrado!\n\n");
-        }
+        } else System.out.println("---------------------------------------------------------\n");
     }
 
     private static int getIndex(String codigo){
@@ -261,7 +263,10 @@ public class Main {
                 case 6:
                     //Rodar folha de pagamento;
                     //Para horistas, se for sexta
-
+                    if(time.get(Calendar.DAY_OF_WEEK) == 6)
+                    {
+                        //something to pay;
+                    }
                     //Para mensal, Se for ultimo dia util do mes
 
                     //Para comissionados, comissao%porvenda
