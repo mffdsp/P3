@@ -6,22 +6,22 @@ import java.util.Calendar;
 //Reindent Lines
 
 public class Main {
+
 	final int MAX = 1000;
-  private static boolean PAY_DAY = true;
+	private static boolean PAY_DAY = true;
 
 
-	    //TIME
-
+	//TIME
 	private static int Ahora = 15;
 	private static int Aminuto = 20;
 	private static int Adia = 20;
 	private static int Ames = 5;
 	private static int Aano = 2019;
-  private static String[] Asemana = new String[7];
-	    //TIME
+	private static String[] Asemana = new String[7];
+	//TIME
 
-	   	//Banco de dados
-  
+	//Banco de dados
+
 	private static String[] DATAname = new String[1000];
 	private static String[] DATAaddress = new String[1000];
 	private static String[] DATAtype = new String[1000];
@@ -32,93 +32,93 @@ public class Main {
 	private static double[] DATAsindtax = new double[1000] ;
 	private static String[] DATApaymode = new String[1000]; 
 	private static int[] DATAworktime = new int[1000]; 
-  private static int[] DATAagenda = new int[1000]; 
- 
-	    	//entrada
+	private static int[] DATAagenda = new int[1000]; 
+
+	//entrada
 	private static int[] Ehora = new int[1000];
 	private static int[] Eminuto = new int[1000];
 	private static int[] Esegundo = new int[1000];
-	    	//saida
+	//saida
 	private static int[] Shora = new int[1000];
 	private static int[] Sminuto = new int[1000];
 	private static int[] Ssegundo = new int[1000];
-	    	//Date
+	//Date
 	private static String[] Etime = new String[1000];
 	private static String[] Stime = new String[1000];
 
-	    //Banco de dados
+	//Banco de dados
 
-  //Agendas
-  private static String[] AGENDAS = new String[1000];
-  private static int AGENDAbool[] = new int[100];
-  private static int AGENDAdia[] = new int[100];
-  private static int AGENDAmes[] = new int[100];
-  private static String AGENDAweek[] = new String[100];
-  private static String AGENDAtype[] = new String[100];
-  private static int AGENDA_INDEX = 0;
+    //AGENDAS
+	private static String[] AGENDAS = new String[1000];
+	private static int AGENDAbool[] = new int[1000];
+	private static int AGENDAdia[] = new int[1000];
+	private static int AGENDAmes[] = new int[1000];
+	private static String AGENDAweek[] = new String[1000];
+	private static String AGENDAtype[] = new String[1000];
+	private static int AGENDA_INDEX = 0;
 
-  private static void setAGENDA(){
-    for(int i = 0; i <100; i++)
-    {
-      AGENDAbool[i] = 0;
-      AGENDAdia[i] = 0; 
-    }
-  }
+	private static void setAGENDA(){
+		for(int i = 0; i <100; i++)
+		{
+			AGENDAbool[i] = 0;
+			AGENDAdia[i] = 0; 
+		}
+	}
 
-  private static void searchAGENDA(){
-    for(int i = 0; i <100; i++)
-    {
-      if(AGENDAbool[i] == 1)
-      {
+	private static void searchAGENDA(){
+		for(int i = 0; i <100; i++)
+		{
+			if(AGENDAbool[i] == 1)
+			{
 
-      }
+			}
 
-    }
-  }
-  private static String selectAGENDA(){
-    for(int i = 0; i <100; i++)
-    {
-      if(AGENDAbool[i] == 1)
-      {
-        System.out.print((i + 1) + " - " + AGENDAS[i] + " / TIPO " + AGENDAtype[i].toLowerCase());
-        if(AGENDAtype[i].toLowerCase().equals("mensal"))
-        {
-          System.out.println(" / dia " + AGENDAdia[i]);
-        } else if(AGENDAtype[i].toLowerCase().contains("semanal")) {
-           System.out.println(" / " + AGENDAweek[i]);
-        }
-      }
-    }
-    return "aaa";
-  }
-  private static void createAGENDA(){
-    Scanner input = new Scanner(System.in);
+		}
+	}
+	private static String selectAGENDA(){
+		for(int i = 0; i <100; i++)
+		{
+			if(AGENDAbool[i] == 1)
+			{
+				System.out.print((i + 1) + " - " + AGENDAS[i] + " / TIPO " + AGENDAtype[i].toLowerCase());
+				if(AGENDAtype[i].toLowerCase().equals("mensal"))
+				{
+					System.out.println(" / dia " + AGENDAdia[i]);
+				} else if(AGENDAtype[i].toLowerCase().contains("semanal")) {
+					System.out.println(" / " + AGENDAweek[i]);
+				}
+			}
+		}
+		return "aaa";
+	}
+	private static void createAGENDA(){
+		Scanner input = new Scanner(System.in);
 
-    System.out.println("Digite o nome customizado para a Nova Agenda:");
-    AGENDAS[AGENDA_INDEX] = input.nextLine();
+		System.out.println("Digite o nome customizado para a Nova Agenda:");
+		AGENDAS[AGENDA_INDEX] = input.nextLine();
 
-    System.out.println("Digite o tipo de pagamento\n Semanal / Mensal / Bi-semanal");
-    AGENDAtype[AGENDA_INDEX] = input.nextLine();
+		System.out.println("Digite o tipo de pagamento\n Semanal / Mensal / Bi-semanal");
+		AGENDAtype[AGENDA_INDEX] = input.nextLine();
 
-    if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("semanal")){
-      System.out.println("Digite o Dia da semana de pagamento: ");
-      AGENDAweek[AGENDA_INDEX] = input.nextLine();
-    } else if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("mensal")){
-      System.out.println("Digite o novo dia de pagamento: ");
-      AGENDAdia[AGENDA_INDEX] = input.nextInt();
-    } else if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("bi-semanal")){
-      System.out.println("Digite o Dia da semana de pagamento: ");
-      AGENDAweek[AGENDA_INDEX] = input.nextLine();
-    }
-    AGENDAbool[AGENDA_INDEX] = 1;
-    AGENDA_INDEX += 1;
-  }
+		if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("semanal")){
+			System.out.println("Digite o Dia da semana de pagamento: ");
+			AGENDAweek[AGENDA_INDEX] = input.nextLine();
+		} else if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("mensal")){
+			System.out.println("Digite o novo dia de pagamento: ");
+			AGENDAdia[AGENDA_INDEX] = input.nextInt();
+		} else if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("bi-semanal")){
+			System.out.println("Digite o Dia da semana de pagamento: ");
+			AGENDAweek[AGENDA_INDEX] = input.nextLine();
+		}
+		AGENDAbool[AGENDA_INDEX] = 1;
+		AGENDA_INDEX += 1;
+	}
 
 	//UNDONE REDONE
 
 	//O MESMO DE CIMA
 	    //Senha de acesso
-  
+
 	private static void pedirSenha(int valor)
 	{
 		Scanner input = new Scanner(System.in);
@@ -143,16 +143,16 @@ public class Main {
 	    //Senha de acesso
 
 
-  private static void setDays(){
-    Asemana[0] = "Segunda-Feira";
-    Asemana[1] = "Terca-Feira";
-    Asemana[2] = "Quarta-Feira";
-    Asemana[3] = "Quinta-Feira";
-    Asemana[4] = "Sexta-Feira";
-    Asemana[5] = "Sabado";
-    Asemana[6] = "Domingo";
+	private static void setDays(){
+		Asemana[0] = "Segunda-Feira";
+		Asemana[1] = "Terca-Feira";
+		Asemana[2] = "Quarta-Feira";
+		Asemana[3] = "Quinta-Feira";
+		Asemana[4] = "Sexta-Feira";
+		Asemana[5] = "Sabado";
+		Asemana[6] = "Domingo";
 
-  }
+	}
 	private static void baterPonto(int[] codeused, String codinho){
 
 		int index = getIndex(codinho);
@@ -185,55 +185,55 @@ public class Main {
 	}
 
 
-  private static boolean isSexta()
-  {     
-      boolean sexta = false;
-        System.out.println("Hoje e sexta-feira?");
-        Scanner input = new Scanner(System.in);
-        System.out.println("1 - SIM / 2 - NAO");
-        int valor = input.nextInt();
-        if(valor == 1) {
-          sexta = true;
-        } else sexta = false;
-        return sexta;
-  }
-  private static void rodarFolha(int[] codeused){
+	private static boolean isSexta()
+	{     
+		boolean sexta = false;
+		System.out.println("Hoje e sexta-feira?");
+		Scanner input = new Scanner(System.in);
+		System.out.println("1 - SIM / 2 - NAO");
+		int valor = input.nextInt();
+		if(valor == 1) {
+			sexta = true;
+		} else sexta = false;
+		return sexta;
+	}
+	private static void rodarFolha(int[] codeused){
 
-        boolean sexta = false;
-        if(PAY_DAY)
-        {
+		boolean sexta = false;
+		if(PAY_DAY)
+		{
          //sexta = isSexta();
-         System.out.println("Lista de funcionarios pagos:\n");
-	       for(int i = 1; i < 100; i++)
-	       {
-	           if(codeused[i] == 1 && DATAtype[i].equals("Horario") && Asemana[(Adia + 1) % 7] == "Sexta-Feira")
-	           {
-               System.out.println("- " + DATAname[i] + "\n- Pago via " + DATApaymode[i] + "\n- Valor = " + DATAsalary[i] + " RS\n- Tipo: Horario");
-               System.out.print("-------\n");
+			System.out.println("Lista de funcionarios pagos:\n");
+			for(int i = 1; i < 1000; i++)
+			{
+				if(codeused[i] == 1 && DATAtype[i].equals("Horario") && Asemana[(Adia + 1) % 7] == "Sexta-Feira")
+				{
+					System.out.println("- " + DATAname[i] + "\n- Pago via " + DATApaymode[i] + "\n- Valor = " + DATAsalary[i] + " RS\n- Tipo: Horario");
+					System.out.print("-------\n");
 
-	           }
-             else if (codeused[i] == 1 && DATAtype[i].equals("Mensal") && Adia == 30)
-             {
-               System.out.println("- " + DATAname[i] + "\n- Pago via " + DATApaymode[i] + "\n- Valor = " + DATAsalary[i] + " RS\n- Tipo: Mensal");
-               System.out.print("-------\n");
-             }
-             else if (codeused[i] == 1 && DATAtype[i].equals("Comissionado") && Asemana[(Adia + 1) % 7] == "Sexta-Feira")
-             {
-               System.out.println("- " + DATAname[i] + "\n- Pago via " + DATApaymode[i] + "\n- Valor = " + DATAsalary[i] + " RS\n- Tipo: Comissionado, percentual de venda incluso");
-               System.out.print("-------\n");
-             }
-	       }
-         System.out.println("Pagamento realizado com sucesso!");
-          } else{
-            System.out.println("Pagamento de hoje ja realizado!");
-          }
-         PAY_DAY = false;
-	   }
+				}
+				else if (codeused[i] == 1 && DATAtype[i].equals("Mensal") && Adia == 30)
+				{
+					System.out.println("- " + DATAname[i] + "\n- Pago via " + DATApaymode[i] + "\n- Valor = " + DATAsalary[i] + " RS\n- Tipo: Mensal");
+					System.out.print("-------\n");
+				}
+				else if (codeused[i] == 1 && DATAtype[i].equals("Comissionado") && Asemana[(Adia + 1) % 7] == "Sexta-Feira")
+				{
+					System.out.println("- " + DATAname[i] + "\n- Pago via " + DATApaymode[i] + "\n- Valor = " + DATAsalary[i] + " RS\n- Tipo: Comissionado, percentual de venda incluso");
+					System.out.print("-------\n");
+				}
+			}
+			System.out.println("Pagamento realizado com sucesso!");
+		} else{
+			System.out.println("Pagamento de hoje ja realizado!");
+		}
+		PAY_DAY = false;
+	}
 
 	private static void menuPrint()
 	{
 		System.out.println(Adia + " / " + Ames + " / " + Aano + "\n" + Ahora + ":" + Aminuto );
-    System.out.println(Asemana[(Adia+1) % 7]);
+		System.out.println(Asemana[(Adia+1) % 7]);
 
 		System.out.println("\n\n>>>> Escolha uma ação:\n\n1.Adcionar funcionário ao Sistema\n" +
 			"2.Remover funcionário do Sistema\n3.Acessar informações de um funcio" +
@@ -283,8 +283,8 @@ public class Main {
 	private static int getIndex(String codigo){
 		int i = 0;
 		int index = 0;
-    //2019265
-    int pt = codigo.length() - 5;
+    	//2019265
+		int pt = codigo.length() - 5;
 		while(i < codigo.length() - 4 )
 		{
 			index += Math.pow(10, pt - i) * Character.getNumericValue(codigo.charAt(i + 4));
@@ -416,13 +416,13 @@ public class Main {
 	    				case 7:
 	    				System.out.print("Insira o Metodo de pagamento\n" +
 	    					"1 - Correios / 2 - Cheque / 3 - Deposito bancario\n");
-                int aux = input.nextInt();
-                if(aux == 1)
-                {
-                  	DATApaymode[index] = "Correios";
-                } else if(aux == 2) {
-                  DATApaymode[index] = "Cheque";
-                } else DATApaymode[index] = "Deposito bancario";
+	    				int aux = input.nextInt();
+	    				if(aux == 1)
+	    				{
+	    					DATApaymode[index] = "Correios";
+	    				} else if(aux == 2) {
+	    					DATApaymode[index] = "Cheque";
+	    				} else DATApaymode[index] = "Deposito bancario";
 
 	    				case 8:
 	    				bk = true;
@@ -445,35 +445,35 @@ public class Main {
 	    		i += 1;
 	    	}
 	    }
-      
+
 	    public static void timeChange(){
 	    	int aux = Adia;
 
 	    	if(Adia == 30 && Ames == 12)
-	        {
-	            Aano += 1;
-              PAY_DAY = true;
-	        }
-	        Adia = Adia%30 + 1;
+	    	{
+	    		Aano += 1;
+	    		PAY_DAY = true;
+	    	}
+	    	Adia = Adia%30 + 1;
 
-	        if(aux == 30 && Adia == 1)
-	        {
-	        	Ames = (Ames%12 + 1);
-            PAY_DAY = true;
-	        }
+	    	if(aux == 30 && Adia == 1)
+	    	{
+	    		Ames = (Ames%12 + 1);
+	    		PAY_DAY = true;
+	    	}
 	    }
 
-      public static void addFake(int codeusage[]){
-        codeusage[1] = 1;
-        DATAaddress[1] = "alguma coisa ai";
-        DATAcode[1] = "20191";
-        DATApaymode[1] = "Correios";
-        DATAtype[1] = "Horista";
-        DATAsalary[1] = 971.1;
-        DATAname[1] = "mateus";
-      }
+	    public static void addFake(int codeusage[]){
+	    	codeusage[1] = 1;
+	    	DATAaddress[1] = "alguma coisa ai";
+	    	DATAcode[1] = "20191";
+	    	DATApaymode[1] = "Correios";
+	    	DATAtype[1] = "Horista";
+	    	DATAsalary[1] = 971.1;
+	    	DATAname[1] = "mateus";
+	    }
 	    public static void main(String[] args) {
-        setDays();
+	    	setDays();
 	    	//mclear();
 	    	int sindqnt = 1;
 	    	boolean usar = true;
@@ -512,7 +512,7 @@ public class Main {
 
 	    		boolean play = true;
 	    		while (play) {  
-                  addFake(codeused);
+	    			addFake(codeused);
 
 	                if (adm == 1) { //se for adm
 	                	menuPrint();
@@ -535,13 +535,13 @@ public class Main {
 
 	                		System.out.print("Insira o Metodo de pagamento\n" +
 	                			"1 - Correios / 2 - Cheque / 3 - Deposito bancario\n");
-	                		 int auxx = input.nextInt();
-                      if(auxx == 1)
-                      {
-                      	DATApaymode[pos] = "Correios";
-                      } else if(auxx == 2) {
-                      DATApaymode[pos] = "Cheque";
-                      } else DATApaymode[pos] = "Deposito bancario";
+	                		int auxx = input.nextInt();
+	                		if(auxx == 1)
+	                		{
+	                			DATApaymode[pos] = "Correios";
+	                		} else if(auxx == 2) {
+	                			DATApaymode[pos] = "Cheque";
+	                		} else DATApaymode[pos] = "Deposito bancario";
 
 	                		System.out.print("Insira o Salario do funcionário: "
 	                			+ "\n");
@@ -600,7 +600,7 @@ public class Main {
 	                		break;
 
 	                		case 6:
-                      rodarFolha(codeused);
+	                		rodarFolha(codeused);
 	                            //rodarFolha(codeused, empregado);
 	                		break;
 	                		case 7:
@@ -608,14 +608,14 @@ public class Main {
 	                		Ahora = (Ahora + 1)%24;	
 	                		if(Ahora == 0 && auxiliandinho == 23)
 	                		{
-                        PAY_DAY = true;
+	                			PAY_DAY = true;
 	                			timeChange();
 	                		}
 	                		System.out.println("Hora aumentada em 1hr\nHora atual = " + Ahora + ":" + Aminuto );
 	                		break;
 
 	                		case 8:
-                      PAY_DAY = true;
+	                		PAY_DAY = true;
 	                		int aux = Adia;
 	                		timeChange();
 
@@ -632,32 +632,32 @@ public class Main {
 	                	}
 	                } else if (adm == 2) {
 	                    //BAter ponto, etc;
-                      
-                      int action_f = 0;
-                      System.out.println("1 - Bater ponto\n2 - Lancar Venda");
-                      action_f = input.nextInt();
-                      input.nextLine();
-                      switch(action_f)
-                      {
-                        case 1:
+
+	                	int action_f = 0;
+	                	System.out.println("1 - Bater ponto\n2 - Lancar Venda");
+	                	action_f = input.nextInt();
+	                	input.nextLine();
+	                	switch(action_f)
+	                	{
+	                		case 1:
                          //getchar
-	                      System.out.println("Insira seu codigo de acesso");
-	                      String codinho = input.nextLine();
-	                      baterPonto(codeused, codinho);
-                        break;
-                        case 2:
-                        int lugarzinho = 0;
-                        System.out.println("Insira seu codigo de acesso: ");
-	                      String coisinhu = input.nextLine();
-                        System.out.println("Insira o valor da venda: ");
-                        double valor = input.nextDouble();
-                        System.out.println("Percentual de venda atual = 15%\n" +
-                        "Valor adicionado em conta com sucesso!");
-                        lugarzinho = getIndex(coisinhu);
-                        DATAsalary[lugarzinho] += valor * 0.15;
-                        break;
-                      }
-	                    break;
+	                		System.out.println("Insira seu codigo de acesso");
+	                		String codinho = input.nextLine();
+	                		baterPonto(codeused, codinho);
+	                		break;
+	                		case 2:
+	                		int lugarzinho = 0;
+	                		System.out.println("Insira seu codigo de acesso: ");
+	                		String coisinhu = input.nextLine();
+	                		System.out.println("Insira o valor da venda: ");
+	                		double valor = input.nextDouble();
+	                		System.out.println("Percentual de venda atual = 15%\n" +
+	                			"Valor adicionado em conta com sucesso!");
+	                		lugarzinho = getIndex(coisinhu);
+	                		DATAsalary[lugarzinho] += valor * 0.15;
+	                		break;
+	                	}
+	                	break;
 	                } else {
 	                	System.out.println("Comando invalido, tente novamente!");
 	                	play = false;
