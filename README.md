@@ -10,3 +10,23 @@
  <img src="source/yoshi2.gif" width="240" align = "left">
  <img src="source/heh.gif" width="240" align="left">
  <img src="source/mega.gif" width="240" align="right">
+ 
+<html>
+<head>
+   <title>Página</title>
+</head>
+<body>
+<p>
+Este texto está normal.
+</p>
+<p>
+Este texto <b>também</b> é normal
+</p>
+<!--
+Isto é um comentário
+<B>Ao ser um <i>comentário</i></B> não aparecerá nada na página
+<p>Nem as etiquetas HTML terão valor</p>
+-->
+Isto está fora do comentário.
+</body>
+</html>
