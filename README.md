@@ -15,4 +15,4 @@
   
   <img src="source/Salamon2.gif" width="240" align="center"> 
   
-  <img src="source/yoshi2.gif" width="240" align="right"> 
+  <img src="source/yoshi2.gif" width="240" align = "left"> 
