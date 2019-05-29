@@ -9,7 +9,7 @@
 
  <img src="source/mega.gif" width="240" align="right"> 
 
-  <img src="source/mario.gif" width="240" align="right"> 
+  <img src="source/mario.gif" width="240" align="center"> 
 
   <img src="source/zero.gif" width="240" align="center"> 
   
