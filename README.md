@@ -1,6 +1,6 @@
 
 # P3 Repository
-<img src="ok.gif" style="width:128px;height:128px;">
+<img src="source/ok.gif" style="width:128px;height:128px;">
 
 <
 
