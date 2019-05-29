@@ -7,7 +7,9 @@
  <img src="source/heh.gif" width="380" align="left"> 
 
 
- <img src="source/ze.gif" width="380" align="left"> 
+ <img src="source/mega.gif" width="380" align="left"> 
+ 
+ 
   <img src="source/tenor.gif" width="380" align="left"> 
 
   <img src="source/maior.gif" width="380" align="left"> 
