@@ -8,9 +8,6 @@
 
 
  <img src="source/mega.gif" width="380" align="left"> 
- 
- 
-  <img src="source/tenor.gif" width="380" align="left"> 
 
   <img src="source/mario.gif" width="380" align="left"> 
 
