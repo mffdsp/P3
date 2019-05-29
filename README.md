@@ -1,6 +1,6 @@
 
 # P3 Repository
-<img src="source/yoshi2.gif" width="180" align = "right">
+<img src="source/ok.gif" width="280" align = "center">
 
 <
 
