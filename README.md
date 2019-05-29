@@ -11,7 +11,7 @@
 
   <img src="source/mario.gif" width="240" align="left"> 
 
-  <img src="source/zero.gif" width="240" align="left"> 
+  <img src="source/zero.gif" width="240" align="center"> 
   
   <img src="source/Salamon2.gif" width="240" align="left"> 
   
