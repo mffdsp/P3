@@ -1,7 +1,7 @@
 
 ## P3 Repository
 
-## Deus eh bom
+# Deus eh bom
 
 <img src="source/yoshi2.gif" width="240" align = "left">
 
