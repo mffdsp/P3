@@ -8,3 +8,12 @@
 
 
  <img src="source/ze.gif" width="380" align="left"> 
+  <img src="source/tenor.gif" width="380" align="left"> 
+
+  <img src="source/maior.gif" width="380" align="left"> 
+
+  <img src="source/zero.gif" width="380" align="left"> 
+  
+  <img src="source/Salamon2.gif" width="380" align="left"> 
+  
+  <img src="source/yoshi2.gif" width="380" align="left"> 
