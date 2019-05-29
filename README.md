@@ -7,6 +7,8 @@
  <img src="source/heh.gif" width="380" align="left"> 
 
 
+ <img src="source/ze.gif" width="380" align="center"> 
+
 
 
 ## >.<'
