@@ -52,6 +52,7 @@ public class Main {
     //AGENDAS
 	private static String[] AGENDAS = new String[1000];
 	private static int AGENDAbool[] = new int[1000];
+	System.out.printf("cu");
 	private static int AGENDAdia[] = new int[1000];
 	private static int AGENDAmes[] = new int[1000];
 	private static String AGENDAweek[] = new String[1000];
