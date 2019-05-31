@@ -81,6 +81,7 @@ public class Main {
     private static int[][] DATAworktimeSAVE = new int[1000][1000];
     private static String[][] DATAtypeSAVE = new String[1000][1000];
     private static int[][] AGENDAboolSAVE = new int[1000][1000];
+    private static boolean[] PAYDAYSAVE = new boolean[1000];
 
 
     //UNDE REDO
@@ -101,6 +102,7 @@ public class Main {
     private static void saveState(){
         int i = 1;
         SAVEINDEX += 1;
+        PAYDAYSAVE[SAVEINDEX] = PAY_DAY;
         for(int j = 1; j < 1000; j++){
 
             codeusedSAVE[SAVEINDEX][i] = codeused[j];
@@ -129,6 +131,8 @@ public class Main {
             SAVEINDEX -= 1;
             UNDACTIONS += 1;
             System.out.println("Ultima Acao desfeita com sucesso!");
+
+            PAY_DAY = PAYDAYSAVE[SAVEINDEX];
             for(int i = 1; i < 1000; i++)
             {
                 DATAname[i] = DATAnameSAVE[SAVEINDEX][j];
@@ -158,6 +162,7 @@ public class Main {
 
             UNDACTIONS -= 1;
             SAVEINDEX += 1;
+            PAY_DAY = PAYDAYSAVE[SAVEINDEX];
             System.out.println("Ultima Acao Refeita com sucesso! ");
             for(int i = 1; i < 1000; i++)
             {
@@ -853,6 +858,7 @@ public class Main {
                         case 6:
                             clearScreen(0);
                             rodarFolha(codeused);
+                            saveState();
                             //rodarFolha(codeused, empregado);
                             break;
 
