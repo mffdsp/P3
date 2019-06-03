@@ -21,7 +21,7 @@ Adição de um empregado -> OK
 
 Remoção de um empregado -> OK
 
-<img src="source/giphy.gif"  align="right - 50" style="transform:rotate(418deg)">
+<img src="source/giphy.gif"  align="right - 5" style="transform:rotate(418deg)">
 
 Lançar um Cartão de Ponto -> OK
 
