@@ -13,13 +13,15 @@
         "--------------------------------------------------------"
       
       
-<img src="source/something.gif" style="width:128px;height:128px;" align="right">
+
 
 Funcoes implementadas:
 
 Adição de um empregado -> OK
 
 Remoção de um empregado -> OK
+
+<img src="source/something.gif" style="width:128px;height:128px;" align="right">
 
 Lançar um Cartão de Ponto -> OK
 
