@@ -40,6 +40,6 @@ Agenda de Pagamento -> OK
 Criação de Novas Agendas de Pagamento -> OK
 
 ```javascript
-function test(){
+private static void test(){
 	console.log("Hello world!");
 }
