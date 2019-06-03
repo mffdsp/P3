@@ -13,7 +13,7 @@
         "--------------------------------------------------------"
       
       
-<img src="source/something.gif" style="width:128px;height:128px;">
+<img src="source/something.gif" style="width:128px;height:128px;" align="left">>
 
 Funcoes implementadas:
 
