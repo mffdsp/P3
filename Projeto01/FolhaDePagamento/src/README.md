@@ -15,7 +15,9 @@
 Funcoes implementadas:
 
 Adição de um empregado -> OK
+
 Remoção de um empregado -> OK
+
 Lançar um Cartão de Ponto -> OK
 Lançar um Resultado Venda -> OK
 Lançar uma taxa de serviço -> OK
