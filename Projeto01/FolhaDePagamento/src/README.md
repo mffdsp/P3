@@ -15,7 +15,7 @@
       
 
 
-Funcoes implementadas:
+**Funcoes implementadas
 
 Adição de um empregado -> OK
 
