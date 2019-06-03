@@ -39,7 +39,6 @@ Agenda de Pagamento -> OK
 
 Criação de Novas Agendas de Pagamento -> OK
 
-```javascript
 function test(){
 	console.log("Hello world!");
 }
