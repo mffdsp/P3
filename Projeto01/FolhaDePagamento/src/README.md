@@ -4,7 +4,7 @@
         "------            Instrucoes de Uso:               -----"
         "------                                             -----"
         "------  + Siga os comandos com precisao            -----"
-        "------  + Comandos '*' simbolizam os obrigatorios  -----"
+        "------  + Comandos '*' simbolizam os obrigatorios  -----"  <img src="source/something.gif" style="width:128px;height:128px;">
         "------  + Datas/Horas sao fantasiosas              -----"
         "------  + Undo/Redo validos para toda acao*        -----"
         "------  + Senha inicial - 'admin'                  -----"
