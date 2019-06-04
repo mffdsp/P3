@@ -17,7 +17,7 @@
 
 ## Funções implementadas
 
-`Adição de um empregado -> OK`
+`Adição de um empregado -> OK
 
 Remoção de um empregado -> OK
 
@@ -37,7 +37,7 @@ Undo/redo -> OK
 
 Agenda de Pagamento -> OK
 
-Criação de Novas Agendas de Pagamento -> OK
+Criação de Novas Agendas de Pagamento -> OK`
 
 ```java
 private static void addEmpregado();
