@@ -26,6 +26,7 @@ public class Main {
     private static int[] WorkDays = new int[1000]; //recebe de 2 em 2 semanas
     private static int[] codeused = new int[1000];
     private static String[] DATAname = new String[1000];
+    private static double[] DATAhrpay = new double[1000];
     private static int[] DATAagendaday = new int[1000];
     private static int[] DATAcomissao = new int[1000];
     private static String[] DATAagendaweek = new String[1000];
@@ -328,13 +329,25 @@ public class Main {
                 }if(type == 2) {
                 System.out.println("Hora de Saida = " + Ahora + ":" + Aminuto);
                 Stime[index] = Ahora;
-                int workedtime = Stime[index] - Etime[index];
+                int workedtime = Math.abs(Stime[index] - Etime[index]);
                 horashj[index] = workedtime;
                 horassmes[index] += workedtime;
                 System.out.println("\n-------------------------------------");
                 System.out.println("Nome do empregado = "+  DATAname[index]);
-                System.out.println("Horas trabalhadas hoje: " + workedtime);
-                System.out.println("Horas acumuladas no mes: " + horassmes[index]);
+                System.out.println("Horas trabalhadas hoje = " + workedtime);
+                System.out.println("Horas acumuladas no mes = " + horassmes[index]);
+
+                System.out.print("Horas extras = " );
+                if(workedtime > 8)
+                {
+                    int extras = workedtime - 8;
+                    DATAsalary[index] += 8 * DATAhrpay[index] + extras * DATAhrpay[index]*1.5;
+                    System.out.println(extras + "hrs");
+                } else {
+                    DATAsalary[index] += workedtime * DATAhrpay[index];
+                    System.out.println("0hrs");
+                }
+                System.out.println("Salario somado = " +  DATAsalary[index] + "RS");
                 System.out.println("\nENTRADA " + Etime[index] + "hrs         SAIDA " + Stime[index] + "hrs");
                 System.out.println("-------------------------------------");
                 break;
@@ -893,7 +906,15 @@ public class Main {
                             } else DATApaymode[pos] = "Deposito bancario";
 
                             System.out.print("Insira o salario do funcionário: ");
-                            DATAsalary[pos] = input.nextDouble();
+                            double valorzinho = input.nextDouble();
+                            if(DATAtype[pos].equals("Horario"))
+                            {
+                                DATAhrpay[pos] = valorzinho;
+                                DATAsalary[pos] = 0;
+                            }
+                            else {
+                                DATAsalary[pos] = valorzinho;
+                            }
                             DATAcode[pos] = Integer.toString(time.get(Calendar.YEAR)) + pos ;
 
                             System.out.print("O funcionario esta associado ao Sindicato de sua categoria?\n " +
@@ -908,7 +929,7 @@ public class Main {
                                 DATAsindtax[pos] = DATAsalary[pos] * 0.10;
                                 System.out.print("Usuario Associado ao Sindicato com Codigo sindical = " +
                                         DATAsindicatyc[pos] + "\nTaxa inicial = ");
-                                System.out.printf("%.2fRS - 10%% do salario\n", DATAsindtax[pos]);
+                                System.out.printf("%.2fRS - 10%% do salario (Horistas sao, inicialmente, isentos)\n", DATAsindtax[pos]);
 
                             } else {
                                 DATAsindicaty[pos] = false;
