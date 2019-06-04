@@ -21,7 +21,7 @@
 
 `Remoção de um empregado -> OK`
 
-<img src="source/giphy.gif" align= "right">
+<img src="source/sksk.gif" align= "right">
 
 `Lançar um Cartão de Ponto -> OK`
 
