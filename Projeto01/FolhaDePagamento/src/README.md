@@ -37,14 +37,14 @@
 
 `Agenda de Pagamento -> OK`
 
-`Criação de Novas Agendas de Pagamento -> OK``
+`Criação de Novas Agendas de Pagamento -> OK`
 
 ```java
 private static void addEmpregado();
 ```
 
 
--------
+
 MIT License
 
 Copyright (c) 2019 Mateus Felismino
