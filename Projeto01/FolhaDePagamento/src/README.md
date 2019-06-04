@@ -14,7 +14,7 @@
       
       
 
-
+`example`
 ## Funções implementadas
 
 Adição de um empregado -> OK
@@ -44,7 +44,7 @@ private static void addEmpregado();
 ```
 
 
------------
+-------
 MIT License
 
 Copyright (c) 2019 Mateus Felismino
