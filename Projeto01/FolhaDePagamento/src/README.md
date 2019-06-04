@@ -14,10 +14,10 @@
       
       
 
-`example`
+
 ## Funções implementadas
 
-Adição de um empregado -> OK
+`Adição de um empregado -> OK`
 
 Remoção de um empregado -> OK
 
