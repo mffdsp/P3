@@ -43,10 +43,10 @@
 ```java
 private static void addEmpregado();
 ```
-<--
+-->
 
 
-
+___________
 MIT License
 
 Copyright (c) 2019 Mateus Felismino
