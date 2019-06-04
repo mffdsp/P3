@@ -17,27 +17,27 @@
 
 ## Funções implementadas
 
-`Adição de um empregado -> OK
+`Adição de um empregado -> OK`
 
-Remoção de um empregado -> OK
+`Remoção de um empregado -> OK`
 
 <img src="source/giphy.gif" align= "right">
 
-Lançar um Cartão de Ponto -> OK
+`Lançar um Cartão de Ponto -> OK`
 
-Lançar um Resultado Venda -> OK
+`Lançar um Resultado Venda -> OK`
 
-Lançar uma taxa de serviço -> OK
+`Lançar uma taxa de serviço -> OK`
 
-Alterar detalhes de um empregado -> OK
+`Alterar detalhes de um empregado -> OK`
 
-Rodar a folha de pagamento para hoje -> OK
+`Rodar a folha de pagamento para hoje -> OK`
 
-Undo/redo -> OK
+`Undo/redo -> OK`
 
-Agenda de Pagamento -> OK
+`Agenda de Pagamento -> OK`
 
-Criação de Novas Agendas de Pagamento -> OK`
+`Criação de Novas Agendas de Pagamento -> OK``
 
 ```java
 private static void addEmpregado();
