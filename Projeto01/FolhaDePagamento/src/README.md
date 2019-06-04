@@ -46,7 +46,7 @@ private static void addEmpregado();
 -->
 
 
-___________
+## ___________
 MIT License
 
 Copyright (c) 2019 Mateus Felismino
