@@ -27,6 +27,7 @@ public class Main {
     private static int[] codeused = new int[1000];
     private static String[] DATAname = new String[1000];
     private static int[] DATAagendaday = new int[1000];
+    private static int[] DATAcomissao = new int[1000];
     private static String[] DATAagendaweek = new String[1000];
     private static String[] DATAaddress = new String[1000];
     private static double[] DATAsalary = new double[1000];
@@ -87,6 +88,12 @@ public class Main {
 
 
 
+    private static void setComissao(){
+        for(int i = 0; i < MAX; i++)
+        {
+            DATAcomissao[i] = 15;
+        }
+    }
     private static void findVALIDPAYDAY(){
         int day = DAYSGONE ;
         while(day % 30 != 0){
@@ -324,13 +331,16 @@ public class Main {
                 int workedtime = Stime[index] - Etime[index];
                 horashj[index] = workedtime;
                 horassmes[index] += workedtime;
-                System.out.print("Horas trabalhadas hoje: " + workedtime
-                        + "\n");
-
+                System.out.println("\n-------------------------------------");
+                System.out.println("Nome do empregado = "+  DATAname[index]);
+                System.out.println("Horas trabalhadas hoje: " + workedtime);
+                System.out.println("Horas acumuladas no mes: " + horassmes[index]);
+                System.out.println("\nENTRADA " + Etime[index] + "hrs         SAIDA " + Stime[index] + "hrs");
+                System.out.println("-------------------------------------");
                 break;
             }else System.out.println("Valor incorreto, tente novamente!\n");
             }
-            System.out.println("\nPonto batido com sucesso");
+            System.out.println("\nPonto de " + DATAname[index] + " batido com sucesso");
 
         } else System.out.println("\nCodigo incorreto , Saindo do Sistema!\n");
 
@@ -485,6 +495,7 @@ public class Main {
     private static void setCode(int[] code) {
         for(int i = 0; i < MAX; i++) {
             code[i] = 0;
+            DATAsindicaty[i] = false;
         }
     }
 
@@ -893,11 +904,11 @@ public class Main {
                                 clearScreen(1);
 
                                 DATAsindicaty[pos] = true;
-                                DATAsindicatyc[pos] = "120" + pos;
-                                DATAsindtax[pos] = DATAsalary[pos] * 0.20;
-                                System.out.println("Usuario Associado ao Sindicato com Codigo sindical = " +
+                                DATAsindicatyc[pos] = "1010" + pos;
+                                DATAsindtax[pos] = DATAsalary[pos] * 0.10;
+                                System.out.print("Usuario Associado ao Sindicato com Codigo sindical = " +
                                         DATAsindicatyc[pos] + "\nTaxa inicial = ");
-                                System.out.printf("%.2f  + RS - 20%% do salario\n", DATAsindtax[pos]);
+                                System.out.printf("%.2fRS - 10%% do salario\n", DATAsindtax[pos]);
 
                             } else {
                                 DATAsindicaty[pos] = false;
@@ -1031,6 +1042,7 @@ public class Main {
 
                         case 1:
                             //getchar
+                            System.out.println("-------- BATER PONTO --------\n");
                             System.out.print("Insira seu codigo de acesso: ");
                             String codinho = input.nextLine();
                             baterPonto(codeused, codinho);
@@ -1038,29 +1050,55 @@ public class Main {
                             pressENTER();
                             break;
                         case 2:
+                            System.out.println("-------- LANCAR VENDA --------\n");
                             int lugarzinho = 0;
                             System.out.print("Insira seu codigo de acesso: ");
                             String coisinhu = input.nextLine();
                             System.out.print("Insira o valor da venda: ");
                             double valor = input.nextDouble();
+                            System.out.print("Insira o dia em que a venda foi efetuada: ");
+                            int sellday = input.nextInt();
                             System.out.println("Percentual de venda atual = 15%\n" +
                                     "Valor adicionado em conta com sucesso!");
                             lugarzinho = getIndex(coisinhu);
-                            DATAsalary[lugarzinho] += valor * 0.15;
+                            DATAsalary[lugarzinho] += valor * DATAcomissao[lugarzinho]/100;
+                            System.out.println("\n-------------------------------------");;
+                            System.out.println("Nome do empregado = "+  DATAname[lugarzinho]);
+                            System.out.println("Valor de venda = " + valor + "RS");
                             System.out.println("Salario atualizado = " + DATAsalary[lugarzinho] + "RS");
+                            System.out.println("Data de venda = " + sellday + "/" + Ames + "/" + Aano);
+                            System.out.println("-------------------------------------");
                             saveState();
                             pressENTER();
                             clearScreen(2);
                             break;
                         case 3:
                             //getchar
-                            System.out.print("Insira seu codigo de acesso: ");
-                            String codinhovvv = input.nextLine();
+                            int vvv = 0;
+                            System.out.println("-------- LANCAR TAXA SINDICAL --------\n");
+                            while(true)
+                            {
+                                System.out.print("Insira seu codigo de acesso sindical: ");
+                                String codinhovvv = input.nextLine();
+                                vvv = getIndex(codinhovvv);
+                                if(DATAsindicaty[vvv])
+                                {
+                                    break;
+                                }
+                                else System.out.println("Codigo nao associado ao sindicato, tente novamente!");
+                            }
+
                             System.out.print("Insira o valor da taxa prestada: ");
                             double valorvvv = input.nextDouble();
-                            int vvv = getIndex(codinhovvv);
+
+
                             DATAsalary[vvv] -= valorvvv;
+                            System.out.println("\n-------------------------------------");
+                            System.out.println("Nome do empregado = " + DATAname[vvv]);
+                            System.out.println("Valor de Taxa = " + valorvvv + "RS");
                             System.out.println("Salario atualizado = " + DATAsalary[vvv] + "RS");
+                            System.out.println("Data do servico = " + Adia + "/" + Ames + "/" + Aano);
+                            System.out.println("-------------------------------------");
                             saveState();
                             pressENTER();
                             break;
@@ -1075,8 +1113,4 @@ public class Main {
         }
     }
 }
-
-//   Rodar folha de pagamento;
-//   Para horistas, se for sexta
-//   Para mensal, Se for ultimo dia util do mes
-//   Para comissionados, comissao%porvenda
+//
