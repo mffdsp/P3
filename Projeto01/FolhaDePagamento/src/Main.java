@@ -5,7 +5,7 @@ import java.util.concurrent.* ;
 
 public class Main {
 
-
+    private static Scanner getEnter =  new Scanner(System.in);
     private static long SLEEPTIME = 0L;
     private static int MAX = 1000;
     private static boolean PAY_DAY = true;
@@ -38,6 +38,7 @@ public class Main {
     private static int[] DATAworktime = new int[1000];
     private static String[] DATAtype = new String[1000];
     private static int[] horashj = new int[1000];
+    private static int[] horassmes = new int[1000];
 
     //entrada
     private static int[] Ehora = new int[1000];
@@ -66,6 +67,7 @@ public class Main {
     //UNDO REDO
 
     private static int[][] horashjSAVE = new int[1000][1000];
+    private static int[][] horasmesSAVE = new int[1000][1000];
     private static int[][] indexSAVE = new int[1000][1000];
     private static int[][] codeusedSAVE = new int[1000][1000];
     private static String[][] DATAnameSAVE = new String[1000][1000];
@@ -116,11 +118,12 @@ public class Main {
 
     private static void saveState(){
         int i = 1;
-        System.out.println("saavou");
+        //System.out.println("saved");
         SAVEINDEX += 1;
         PAYDAYSAVE[SAVEINDEX] = PAY_DAY;
         for(int j = 1; j < 1000; j++){
 
+            horasmesSAVE[SAVEINDEX][i] = horassmes[j];
             horashjSAVE[SAVEINDEX][i] = horashj[j];
             codeusedSAVE[SAVEINDEX][i] = codeused[j];
             DATAnameSAVE[SAVEINDEX][i] = DATAname[j];
@@ -152,6 +155,7 @@ public class Main {
             PAY_DAY = PAYDAYSAVE[SAVEINDEX];
             for(int i = 1; i < 1000; i++)
             {
+                horassmes[i] = horasmesSAVE[SAVEINDEX][j];
                 horashj[i] = horashjSAVE[SAVEINDEX][j];
                 DATAname[i] = DATAnameSAVE[SAVEINDEX][j];
                 DATAagendaweek[i] = DATAagendaweekSAVE[SAVEINDEX][j];
@@ -184,6 +188,7 @@ public class Main {
             System.out.println("Ultima Acao Refeita com sucesso! ");
             for(int i = 1; i < 1000; i++)
             {
+                horassmes[i] = horasmesSAVE[SAVEINDEX][j];
                 horashj[i] = horashjSAVE[SAVEINDEX][j];
                 DATAname[i] = DATAnameSAVE[SAVEINDEX][j];
                 DATAagendaweek[i] = DATAagendaweekSAVE[SAVEINDEX][j];
@@ -318,6 +323,7 @@ public class Main {
                 Stime[index] = Ahora;
                 int workedtime = Stime[index] - Etime[index];
                 horashj[index] = workedtime;
+                horassmes[index] += workedtime;
                 System.out.print("Horas trabalhadas hoje: " + workedtime
                         + "\n");
 
@@ -448,7 +454,6 @@ public class Main {
                 else if(codeused[i] == 1 && !DATAtype[i].equals("nothing")){
                     pagandinho = searchAGENDA(i);
                 }
-
             }
             if(pagandinho)
             {
@@ -459,6 +464,7 @@ public class Main {
             System.out.println("Pagamento de hoje ja realizado!");
         }
         PAY_DAY = false;
+
     }
     private static void hourPrint(){
         System.out.println("  -------------  ");
@@ -505,11 +511,11 @@ public class Main {
             {
                 if(!achouum)
                 {
-                    System.out.println("\n\nLista de Funcionarios :\n" + "----------------------------------" +
+                    System.out.println("\n                  Lista de Funcionarios \n" + "----------------------------------" +
                             "-----------------------\n");
                     achouum = true;
                 }
-                System.out.println("> " +  DATAname[i] + " - " + DATAcode[i]);
+                System.out.println("> " +  DATAname[i] + " - " + DATAcode[i] +  " - " + DATAsalary[i] + "RS");
             }
         }
         if(!achouum)
@@ -570,12 +576,13 @@ public class Main {
     private static void tabelinha(int index){
 
         System.out.println("---------------------------------------------------------\n\n" +
-                "Funcionário = " + DATAname[index] + "\nEndereco = "
-                + DATAaddress[index] + "\nTipo de salario aplicado (" + DATAtype[index]
-                + ") : Valor = RS " + DATAsalary[index] +
-                "\nMetodo de Recebimento = " + DATApaymode[index] +
-                "\nCódigo de Registo = " + DATAcode[index] + "\n\n---------------------------------------------------------\n");
+                "Nome do funcionario = " + DATAname[index] + "\nCódigo de Registo = " + DATAcode[index] + "\nEndereco = "
+                + DATAaddress[index] + "\n" + "Agenda atual = " + DATAtype[index] +
+                "\nSalario atual = RS " + DATAsalary[index] +
+                "\nMetodo de Recebimento = " + DATApaymode[index] + "\nAssociado a sindicato = " + DATAsindicaty[index] +
+                "\nHoras Trabalhadas no mes atual = " + horassmes[index] + " Hrs");
 
+        System.out.println("\n\n---------------------------------------------------------\n");
     }
 
     private static void codeSearch(String code, int[] usage){
@@ -714,8 +721,23 @@ public class Main {
         }
     }
 
+    private static void Clearmes(){
+
+        for(int j = 0;  j < 1000; j++)
+        {
+            horassmes[j] = 0;
+        }
+    }
+    private static void Cleardia(){
+
+        for(int j = 0;  j < 1000; j++)
+        {
+            horashj[j] = 0;
+        }
+    }
     public static void timeChange(){
         DAYSGONE += 1;
+        Cleardia();
         for(int i = 0; i < 1000; i++){
             if(codeused[i] == 1){
                 WorkDays[i] += 1;
@@ -733,6 +755,7 @@ public class Main {
         if(aux == 30 && Adia == 1)
         {
             Ames = (Ames%12 + 1);
+            Clearmes();
             PAY_DAY = true;
         }
         findVALIDPAYDAY();
@@ -769,7 +792,10 @@ public class Main {
         System.out.println("--------------------------------------------------------");
 
     }
-
+    private static void pressENTER(){
+        System.out.print("Press ENTER to continue...\n");
+        getEnter.nextLine();
+    }
     public static void main(String[] args) throws InterruptedException{
         clearScreen(0);
         setCode(codeused);
@@ -870,7 +896,8 @@ public class Main {
                                 DATAsindicatyc[pos] = "120" + pos;
                                 DATAsindtax[pos] = DATAsalary[pos] * 0.20;
                                 System.out.println("Usuario Associado ao Sindicato com Codigo sindical = " +
-                                        DATAsindicatyc[pos] + "\nTaxa inicial = " + DATAsindtax[pos]  + "RS - 20% do salario");
+                                        DATAsindicatyc[pos] + "\nTaxa inicial = ");
+                                System.out.printf("%.2f  + RS - 20%% do salario\n", DATAsindtax[pos]);
 
                             } else {
                                 DATAsindicaty[pos] = false;
@@ -880,16 +907,19 @@ public class Main {
                             System.out.println("Codigo de acesso = " + DATAcode[pos] + "\nRegistrado com sucesso!" +
                                     "\n---------------------------------------------------------\n\n");
                             saveState();
+                            pressENTER();
                             break;
 
                         case 2:
-                            System.out.println("-------- REMOVER FUNCIONARIO --------");
-                            System.out.println("Insira o código de registro: \n");
+                            System.out.println("-------- REMOVER FUNCIONARIO --------\n");
+                            System.out.println("Insira o código de registro: ");
                             String buscadel = input.nextLine();
                             rmvF(buscadel, codeused);
+                            pressENTER();
                             break;
                         //something
                         case 3:
+                            System.out.println("-------- INFORMACOES DE FUNCIONARIO --------\n");
                             System.out.print("Digite a opcao para acessar informacoes:\n\n\n1 - Buscar por código " +
                                     "\n2 - Recuperar código de funcionário por busca nominal\n");
                             int buscatipo = input.nextInt();
@@ -897,7 +927,7 @@ public class Main {
 
                             switch (buscatipo) {
                                 case 1:
-                                    System.out.println("Insira o código de registro: \n");
+                                    System.out.println("Insira o código de registro: ");
                                     String busca = input.nextLine();
                                     clearScreen(0);
                                     codeSearch(busca, codeused);
@@ -908,10 +938,12 @@ public class Main {
                                     codeRecover(recuperar, codeused);
                                     break;
                             }
+                            pressENTER();
                             break;
 
                         case 4:
                             //modificar
+                            System.out.println("-------- EDITAR DADOS --------\n");
                             System.out.println("Insira o código de registro: \n");
                             String codif = input.nextLine();
 
@@ -919,22 +951,28 @@ public class Main {
                             break;
 
                         case 5:
+                            System.out.println("-------- LISTAR FUNCIONARIOS --------\n");
                             clearScreen(0);
                             //hourPrint();
                             showAll(codeused);
-
+                            pressENTER();
                             break;
 
                         case 6:
+                            System.out.println("-------- RODAR FOLHA DE PAGAMENTO --------\n");
                             clearScreen(0);
                             rodarFolha(codeused);
                             saveState();
+                            pressENTER();
                             //rodarFolha(codeused, empregado);
                             break;
 
                         case 7:
+                            System.out.println("-------- CRIAR AGENDA DE PAGAMENTO --------\n");
                             clearScreen(0);
                             createAGENDA();
+                            pressENTER();
+                            break;
 
                         case 8:
                             diautil();
@@ -954,7 +992,7 @@ public class Main {
                             PAY_DAY = true;
                             int aux = Adia;
                             timeChange();
-                            //System.out.println("Dia aumentado em 1 = " + Adia + " / " + Ames + " / " + Aano);
+                            System.out.println("Dia aumentado em 1 = " + Adia + " / " + Ames + " / " + Aano);
                             clearScreen(2);
                             break;
 
@@ -964,10 +1002,12 @@ public class Main {
                         case 10:
                             clearScreen(0);
                             undo();
+                            pressENTER();
                             break;
                         case 11:
                             clearScreen(0);
                             redo();
+                            pressENTER();
                             break;
                         case 0:
                             play = false;
@@ -995,6 +1035,7 @@ public class Main {
                             String codinho = input.nextLine();
                             baterPonto(codeused, codinho);
                             saveState();
+                            pressENTER();
                             break;
                         case 2:
                             int lugarzinho = 0;
@@ -1008,6 +1049,7 @@ public class Main {
                             DATAsalary[lugarzinho] += valor * 0.15;
                             System.out.println("Salario atualizado = " + DATAsalary[lugarzinho] + "RS");
                             saveState();
+                            pressENTER();
                             clearScreen(2);
                             break;
                         case 3:
@@ -1020,6 +1062,7 @@ public class Main {
                             DATAsalary[vvv] -= valorvvv;
                             System.out.println("Salario atualizado = " + DATAsalary[vvv] + "RS");
                             saveState();
+                            pressENTER();
                             break;
                     }
                     break;
