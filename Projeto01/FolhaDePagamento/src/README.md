@@ -39,7 +39,5 @@ Agenda de Pagamento -> OK
 
 Criação de Novas Agendas de Pagamento -> OK
 
-```javascript
-private static void test(){
-	console.log("Hello world!");
-}
+```java
+private static void addEmpregado();
