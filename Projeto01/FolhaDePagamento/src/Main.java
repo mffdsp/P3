@@ -3,7 +3,7 @@ import java.util.concurrent.* ;
 
 //Reindent Lines
 
-public class Main {
+public class Empresa {
 
     private static Scanner getEnter =  new Scanner(System.in);
     private static long SLEEPTIME = 0L;
@@ -1125,15 +1125,21 @@ public class Main {
                         case 2:
                             System.out.println("-------- LANCAR VENDA --------\n");
                             int lugarzinho = 0;
-                            System.out.print("Insira seu codigo de acesso: ");
-                            String coisinhu = input.nextLine();
+                            while(true) {
+
+                                System.out.print("Insira um codigo de acesso valido: ");
+                                String coisinhu = input.nextLine();
+                                lugarzinho = getIndex(coisinhu);
+                                if (codeused[lugarzinho] == 1) {
+                                    break;
+                                }
+                            }
                             System.out.print("Insira o valor da venda: ");
                             double valor = input.nextDouble();
                             System.out.print("Insira o dia em que a venda foi efetuada: ");
                             int sellday = input.nextInt();
                             System.out.println("Percentual de venda atual = 15%\n" +
                                     "Valor adicionado em conta com sucesso!");
-                            lugarzinho = getIndex(coisinhu);
                             DATAsalary[lugarzinho] += valor * DATAcomissao[lugarzinho]/100;
                             System.out.println("\n-------------------------------------");;
                             System.out.println("Nome do empregado = "+  DATAname[lugarzinho]);
