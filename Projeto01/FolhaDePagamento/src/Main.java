@@ -182,7 +182,7 @@ public class Main {
             //AGENDAbool[indexSAVE[SAVEINDEX]] = AGENDAboolSAVE[SAVEINDEX];
         }
     }
-
+    private static int REDOACTIONS = 0;
     private static void redo(){
         int j = 1;
         if(UNDACTIONS == 0)
@@ -190,6 +190,7 @@ public class Main {
             System.out.println("Sem açao disponivel para refazer");
         }else{
 
+            REDOACTIONS += 1;
             UNDACTIONS -= 1;
             SAVEINDEX += 1;
             PAY_DAY = PAYDAYSAVE[SAVEINDEX];
@@ -229,19 +230,56 @@ public class Main {
             DATAtype[i] = "nothing";
         }
     }
+    private static String selectDayOfWeek(){
+        int value = -1;
+        Scanner hi = new Scanner(System.in);
 
+        System.out.println("Selecione um dia da semana:");
+        System.out.println("1.Domingo");
+        System.out.println("2.Segunda-Feira");
+        System.out.println("3.Terca-Feira");
+        System.out.println("4.Quarta-Feira");
+        System.out.println("5.Quinta-Feira");
+        System.out.println("6.Sexta-Feira");
+        System.out.println("7.Sabado");
+        value = hi.nextInt();
+        switch(value){
+            case 1:
+                return "Domingo";
+            case 2:
+                return "Segunda-Feira";
+            case 3:
+                return "Terca-Feira";
+            case 4:
+                return "Quarta-Feira";
+            case 5:
+                return "Quinta-Feira";
+            case 6:
+                return "Sexta-Feira";
+            case 7:
+                return "Sabado";
+        }
+        return "aaaa";
+    }
     private static String selectAGENDA(){
         for(int i = 0; i < MAX; i++)
         {
             if(AGENDAbool[i] == 1)
             {
-                System.out.print((i) + "- " + AGENDAS[i] + " / TIPO " + AGENDAtype[i].toLowerCase());
-                if(AGENDAtype[i].toLowerCase().equals("mensal"))
-                {
-                    System.out.println(" / dia " + AGENDAdia[i]);
-                } else if(AGENDAtype[i].toLowerCase().contains("semanal")) {
-                    System.out.println(" / " + AGENDAweek[i]);
+                System.out.print((i) + "- " + AGENDAS[i] + " / " + AGENDAtype[i].toLowerCase());
+                if(AGENDAtype[i].toLowerCase().equals("mensal")) {
+                    System.out.print(" / dia " + AGENDAdia[i]);
+                    System.out.println(" (" + AGENDAtype[i] + " " + AGENDAdia[i] + ") ");
+
+                } else if(AGENDAtype[i].toLowerCase().equals("semanal")) {
+                    System.out.print(" / " + AGENDAweek[i]);
+                    System.out.println(" (" + AGENDAtype[i] + " 1 " + AGENDAweek[i] + ") ");
+                } else if(AGENDAtype[i].toLowerCase().equals("bi-semanal")){
+                    System.out.print(" / " + AGENDAweek[i]);
+                    System.out.println(" (" + AGENDAtype[i] + " 1 " + AGENDAweek[i] + ") ");
+
                 }
+
             }
         }
         return "aaa";
@@ -253,19 +291,28 @@ public class Main {
         System.out.println("Digite o nome customizado para a Nova Agenda:");
         AGENDAS[AGENDA_INDEX] = input.nextLine();
 
-        System.out.println("Digite o tipo de pagamento\n Semanal / Mensal / Bi-semanal");
-        AGENDAtype[AGENDA_INDEX] = input.nextLine();
-
+        System.out.println("Digite o tipo de pagamento\n 1.Semanal / 2.Mensal / 3.Bi-semanal");
+        int tipinho = input.nextInt();
+        if(tipinho == 1){
+            AGENDAtype[AGENDA_INDEX] = "Semanal";
+        }
+        if(tipinho == 2){
+            AGENDAtype[AGENDA_INDEX] = "Mensal";
+        }
+        if(tipinho == 3){
+            AGENDAtype[AGENDA_INDEX] = "Bi-semanal";
+        }
         if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("semanal")){
-            System.out.println("Digite o Dia da semana de pagamento: ");
-            AGENDAweek[AGENDA_INDEX] = input.nextLine();
+            //System.out.println("Digite o Dia da semana de pagamento: ");
+            AGENDAweek[AGENDA_INDEX] = selectDayOfWeek();
         } else if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("mensal")){
             System.out.println("Digite o novo dia de pagamento: ");
             AGENDAdia[AGENDA_INDEX] = input.nextInt();
         } else if(AGENDAtype[AGENDA_INDEX].toLowerCase().equals("bi-semanal")){
-            System.out.println("Digite o Dia da semana de pagamento: ");
-            AGENDAweek[AGENDA_INDEX] = input.nextLine();
+            //System.out.println("Digite o Dia da semana de pagamento: ");
+            AGENDAweek[AGENDA_INDEX] = selectDayOfWeek();
         }
+        System.out.println("Criado com sucesso!");
         AGENDAbool[AGENDA_INDEX] = 1;
         AGENDA_INDEX += 1;
     }
@@ -394,7 +441,8 @@ public class Main {
                         pagandinho = true;
                     }
                     else if(DATAtype[index].equals(AGENDAS[i]) &&
-                            AGENDAtype[i].equals("Mensal") && Asemana[DAYSGONE %7].equals(DIAU) && AGENDAdia[i] == Adia){
+                            (AGENDAS[i].equals("Mensal") && Asemana[DAYSGONE %7].equals(DIAU)) ||
+                            (!AGENDAS[i].equals("Mensal") && AGENDAdia[i] == Adia)){
                         salary = DATAsalary[index];
                         if(DATAsindicaty[index]){
                             System.out.println("- Taxa sindical descontada! // Valor = " + DATAsindtax[index] + " RS");
@@ -503,6 +551,7 @@ public class Main {
                 "\n6.Rodar folha de pagamento*\n"+
                 "7.Criar nova agenda de pagamento*\n8.Passar Hora\n" + "9.Passar o dia\n" + "10.Undo*\n" + "11.Redo*\n" +
                 "0.Sair do Sistema\n");
+        System.out.println("UNDO_STACK = " + (SAVEINDEX - 2) + "      REDO_STACK = " + UNDACTIONS);
     }
 
     private static void setCode(int[] code) {
@@ -821,6 +870,9 @@ public class Main {
         getEnter.nextLine();
     }
     public static void main(String[] args) throws InterruptedException{
+        AGENDAS[1] = "Horario";
+        AGENDAS[2] = "Mensal";
+        AGENDAS[2] = "Comissionado";
         clearScreen(0);
         setCode(codeused);
         setDays();
@@ -917,7 +969,7 @@ public class Main {
                             }
                             DATAcode[pos] = Integer.toString(time.get(Calendar.YEAR)) + pos ;
 
-                            System.out.print("O funcionario esta associado ao Sindicato de sua categoria?\n " +
+                            System.out.print("O funcionario esta associado ao Sindicato de sua categoria?\n" +
                                     "1 - SIM / 2 - NAO -> ");
 
                             if (input.nextInt() == 1) {
