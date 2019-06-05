@@ -39,13 +39,86 @@
 
 `Criação de Novas Agendas de Pagamento -> OK`
 
-<!--
+# Instruções de entrada
+ 
 ```java
-private static void addEmpregado();
+private static void addEmpregado(){
+
+    insertName(String);
+    insertAdress(String);
+    insertType(int);
+    insertMethod(int);
+    insertSalary(double);
+    insertBoolSindicaty(int);
+
+}
+
+private static void rmvEmpregado(){
+
+    insertCode(String);
+
+}
+
+private static void launchCard(){
+
+    insertCode(String);
+    inserType(int);
+
+
+}
+private static void launchSellResult(){
+
+    insertCode(String);
+    insertValue(double);
+    insertDay(int);
+    
+}
+private static void launchSindicalTaxes(){
+
+    insertSindicalCode(String);
+    insertValue(double);
+    
+}
+private static void editEmpregado(){
+
+    insertCode(String);
+    insertName(String);
+    insertAdress(String);
+    insertType(int);
+    insertMethod(int);
+    insertSalary(double);
+    insertBoolSindicaty(int);
+
+}
+private static void payRoll(){
+
+    confirmAction();
+
+}
+private static void UndoRedo(){
+
+    confirmAction();
+    
+}
+private static void searchEmpregado(){
+
+    insertMode(int);
+    insertSearch(String);
+    insertRecover(String);
+
+}
+
+private static void createPayRoll(){
+
+    insertName(String);
+    insertType(int);
+    insertDay(int);
+    insertDayOfWeek(int);
+
+}
+
+
 ```
--->
-
-
 
 
 .................
