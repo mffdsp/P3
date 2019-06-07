@@ -2,15 +2,17 @@ package com.mateus;
 
 public class Memento
 {
-    Funcionario myObject;
+    String myObject;
 
-    public Funcionario getState()
+    public String getState()
     {
         return myObject;
     }
 
-    public void setState(Funcionario myObject)
+    public Memento(String myObject)
     {
         this.myObject = myObject;
     }
 }
+
+

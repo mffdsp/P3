@@ -6,6 +6,26 @@ public abstract class Funcionario implements payRoll {
 	private String endereco;
 	private double salario;
 	public int DtInicial;
+	Caretaker ct;
+	
+	
+	public Funcionario() {
+		ct = new Caretaker();
+		nome = new String();
+		
+	}
+	
+	public void setNome(String nome) {
+		ct.addMemento(new Memento(nome));
+		this.nome += nome;
+	}
+	
+	public void undo() {
+		this.nome = ct.getLastState().getState();
+	}
+	public void showName() {
+		System.out.println(this.nome);
+	}
 	
 	public double getSalario() {
 		return salario;
@@ -22,8 +42,6 @@ public abstract class Funcionario implements payRoll {
 	public String getNome() {
 		return nome;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}	
+		
 
 }
