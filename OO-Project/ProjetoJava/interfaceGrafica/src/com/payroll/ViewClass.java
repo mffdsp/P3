@@ -27,6 +27,10 @@ public class ViewClass extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField texto1;
+	private JLabel texto;
+	private JLabel texto2;
+	private JLabel texto3;
+	private JButton btnNewButton;
 
 	/**
 	 * Launch the application.
@@ -69,6 +73,8 @@ public class ViewClass extends JFrame {
 	 */
 	public ViewClass() {
 		
+		
+		Funcionario teste = new Horista();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 485, 521);
 		contentPane = new JPanel();
@@ -87,10 +93,10 @@ public class ViewClass extends JFrame {
 			//ação
 			public void actionPerformed(ActionEvent arg0) {
 				//JOptionPane.showMessageDialog(null, texto1.getText());
-				new SignUP().setVisible(true);
-								
+				new SignUP(teste).setVisible(true);
 			}
 		});
+		
 		SpringLayout sl_contentPane = new SpringLayout();
 		sl_contentPane.putConstraint(SpringLayout.NORTH, AddBt, 75, SpringLayout.NORTH, contentPane);
 		sl_contentPane.putConstraint(SpringLayout.SOUTH, AddBt, -298, SpringLayout.SOUTH, contentPane);
@@ -106,5 +112,35 @@ public class ViewClass extends JFrame {
 		sl_contentPane.putConstraint(SpringLayout.EAST, texto1, -70, SpringLayout.EAST, contentPane);
 		contentPane.add(texto1);
 		texto1.setColumns(10);
+		
+		texto = new JLabel("New label");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, texto, 88, SpringLayout.NORTH, contentPane);
+		sl_contentPane.putConstraint(SpringLayout.WEST, texto, 231, SpringLayout.EAST, AddBt);
+		contentPane.add(texto);
+		
+		texto2 = new JLabel("New label");
+		sl_contentPane.putConstraint(SpringLayout.NORTH, texto2, 28, SpringLayout.SOUTH, texto);
+		sl_contentPane.putConstraint(SpringLayout.EAST, texto2, 0, SpringLayout.EAST, texto);
+		contentPane.add(texto2);
+		
+		texto3 = new JLabel("New label");
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, texto3, 0, SpringLayout.SOUTH, AddBt);
+		sl_contentPane.putConstraint(SpringLayout.EAST, texto3, 0, SpringLayout.EAST, texto);
+		contentPane.add(texto3);
+		
+		btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null ,
+						"Dados:\n\n"
+						+ "Nome: " + teste.getName() + "\n" 
+						+ "Endereço: " + teste.getAdress() + "\n" 
+						+ "Salário: " + teste.getSalary() + "RS\n");
+				
+			}
+		});
+		sl_contentPane.putConstraint(SpringLayout.WEST, btnNewButton, 64, SpringLayout.EAST, AddBt);
+		sl_contentPane.putConstraint(SpringLayout.SOUTH, btnNewButton, 0, SpringLayout.SOUTH, texto2);
+		contentPane.add(btnNewButton);
 	}
 }
