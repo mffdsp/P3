@@ -41,6 +41,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class ViewClass extends JFrame {
 	
@@ -51,10 +53,9 @@ public class ViewClass extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JLabel texto;
-	private JLabel texto2;
 	private JLabel texto3;
-	private JButton btnNewButton;
 	private JLabel BackG;
+	private static int index = 0;
 
 	/**
 	 * Launch the application.
@@ -99,8 +100,8 @@ public class ViewClass extends JFrame {
 //			
 //		}
 //	}
-	private double xOffset = 0;
-    private double yOffset = 0;
+	//private double xOffset = 0;
+    //private double yOffset = 0;
     
 
     public void start(Stage stage) throws Exception {
@@ -115,7 +116,8 @@ public class ViewClass extends JFrame {
 		
 	
 		//ArrayList<Funcionario> teste = new ArrayList();
-		Funcionario[] teste = new Horista[300];
+		Funcionario[] teste = new Horista[50];
+		
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,15 +132,8 @@ public class ViewClass extends JFrame {
 		int width = screenSize.width;
 		setSize(663, 414);
 		setLocation(width/2-getSize().width/2, height/2-getSize().height/2);
-		
-
-
-
-		contentPane.setLayout(null);
 		JLabel background = new JLabel("", new ImageIcon("img\bgteste.jpg"), JLabel.CENTER);
-		background.setBounds(0,0,0,0);
 		background.setBackground(new Color(0,0,0,80));
-		getContentPane().add(background);
 		
 //		JLabel background;
 //		ImageIcon img = new ImageIcon("src/imgs/bgteste.jpg");
@@ -154,103 +149,131 @@ public class ViewClass extends JFrame {
 		
 		
 		
+		
 		JButton AddBt = new JButton("");
-		AddBt.setIcon(new ImageIcon("C:\\Users\\Mateus\\eclipse-workspace\\interfaceGrafica\\src\\icons\\addF.png"));
-		AddBt.setSelectedIcon(new ImageIcon("C:\\Users\\Mateus\\eclipse-workspace\\interfaceGrafica\\src\\icons\\addF.png"));
+		AddBt.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/addF.png")));
+		AddBt.setSelectedIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/addF.png")));
 		
 		
 		AddBt.setToolTipText("Adicionar Funcion\u00E1rio");
 		AddBt.setBackground(Color.WHITE);
 		AddBt.setForeground(Color.WHITE);
-		
-		AddBt.setBounds(44, 255, 81, 81);
 		AddBt.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		AddBt.addActionListener(new ActionListener() {
 			//ação
 			public void actionPerformed(ActionEvent arg0) {
+				teste[index] = new Horista();
 				//JOptionPane.showMessageDialog(null, texto1.getText());
-				new SignUP(teste[0]).setVisible(true);
+				new SignUP(teste[index]).setVisible(true);
+				index += 1;
 			}
 		});
-		contentPane.add(AddBt);
 		
 		texto = new JLabel("New label");
-		texto.setBounds(336, 29, 46, 14);
-		contentPane.add(texto);
-		
-		texto2 = new JLabel("New label");
-		texto2.setBounds(158, 55, 46, 14);
-		contentPane.add(texto2);
 		
 		texto3 = new JLabel("Adicionar Funcion\u00E1rio");
 		texto3.setForeground(SystemColor.textText);
 		texto3.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		texto3.setBounds(22, 342, 147, 25);
-		contentPane.add(texto3);
 		
-		btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(204, 103, 89, 23);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null ,
-						"Dados:\n\n"
-						+ "Nome: " + teste[0].getName() + "\n" 
-						+ "Endereço: " + teste[0].getAdress() + "\n" 
-						+ "Salário: " + teste[0].getSalary() + "RS\n");
-				
-			}
-		});
-		contentPane.add(btnNewButton);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(189, 435, 0, 0);
-		contentPane.add(lblNewLabel);
+		//JLabel lblNewLabel = new JLabel("");
 		
 		JButton button_1 = new JButton("");
-		button_1.setIcon(new ImageIcon("C:\\Users\\Mateus\\eclipse-workspace\\interfaceGrafica\\src\\icons\\removeF.png"));
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		button_1.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/removeF.png")));
 		button_1.setToolTipText("Adicionar Funcion\u00E1rio");
 		button_1.setForeground(Color.WHITE);
 		button_1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		button_1.setBackground(Color.WHITE);
-		button_1.setBounds(204, 255, 81, 81);
-		contentPane.add(button_1);
 		
 		JButton button_2 = new JButton("");
-		button_2.setIcon(new ImageIcon("C:\\Users\\Mateus\\eclipse-workspace\\interfaceGrafica\\src\\icons\\editF.png"));
+		button_2.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/editF.png")));
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new EditView(teste).setVisible(true);
 			}
 		});
 		button_2.setToolTipText("Adicionar Funcion\u00E1rio");
 		button_2.setForeground(Color.WHITE);
 		button_2.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		button_2.setBackground(Color.WHITE);
-		button_2.setBounds(368, 255, 81, 81);
-		contentPane.add(button_2);
 		
 		JButton button_3 = new JButton("");
-		button_3.setIcon(new ImageIcon("C:\\Users\\Mateus\\eclipse-workspace\\interfaceGrafica\\src\\icons\\ListH.png"));
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				for(int i = 0; i < 30; i++) {
+					if(teste[i] != null)
+					{
+						teste[i].listarFuncionarios();
+					}
+				}
+			}
+		});
+		button_3.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/ListH.png")));
 		button_3.setToolTipText("Adicionar Funcion\u00E1rio");
 		button_3.setForeground(Color.WHITE);
 		button_3.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		button_3.setBackground(Color.WHITE);
-		button_3.setBounds(523, 255, 81, 81);
-		contentPane.add(button_3);
 		
 		JLabel lblRemoverFuncionrio = new JLabel("Remover Funcion\u00E1rio");
 		lblRemoverFuncionrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblRemoverFuncionrio.setBounds(179, 342, 147, 25);
-		contentPane.add(lblRemoverFuncionrio);
 		
 		JLabel lblAlterarDados = new JLabel("Alterar Dados");
 		lblAlterarDados.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblAlterarDados.setBounds(365, 342, 147, 25);
-		contentPane.add(lblAlterarDados);
 		
 		JLabel lblListarEmpregados = new JLabel("Listar Empregados");
 		lblListarEmpregados.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblListarEmpregados.setBounds(510, 342, 147, 25);
-		contentPane.add(lblListarEmpregados);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(background)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(44)
+					.addComponent(AddBt, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+					.addGap(79)
+					.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+					.addGap(83)
+					.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+					.addGap(76)
+					.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(22)
+					.addComponent(texto3, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+					.addGap(10)
+					.addComponent(lblRemoverFuncionrio, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+					.addGap(39)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(145)
+							.addComponent(lblListarEmpregados, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblAlterarDados, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)))
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addContainerGap(331, Short.MAX_VALUE)
+					.addComponent(texto)
+					.addGap(280))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addComponent(background)
+					.addGap(138)
+					.addComponent(texto)
+					.addGap(103)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(AddBt, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_1, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_2, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
+						.addComponent(button_3, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(texto3, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRemoverFuncionrio, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblListarEmpregados, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblAlterarDados, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)))
+		);
+		contentPane.setLayout(gl_contentPane);
 
 	}
 }

@@ -5,6 +5,8 @@ public abstract class Funcionario implements PayRoll {
 	private String name;
 	private String adress;
 	private double salary;
+	private String payMode;
+	private String type;
 	public int DtInicial;
 	
 	//Caretaker ct;
@@ -25,6 +27,18 @@ public abstract class Funcionario implements PayRoll {
 	}
 	public void setSalary(double salary) {
 		this.salary = salary;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getPayMode() {
+		return payMode;
+	}
+	public void setPayMode(String payMode) {
+		this.payMode = payMode;
 	}
 	
 

@@ -33,4 +33,11 @@ public class Horista extends Funcionario{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void listarFuncionarios() {
+		System.out.println( this.getName() + this.getSalary() + this.getType());
+		// TODO Auto-generated method stub
+		
+	}
 }

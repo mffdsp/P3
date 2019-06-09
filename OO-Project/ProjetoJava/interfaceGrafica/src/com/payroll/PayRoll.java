@@ -4,6 +4,7 @@ import java.util.Date;
 
 public interface PayRoll {
 	
+	void listarFuncionarios();
 	void pagarFuncionario();
 	int getDtInicial() throws Exception;
 	Date getDtFinal() throws Exception;
