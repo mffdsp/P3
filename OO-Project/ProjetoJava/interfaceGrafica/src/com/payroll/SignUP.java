@@ -44,30 +44,30 @@ public class SignUP extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public Funcionario retornarValor(Funcionario func) {
+	public Funcionario retornarValor(Horista func) {
 		return func;
 	}
-	public void POPUP(Funcionario funcionarios) {
+	public void POPUP(Funcionario func) {
 		//JOptionPane.showMessageDialog(null, texto1.getText());
 		
 
-		funcionarios.setName(NameField.getText());
-		funcionarios.setAdress(AdressField.getText());
+		func.setName(NameField.getText());
+		func.setAdress(AdressField.getText());
 		
 		System.out.println(invalidenumber);
 		
-		if(funcionarios.getName().equals("") || funcionarios.getAdress().equals("") || invalidenumber ) {
+		if(func.getName().equals("") || func.getAdress().equals("") || invalidenumber ) {
 			JOptionPane.showMessageDialog(null ,
 					"Preencha todos os campos corretamente!", "ERRO", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		DBsalary = Double.parseDouble(SalaryField.getText());
-		funcionarios.setSalary(DBsalary);
+		func.setSalary(DBsalary);
 		JOptionPane.showMessageDialog(null ,
 				"Dados:\n\n"
-				+ "Nome: " + funcionarios.getName() + "\n" 
-				+ "Endereço: " + funcionarios.getAdress() + "\n" 
-				+ "Salário: " + funcionarios.getSalary() + "RS\n", "Funcionário adicionado!", JOptionPane.INFORMATION_MESSAGE);
+				+ "Nome: " + func.getName() + "\n" 
+				+ "Endereço: " + func.getAdress() + "\n" 
+				+ "Salário: " + func.getSalary() + "RS\n", "Funcionário adicionado!", JOptionPane.INFORMATION_MESSAGE);
 		actions = 0;
 		setVisible(false);
 						
@@ -91,14 +91,14 @@ public class SignUP extends JFrame {
 	 */
 	public SignUP(Funcionario func) {
 		
-		Funcionario funcionarios = new Horista();
-		
+		func = new Horista();
 		setForeground(Color.WHITE);
 		setType(Type.UTILITY);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Adicionar Funcionário ao Sistema");
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.inactiveCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
@@ -109,15 +109,15 @@ public class SignUP extends JFrame {
 		setLocation(width/2-getSize().width/2, height/2-getSize().height/2);
 		
 		JLabel lblNewLabel = new JLabel("Nome:");
-		lblNewLabel.setForeground(SystemColor.activeCaption);
+		lblNewLabel.setForeground(Color.BLACK);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		
 		JLabel lblEndereo = new JLabel("Endere\u00E7o:");
-		lblEndereo.setForeground(SystemColor.activeCaption);
+		lblEndereo.setForeground(Color.BLACK);
 		lblEndereo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		
 		JLabel lblTipo = new JLabel("Sal\u00E1rio:");
-		lblTipo.setForeground(SystemColor.activeCaption);
+		lblTipo.setForeground(Color.BLACK);
 		lblTipo.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		
 		AdressField = new JTextField();
@@ -183,9 +183,7 @@ public class SignUP extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			//ação
 			public void actionPerformed(ActionEvent arg0) {
-				
 				POPUP(func);
-
 			}
 		});
 		
