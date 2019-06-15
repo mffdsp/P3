@@ -8,6 +8,11 @@ public abstract class Funcionario implements PayRoll {
 	private String payMode;
 	private String type;
 	public int DtInicial;
+	private boolean sindicaty;
+	private String code;
+	private String Scode;
+	private boolean saved = false;
+	
 	
 	//Caretaker ct;
 	public String getName() {
@@ -40,6 +45,38 @@ public abstract class Funcionario implements PayRoll {
 	public void setPayMode(String payMode) {
 		this.payMode = payMode;
 	}
+	public boolean isSindicaty() {
+		return sindicaty;
+	}
+	public void setSindicaty(boolean sindicaty) {
+		this.sindicaty = sindicaty;
+	}
+	
+
+	public void setCode(String code) {
+		this.code = code;
+		
+	}
+
+	public String getCode() {
+		return this.code;
+	}
+
+	public void setSindicatycode(String Scode) {
+		this.Scode = Scode;
+	}
+
+
+	public String getSindicatycode() {
+		return this.Scode;
+	}
+	public boolean isSaved() {
+		return saved;
+	}
+	public void setSaved(boolean saved) {
+		this.saved = saved;
+	}
+	
 	
 
 }

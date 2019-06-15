@@ -27,6 +27,8 @@ public class realEdit extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -146,7 +148,21 @@ public class realEdit extends JFrame {
 		panel.add(label_6);
 		
 		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { func.getType(), "Horista", "Assalarido"}));
+		comboBox_1.setModel(new DefaultComboBoxModel(new String[] { func.getType(), "Assalariado", "Comissionado"}));
+		
+		String setValue = func.getType();
+		switch(setValue) {
+		case "Horista":
+			comboBox_1.setModel(new DefaultComboBoxModel(new String[] { func.getType(), "Assalariado", "Comissionado"}));
+			break;
+		case "Comissionado":
+			comboBox_1.setModel(new DefaultComboBoxModel(new String[] { func.getType(), "Horista", "Assalariado"}));
+			break;
+		case "Assalariado":
+			comboBox_1.setModel(new DefaultComboBoxModel(new String[] { func.getType(), "Horsita", "Comissionado"}));
+			break;
+		}
+		
 		comboBox_1.setBounds(287, 196, 140, 20);
 		panel.add(comboBox_1);
 		
@@ -155,14 +171,47 @@ public class realEdit extends JFrame {
 		label_7.setBounds(28, 247, 106, 107);
 		panel.add(label_7);
 		
+
+		JLabel lblDiaDePagamento = new JLabel("");
+		lblDiaDePagamento.setForeground(Color.BLACK);
+		lblDiaDePagamento.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblDiaDePagamento.setBounds(289, 224, 138, 21);
+		panel.add(lblDiaDePagamento);
+
+		textField_3 = new JTextField();
+		if(func.getType().equals("Assalariado")) {
+			textField_3.setBounds(387, 224, 40, 30);
+			textField_3.setText(Integer.toString(((Assalariado) func).getPayday()) );
+			panel.add(textField_3);
+			textField_3.setColumns(2);
+			lblDiaDePagamento.setText("Dia de pagamento:");
+		}
+		
+		comboBox_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboBox_1.getSelectedItem().toString().equals("Assalariado") ) {
+					
+					textField_3.setBounds(387, 224, 40, 30);
+					panel.add(textField_3);
+					textField_3.setColumns(2);
+					lblDiaDePagamento.setText("Dia de pagamento:");
+					
+				}else {
+					panel.remove(textField_3);
+					lblDiaDePagamento.setText("");
+				}
+			}
+		});
+		
+		
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				func.setSalary(Double.parseDouble(textField.getText()));
 				func.setName(textField_2.getText());
 				func.setAdress(textField_1.getText());
 				func.setPayMode(comboBox.getSelectedItem().toString());
 				func.setType(comboBox_1.getSelectedItem().toString());
+				((Assalariado) func).setPayday(Integer.parseInt(textField_3.getText()));
 				setVisible(false);
 			}
 		});

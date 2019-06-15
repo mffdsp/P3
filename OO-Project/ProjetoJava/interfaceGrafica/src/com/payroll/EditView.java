@@ -21,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class EditView extends JFrame {
 
@@ -34,19 +36,33 @@ public class EditView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					//EditView frame = new EditView();
-					//frame.setVisible(true);
+					EditView frame = new EditView(null, "editar");
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	public static int getIndex(String codigo){
+        int i = 0;
+        int index = 0;
+        //2019265
+        int pt = codigo.length() - 5;
+        while(i < codigo.length() - 4 )
+        {
+            index += Math.pow(10, pt - i) * Character.getNumericValue(codigo.charAt(i + 4));
+            i += 1;
+        }
+        return index;
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public EditView(Funcionario[] func) {
+	public EditView(Funcionario[] func, String action) {
+		
+		
 		
 		setTitle("Insira o Código de Acesso");
 		setForeground(Color.WHITE);
@@ -71,22 +87,87 @@ public class EditView extends JFrame {
 		int code = 0;
 		
 		JButton btnIr = new JButton("IR");
+		btnIr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(action.equals("editar"))
+				{
+					int indice = getIndex(codeField.getText());
+					if(func[indice] == null || Integer.parseInt(codeField.getText()) < 20190)
+					{
+						JOptionPane.showMessageDialog(null ,
+								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+					}
+					//JOptionPane.showMessageDialog(null, texto1.getText());
+					else new realEdit(func[indice]).setVisible(true);
+				}
+				if(action.equals("remover"))
+				{
+					int indice = getIndex(codeField.getText());
+					if(func[indice] == null || Integer.parseInt(codeField.getText()) < 20190)
+					{
+						JOptionPane.showMessageDialog(null ,
+								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+					}
+					//JOptionPane.showMessageDialog(null, texto1.getText());
+					else {
+						func[indice] = null;
+						JOptionPane.showMessageDialog(null ,
+						"Funcionário removido com sucesso", "Remover", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				if(action.equals("TSindical"))
+				{
+					int indice = getIndex(codeField.getText());
+					if(func[indice] == null || Integer.parseInt(codeField.getText()) < 20190)
+					{
+						JOptionPane.showMessageDialog(null ,
+								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+					}
+					//JOptionPane.showMessageDialog(null, texto1.getText());
+					else {
+						func[indice] = null;
+						JOptionPane.showMessageDialog(null ,
+						"Funcionário removido com sucesso", "Remover", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				if(action.equals("Lvenda"))
+				{
+					int indice = getIndex(codeField.getText());
+					if(func[indice] == null || Integer.parseInt(codeField.getText()) < 20190)
+					{
+						JOptionPane.showMessageDialog(null ,
+								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+					}
+					//JOptionPane.showMessageDialog(null, texto1.getText());
+					else {
+						func[indice] = null;
+						JOptionPane.showMessageDialog(null ,
+						"Funcionário removido com sucesso", "Remover", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				if(action.equals("BPonto"))
+				{
+					int indice = getIndex(codeField.getText());
+					if(func[indice] == null || Integer.parseInt(codeField.getText()) < 20190)
+					{
+						JOptionPane.showMessageDialog(null ,
+								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+					}
+					//JOptionPane.showMessageDialog(null, texto1.getText());
+					else {
+						func[indice] = null;
+						JOptionPane.showMessageDialog(null ,
+						"Funcionário removido com sucesso", "Remover", JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+				
+			}
+		});
+		
 		btnIr.setBounds(141, 66, 50, 34);
 		contentPane.add(btnIr);
 		
-		btnIr.addActionListener(new ActionListener() {
-			//ação
-			public void actionPerformed(ActionEvent arg0) {
-				
-				int code = Integer.parseInt(codeField.getText());
-				if(func[code] == null)
-				{
-					JOptionPane.showMessageDialog(null ,
-							"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
-				}
-				//JOptionPane.showMessageDialog(null, texto1.getText());
-				else new realEdit(func[code]).setVisible(true);
-			}
-		});
+		
+		
 	}
 }

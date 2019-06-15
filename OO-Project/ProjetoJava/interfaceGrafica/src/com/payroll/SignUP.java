@@ -34,6 +34,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 
 public class SignUP extends JFrame {
+	
 	private static double DBsalary = -1;
 	private static int actions = 0;
 	private static boolean invalidenumber = true;
@@ -43,6 +44,8 @@ public class SignUP extends JFrame {
 	private JTextField NameField;
 	private JTextField SalaryField;
 	private JLabel errotext;
+	JComboBox comboBox = new JComboBox();
+	JComboBox comboBox_1 = new JComboBox();
 	
 
 	/**
@@ -51,14 +54,20 @@ public class SignUP extends JFrame {
 	public Funcionario retornarValor(Horista func) {
 		return func;
 	}
-	public void POPUP(Funcionario func) {
+	public void POPUP(Funcionario func, int index) {
 		//JOptionPane.showMessageDialog(null, texto1.getText());
 		
-
+		//func = a;
 		func.setName(NameField.getText());
 		func.setAdress(AdressField.getText());
-		
-		System.out.println(invalidenumber);
+		func.setType(comboBox.getSelectedItem().toString());
+		func.setPayMode(comboBox_1.getSelectedItem().toString());
+		func.setCode("2019" + index);
+		((Assalariado) func).setPayday(30);
+//		if(func instanceof Assalariado) {
+//			((Assalariado) func).setPayday(30);
+//		}
+	
 		
 		if(func.getName().equals("") || func.getAdress().equals("") || invalidenumber ) {
 			JOptionPane.showMessageDialog(null ,
@@ -68,12 +77,12 @@ public class SignUP extends JFrame {
 		DBsalary = Double.parseDouble(SalaryField.getText());
 		func.setSalary(DBsalary);
 		JOptionPane.showMessageDialog(null ,
-				"Dados:\n\n"
-				+ "Nome: " + func.getName() + "\n" 
-				+ "Endereço: " + func.getAdress() + "\n" 
-				+ "Salário: " + func.getSalary() + "RS\n", "Funcionário adicionado!", JOptionPane.INFORMATION_MESSAGE);
+				"Funcionário adicionado com sucesso!", "Feito", JOptionPane.INFORMATION_MESSAGE);
 		actions = 0;
+		func.setSaved(true);
+		System.out.println(func.getName());
 		setVisible(false);
+		return;
 						
 	}
 	
@@ -93,7 +102,7 @@ public class SignUP extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public SignUP(Funcionario func) {
+	public SignUP(Funcionario func, int index) {
 		
 		setForeground(Color.WHITE);
 		setType(Type.UTILITY);
@@ -122,7 +131,7 @@ public class SignUP extends JFrame {
 		lblEndereo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
 		JLabel lblTipo = new JLabel("Valor:");
-		lblTipo.setBounds(26, 384, 71, 21);
+		lblTipo.setBounds(28, 418, 71, 21);
 		lblTipo.setForeground(Color.BLACK);
 		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
@@ -132,7 +141,7 @@ public class SignUP extends JFrame {
 			@Override
 			  public void keyPressed(KeyEvent e) {
 	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	POPUP(func);
+	            	POPUP(func, index);
 	               
 	            }
 	        }
@@ -146,7 +155,7 @@ public class SignUP extends JFrame {
 			@Override
 			  public void keyPressed(KeyEvent e) {
 	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	POPUP(func);
+	            	POPUP(func, index);
 	               
 	            }
 	        }
@@ -156,12 +165,12 @@ public class SignUP extends JFrame {
 		NameField.setColumns(10);
 		
 		SalaryField = new JTextField();
-		SalaryField.setBounds(77, 384, 57, 24);
+		SalaryField.setBounds(77, 419, 57, 24);
 		SalaryField.addKeyListener(new KeyAdapter() {
 			@Override
 			  public void keyPressed(KeyEvent e) {
 	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	POPUP(func);
+	            	POPUP(func, index);
 	            }
 	        }
 		});
@@ -194,7 +203,7 @@ public class SignUP extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			//ação
 			public void actionPerformed(ActionEvent arg0) {
-				POPUP(func);
+				POPUP(func, index);
 			}
 		});
 		
@@ -203,23 +212,23 @@ public class SignUP extends JFrame {
 		lblTipo_1.setForeground(Color.BLACK);
 		lblTipo_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(287, 196, 140, 20);
+		comboBox.setBounds(287, 199, 140, 20);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Horista", "Assalariado", "Comissionado"}));
+	
 		
-		func.setType(comboBox.getSelectedItem().toString());
+		
 		
 		JLabel lblMtodoDePagamento = new JLabel("M\u00E9todo de pagamento:");
-		lblMtodoDePagamento.setBounds(28, 352, 202, 21);
+		lblMtodoDePagamento.setBounds(28, 386, 202, 21);
 		lblMtodoDePagamento.setForeground(Color.BLACK);
 		lblMtodoDePagamento.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(224, 355, 140, 20);
+		
+		comboBox_1.setBounds(223, 386, 140, 20);
 		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Correios", "Maos", "Conta bancaria"}));
 		
 		
-		func.setPayMode(comboBox_1.getSelectedItem().toString());
+		
 		
 		JLabel label = new JLabel("");
 		label.setBounds(28, 11, 145, 107);
@@ -241,7 +250,46 @@ public class SignUP extends JFrame {
 		
 		JLabel label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(SignUP.class.getResource("/com/payroll/icons8-caro-64.png")));
-		label_1.setBounds(28, 247, 106, 107);
+		label_1.setBounds(28, 271, 106, 107);
 		contentPane.add(label_1);
-	}
+		
+		JLabel lblAssociao = new JLabel("Associa\u00E7\u00E3o Sindical:");
+		lblAssociao.setForeground(Color.BLACK);
+		lblAssociao.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lblAssociao.setBounds(28, 228, 202, 21);
+		contentPane.add(lblAssociao);
+		
+		JComboBox comboBox_sind = new JComboBox();
+		
+		comboBox_sind.setModel(new DefaultComboBoxModel(new String[] {"N\u00C3O", "SIM"}));
+		comboBox_sind.setBounds(287, 231, 140, 20);
+		contentPane.add(comboBox_sind);
+		
+		JLabel codeLabel = new JLabel("New label");
+		codeLabel.setForeground(SystemColor.textHighlight);
+		codeLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		codeLabel.setBounds(507, 11, 67, 14);
+		contentPane.add(codeLabel);
+		
+		codeLabel.setText("2019" + index);
+		
+		JLabel ScodeLabel = new JLabel((String) null);
+		ScodeLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ScodeLabel.setBounds(279, 246, 159, 33);
+		contentPane.add(ScodeLabel);
+		
+		comboBox_sind.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboBox_sind.getSelectedItem().equals("SIM")) {
+					func.setSindicaty(true);
+					func.setSindicatycode("1919" + index);
+					ScodeLabel.setText("Código sindical = " + func.getSindicatycode());
+				}else {
+					func.setSindicaty(false);
+					ScodeLabel.setText("");
+				}
+			}
+		});
+		
+		}
 }

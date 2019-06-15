@@ -3,8 +3,16 @@ package com.payroll;
 
 import java.util.Date;
 
-public class Horista extends Funcionario{
+public class Horista extends Funcionario implements ManageCode, PayRoll{
 	
+	private int HoraExtra;
+	private int HorasTrabalhadas;
+	
+	
+	 public Horista(String teste) {
+		    super.setName(teste) ;  // Set the initial value for the class attribute x
+		  }
+
 	public void printalgo() {
 		System.out.println("saoaossa");
 	}
@@ -36,8 +44,25 @@ public class Horista extends Funcionario{
 
 	@Override
 	public void listarFuncionarios() {
-		System.out.println( this.getName() + this.getSalary() + this.getType());
+		System.out.println( this.getName() + " "+ this.getSalary() + " " + this.getType() + "\n");
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int getHoraExtra() {
+		return HoraExtra;
+	}
+
+	public void setHoraExtra(int horaExtra) {
+		HoraExtra = horaExtra;
+	}
+
+	public int getHorasTrabalhadas() {
+		return HorasTrabalhadas;
+	}
+
+	public void setHorasTrabalhadas(int horasTrabalhadas) {
+		HorasTrabalhadas = horasTrabalhadas;
+	}
+	
 }
