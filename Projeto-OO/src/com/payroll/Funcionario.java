@@ -2,7 +2,7 @@ package com.payroll;
 
 import java.util.Date;
 
-public abstract class Funcionario implements PayRoll {
+public abstract class Funcionario{
 	
 	protected String name;
 	protected String adress;
@@ -14,9 +14,29 @@ public abstract class Funcionario implements PayRoll {
 	protected String code;
 	protected String Scode;
 	protected boolean saved = false;
+	protected int timeIN = 0;
+	protected int timeOUT = 0;
+	protected int WH = 0;
 	
 	
-	//Caretaker ct;
+	public void setWH(int WH){
+		this.WH += WH;
+	}
+	public int getWH(){
+		return WH;
+	}
+	public void setTimeIN(int timeIN){
+		this.timeIN = timeIN;
+	}
+	public void setTimeOUT(int timeOUT){
+		this.timeOUT = timeOUT;
+	}
+	public int getTimeIN(){
+		return timeIN;
+	}
+	public int getTimeOUT(){
+		return timeOUT;
+	}
 	public String toString() {
 		return name + " - " + code +  " - " + salary + "RS";
 	}
@@ -57,21 +77,16 @@ public abstract class Funcionario implements PayRoll {
 		this.sindicaty = sindicaty;
 	}
 	
-
 	public void setCode(String code) {
 		this.code = code;
 		
 	}
-
 	public String getCode() {
 		return this.code;
 	}
-
 	public void setSindicatycode(String Scode) {
 		this.Scode = Scode;
 	}
-
-
 	public String getSindicatycode() {
 		return this.Scode;
 	}
@@ -80,9 +95,6 @@ public abstract class Funcionario implements PayRoll {
 	}
 	public void setSaved(boolean saved) {
 		this.saved = saved;
-	}
-	public void listarFuncionarios() {
-		System.out.println( this.getName() + " "+ this.getSalary() + " " + this.getType() + "\n");
 	}
 
 }

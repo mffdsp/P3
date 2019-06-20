@@ -4,61 +4,45 @@ package com.payroll;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Horista extends Funcionario implements ManageCode, PayRoll{
+public class Horista extends Funcionario implements PayRoll{
 	
 	Calendar c = Calendar.getInstance();
      // Getting the day of the week
- 
-     
-	protected int HoraExtra;
-	protected int HorasTrabalhadas;
+	protected double SalarioBase = super.getSalary();
+	protected int tipo = 1;
+	protected int diasTB = 0;
+	protected String Pday = "Sexta-Feira";
+	protected boolean pago = false;
 	
-	@Override
+	
 	public boolean pagarFuncionario() {
 		
-		if(c.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
-			System.out.println("PAGO");
-			return true;
+		if(tipo == 1) {
+			if(diasTB >= 7 && CalendarMT.weekday.equals(Pday)) {
+				pago = true;
+				return pago;
+			}
+		}else {
+			if(diasTB > 12 && CalendarMT.weekday.equals(Pday)) {
+				pago = true;
+				return pago;
+			}
+			
 		}
-		return false;
-		
-		
-	}
-
-	@Override
-	public int getDtInicial() throws Exception {
-		return super.DtInicial;
+		return pago;
+	
 	}
 	
-
-	@Override
-	public void incluirDesconto(String hist, float val) throws Exception {
-		// TODO Auto-generated method stub
+	public void addSalary(int horas){
+		if(horas <= 8) {
+			salary += horas * SalarioBase;
+		}else {
+			salary += 8 * SalarioBase;
+			horas -= 8;
+			salary += horas * (SalarioBase*1.5);
+		}
 		
 	}
-	
-	@Override
-	public Date getDtFinal() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int getHoraExtra() {
-		return HoraExtra;
-	}
-
-	public void setHoraExtra(int horaExtra) {
-		HoraExtra = horaExtra;
-	}
-
-	public int getHorasTrabalhadas() {
-		return HorasTrabalhadas;
-	}
-
-	public void setHorasTrabalhadas(int horasTrabalhadas) {
-		HorasTrabalhadas = horasTrabalhadas;
-	}
-
 	
 	
 }

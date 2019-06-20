@@ -165,9 +165,7 @@ public class EditView extends JFrame {
 					}
 					//JOptionPane.showMessageDialog(null, texto1.getText());
 					else {
-						func[indice] = null;
-						JOptionPane.showMessageDialog(null ,
-						"Funcionário removido com sucesso", "Remover", JOptionPane.INFORMATION_MESSAGE);
+						new BaterPonto(func[indice]).setVisible(true);
 						setVisible(false);
 					}
 				}

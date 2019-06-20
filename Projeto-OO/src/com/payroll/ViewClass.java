@@ -164,7 +164,7 @@ public class ViewClass extends JFrame{
 		texto = new JLabel("Sistema de Folha de pagamento vers\u00E3o 3.0");
 		texto.setForeground(SystemColor.controlText);
 		texto.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		texto.setBounds(621, 11, 256, 14);
+		texto.setBounds(625, 11, 180, 14);
 		
 		
 		
@@ -249,28 +249,28 @@ public class ViewClass extends JFrame{
 		
 		
 		//Data
-		JLabel lblNewLabel = new JLabel("aaa");
+		JLabel lblNewLabel = new JLabel();
 		lblNewLabel.setForeground(SystemColor.controlText);
-		JLabel label = new JLabel("aaa");
+		JLabel label = new JLabel();
 		label.setForeground(SystemColor.controlText);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(10, 425, 103, 25);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(22, 419, 103, 25);
 		contentPane.add(lblNewLabel);
-		label.setBounds(63, 448, 43, 25);
+		label.setBounds(63, 437, 43, 25);
 		contentPane.add(label);
-		lblNewLabel.setText(Calender.valueToString(Calender.Adia) + "/"  + Calender.valueToString(Calender.Ames)
-		+ "/"  + Calender.valueToString(Calender.Aano)); 
-		label.setText(Calender.valueToString(Calender.Ahora) + ":" + Calender.valueToString(Calender.Aminuto)); 
-		
+		lblNewLabel.setText(CalendarMT.valueToString(CalendarMT.Adia) + "/"  + CalendarMT.valueToString(CalendarMT.Ames)
+		+ "/"  + CalendarMT.valueToString(CalendarMT.Aano)); 
+		label.setText(CalendarMT.valueToString(CalendarMT.Ahora) + ":" + CalendarMT.valueToString(CalendarMT.Aminuto)); 
+	
 		
 		//ArrayList<Funcionario> teste = new ArrayList();
-		//AddFuncionario();
+		
 		Funcionario[] teste = new Funcionario[50];	
 		UT.setALL(teste);
-	
 		Command.saveS(teste);
-
+		
+		//AddFuncionario();
 		AddBt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -291,8 +291,6 @@ public class ViewClass extends JFrame{
 		//RmvFuncionario();
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//lblNewLabel.setText(formataData.format(data)); 
-				//label.setText(hora.format(data)); 
 				new EditView(teste, "remover").setVisible(true);
 			}
 		});
@@ -343,10 +341,10 @@ public class ViewClass extends JFrame{
 		});
 		
 	
-		JButton btnAtualizarTempo = new JButton("Atualizar Tempo");
+		JButton btnAtualizarTempo = new JButton("");
 		btnAtualizarTempo.setToolTipText("Passar hora");
 		btnAtualizarTempo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAtualizarTempo.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons8-cron\u00F4metro-48.png")));
+		btnAtualizarTempo.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons/icons8-clock-adicionar-64 (1).png")));
 		btnAtualizarTempo.setContentAreaFilled(false);
 		btnAtualizarTempo.setBorderPainted(false);
 		btnAtualizarTempo.setBorder(null);
@@ -354,13 +352,13 @@ public class ViewClass extends JFrame{
 		btnAtualizarTempo.setBackground(SystemColor.activeCaption);
 		btnAtualizarTempo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Calender.passHour();
-				lblNewLabel.setText(Calender.valueToString(Calender.Adia) + "/"  + Calender.valueToString(Calender.Ames)
-				+ "/"  + Calender.valueToString(Calender.Aano)); 
-				label.setText(Calender.valueToString(Calender.Ahora) + ":" + Calender.valueToString(Calender.Aminuto)); 
+				CalendarMT.passHour();
+				lblNewLabel.setText(CalendarMT.valueToString(CalendarMT.Adia) + "/"  + CalendarMT.valueToString(CalendarMT.Ames)
+				+ "/"  + CalendarMT.valueToString(CalendarMT.Aano)); 
+				label.setText(CalendarMT.valueToString(CalendarMT.Ahora) + ":" + CalendarMT.valueToString(CalendarMT.Aminuto)); 
 			}
 		});
-		btnAtualizarTempo.setBounds(101, 424, 60, 49);
+		btnAtualizarTempo.setBounds(95, 417, 60, 49);
 		contentPane.add(btnAtualizarTempo);
 		
 		JButton UndoBTN = new JButton("");
@@ -396,6 +394,7 @@ public class ViewClass extends JFrame{
 		button.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons8-propriedade-de-tempo-80 (1).png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new EditView(teste, "BPonto").setVisible(true);
 			}
 		});
 		button.setToolTipText("Cart\u00E3o de ponto");
@@ -436,12 +435,12 @@ public class ViewClass extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		button_5.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons8-pago-64.png")));
+		button_5.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons/icons8-vender-estoque-64.png")));
 		button_5.setToolTipText("Lan\u00E7ar Venda");
 		button_5.setForeground(Color.WHITE);
 		button_5.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
 		button_5.setBackground(Color.WHITE);
-		button_5.setBounds(451, 242, 81, 81);
+		button_5.setBounds(444, 242, 81, 81);
 		contentPane.add(button_5);
 		
 		JLabel lblCriarAgendaDe = new JLabel("Criar Agenda ");
@@ -454,7 +453,7 @@ public class ViewClass extends JFrame{
 		btnAaaaaa.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnAaaaaa.setContentAreaFilled(false);
 		btnAaaaaa.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAaaaaa.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons8-criar-arquivo-512 (1).png")));
+		btnAaaaaa.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons/icons8-criar-arquivo-64 (1).png")));
 		btnAaaaaa.setToolTipText("Criar Agenda");
 		btnAaaaaa.setForeground(Color.WHITE);
 		btnAaaaaa.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 17));
@@ -512,12 +511,37 @@ public class ViewClass extends JFrame{
 		lblRodarFolha.setBounds(705, 448, 96, 25);
 		contentPane.add(lblRodarFolha);
 		
-//		Timeline oneMinuteTimeline = new Timeline(new KeyFrame(Duration.millis(1000), event -> {
-//			
-//		}));
-//		oneMinuteTimeline.setCycleCount(Timeline.INDEFINITE); // Executar indefinidamente.
-//		oneMinuteTimeline.play();
-//		repaint();
+		
+		JLabel label_2 = new JLabel(CalendarMT.getWeekDay());
+		label_2.setForeground(Color.BLACK);
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		label_2.setBounds(22, 453, 96, 25);
+		contentPane.add(label_2);
+		
+		CalendarMT.clock(lblNewLabel, label, label_2);
+		
+//		JToggleButton toggleButton = new JToggleButton("215");
+//		toggleButton.setBounds(268, 430, 121, 23);
+//		contentPane.add(toggleButton);
+//		toggleButton.addActionListener(new ActionListener() {
+//
+//			public void actionPerformed(ActionEvent e) {
+//			    if (toggleButton.isSelected()) {
+//				try {
+//				    System.out.println("aa");
+//				} catch (Exception ex) {
+//				    ex.printStackTrace(); // trate as excessões
+//							  // corretamente
+//				}
+//			    } else {
+//				System.out.println("Deveria terminar o programa"); // aí é com você...
+//			    }
+//			}
+//		    });
+	
 		
 }
+	
+
 }
+
