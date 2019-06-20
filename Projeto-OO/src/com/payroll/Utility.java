@@ -18,15 +18,17 @@ public class Utility {
 		
 	}
 	 
-	public void setALL(Funcionario[] func) {
+	public void setALL(Funcionario[] func, Agenda[] agenda) {
 		for(int i = 0; i < 50; i++)
 		{
 			func[i] = new Horista();
+			agenda[i] = new Agenda();
+			agenda[i].setSaved(false);
 		}
 	}
 	
 	public void setList(Funcionario[] teste, DefaultListModel DLMC, DefaultListModel DLMA, DefaultListModel DLMH) {
-		for(int i = 0; i < 50; i++) {
+		for(int i = 0; i < 50; i++) { 
 			if(teste[i].isSaved())
 			{
 				if(teste[i].getType().equals("Assalariado")){
@@ -42,7 +44,7 @@ public class Utility {
 	}
 	public void ERRO() {
 		JOptionPane.showMessageDialog(null ,
-				"Preencha todos os campos corretamente!", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+				"Preencha todos os campos corretamente!", "ERRO", JOptionPane.ERROR_MESSAGE);
 	}
 
 }

@@ -88,6 +88,7 @@ public class ViewClass extends JFrame{
 	 * 
 	 */
 	Utility UT = new Utility();
+	Agenda agenda[] = new Agenda[50];
 	private static int SSindex = 0;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -95,6 +96,7 @@ public class ViewClass extends JFrame{
 	private JLabel texto3;
 	private JLabel BackG;
 	private static int index = 0;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -267,7 +269,7 @@ public class ViewClass extends JFrame{
 		//ArrayList<Funcionario> teste = new ArrayList();
 		
 		Funcionario[] teste = new Funcionario[50];	
-		UT.setALL(teste);
+		UT.setALL(teste, agenda);
 		Command.saveS(teste);
 		
 		//AddFuncionario();
@@ -291,7 +293,7 @@ public class ViewClass extends JFrame{
 		//RmvFuncionario();
 		button_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new EditView(teste, "remover").setVisible(true);
+				new EditView(teste, "remover", agenda).setVisible(true);
 			}
 		});
 		
@@ -308,7 +310,7 @@ public class ViewClass extends JFrame{
 		button_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				SSindex += 1;
-				new EditView(teste, "editar").setVisible(true);
+				new EditView(teste, "editar", agenda).setVisible(true);
 			}
 		});
 		button_2.setToolTipText("Alterar Dados");
@@ -319,7 +321,7 @@ public class ViewClass extends JFrame{
 		
 		//listarFuncionario();
 		button_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) { 
 				DefaultListModel DLMA = new DefaultListModel();
 				DefaultListModel DLMC = new DefaultListModel();
 				DefaultListModel DLMH = new DefaultListModel();
@@ -352,7 +354,7 @@ public class ViewClass extends JFrame{
 		btnAtualizarTempo.setBackground(SystemColor.activeCaption);
 		btnAtualizarTempo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CalendarMT.passHour();
+				CalendarMT.passHour(teste);
 				lblNewLabel.setText(CalendarMT.valueToString(CalendarMT.Adia) + "/"  + CalendarMT.valueToString(CalendarMT.Ames)
 				+ "/"  + CalendarMT.valueToString(CalendarMT.Aano)); 
 				label.setText(CalendarMT.valueToString(CalendarMT.Ahora) + ":" + CalendarMT.valueToString(CalendarMT.Aminuto)); 
@@ -394,7 +396,7 @@ public class ViewClass extends JFrame{
 		button.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons8-propriedade-de-tempo-80 (1).png")));
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new EditView(teste, "BPonto").setVisible(true);
+				new EditView(teste, "BPonto", agenda).setVisible(true);
 			}
 		});
 		button.setToolTipText("Cart\u00E3o de ponto");
@@ -412,6 +414,11 @@ public class ViewClass extends JFrame{
 		contentPane.add(lblLanarCarto);
 		
 		JButton button_4 = new JButton("");
+		button_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new EditView(teste, "TSindical", agenda).setVisible(true);
+			}
+		});
 		button_4.setContentAreaFilled(false);
 		button_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_4.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons8-pagamento-online-64.png")));
@@ -433,6 +440,7 @@ public class ViewClass extends JFrame{
 		button_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new EditView(teste, "Lvenda", agenda).setVisible(true);
 			}
 		});
 		button_5.setIcon(new ImageIcon(ViewClass.class.getResource("/com/payroll/icons/icons8-vender-estoque-64.png")));
@@ -450,6 +458,11 @@ public class ViewClass extends JFrame{
 		contentPane.add(lblCriarAgendaDe);
 		
 		JButton btnAaaaaa = new JButton("");
+		btnAaaaaa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new CriarAgendaView(agenda, teste).setVisible(true);
+			}
+		});
 		btnAaaaaa.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnAaaaaa.setContentAreaFilled(false);
 		btnAaaaaa.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -516,29 +529,9 @@ public class ViewClass extends JFrame{
 		label_2.setForeground(Color.BLACK);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		label_2.setBounds(22, 453, 96, 25);
-		contentPane.add(label_2);
+		contentPane.add(label_2); 
 		
-		CalendarMT.clock(lblNewLabel, label, label_2);
-		
-//		JToggleButton toggleButton = new JToggleButton("215");
-//		toggleButton.setBounds(268, 430, 121, 23);
-//		contentPane.add(toggleButton);
-//		toggleButton.addActionListener(new ActionListener() {
-//
-//			public void actionPerformed(ActionEvent e) {
-//			    if (toggleButton.isSelected()) {
-//				try {
-//				    System.out.println("aa");
-//				} catch (Exception ex) {
-//				    ex.printStackTrace(); // trate as excessões
-//							  // corretamente
-//				}
-//			    } else {
-//				System.out.println("Deveria terminar o programa"); // aí é com você...
-//			    }
-//			}
-//		    });
-	
+		CalendarMT.clock(lblNewLabel, label, label_2, teste);
 		
 }
 	

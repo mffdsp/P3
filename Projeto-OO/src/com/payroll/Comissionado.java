@@ -2,7 +2,7 @@ package com.payroll;
 
 import java.util.Date;
 
-public class Comissionado extends Funcionario implements PayRoll {
+public class Comissionado extends Funcionario implements SystemMT {
 	
 	private double valordevendas;
 	

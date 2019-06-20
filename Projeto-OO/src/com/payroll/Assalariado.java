@@ -2,7 +2,7 @@ package com.payroll;
 
 import java.util.Date;
 
-public class Assalariado extends Funcionario implements PayRoll{
+public class Assalariado extends Funcionario implements SystemMT{
 
 	
 	private int payday;

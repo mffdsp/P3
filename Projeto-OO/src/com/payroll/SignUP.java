@@ -45,6 +45,7 @@ public class SignUP extends JFrame {
 	private JTextField SalaryField;
 	private JLabel errotext;
 	boolean sind = false;
+	Utility UT = new Utility();
 	JComboBox comboBox = new JComboBox();
 	JComboBox comboBox_1 = new JComboBox();
 	
@@ -61,7 +62,7 @@ public class SignUP extends JFrame {
 			
 		case "Horista":
 			func[index] = new Horista();
-			break;
+			break; 
 			
 		case "Comissionado":
 			func[index] = new Comissionado();
@@ -74,53 +75,47 @@ public class SignUP extends JFrame {
 		func[index].setType(comboBox.getSelectedItem().toString());
 		func[index].setPayMode(comboBox_1.getSelectedItem().toString());
 		func[index].setCode("2019" + index);
+		
 	}
 	
 	public void POPUP(Funcionario[] func, int index) {
 
-		
 		saveValues(func, index);
-		if(func[index].getName().equals("") || func[index].getAdress().equals("") || invalidenumber ) {
+		try {
+			DBsalary = Double.parseDouble(SalaryField.getText());
+			invalidenumber = false;
+		}catch(Exception ec) {
+			System.err.print(ec);
+			invalidenumber = true;
+		}
+		if(func[index].getName().equals("") || func[index].getAdress().equals("") || invalidenumber || DBsalary == -1) {
 			JOptionPane.showMessageDialog(null ,
 					"Preencha todos os campos corretamente!", "ERRO", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
-		DBsalary = Double.parseDouble(SalaryField.getText());
+	//	DBsalary = Double.parseDouble(SalaryField.getText());
 		func[index].setSalary(DBsalary);
 		JOptionPane.showMessageDialog(null ,
 				"Funcionário adicionado com sucesso!", "Feito", JOptionPane.INFORMATION_MESSAGE);
 		actions = 0;
-		func[index].setSaved(true);
-		Command.saveS(func);
-		setVisible(false);
+		
+		
 		
 		if(func[index] instanceof Horista) {
-			//System.err.println("1");
+			((Horista) func[index]).setSalarioBase(Double.parseDouble(SalaryField.getText()));
+			func[index].setSalary(0);
 		}if(func[index] instanceof Assalariado) {
 			((Assalariado)func[index]).setPayday(30);
-			//System.err.println("2");
 		}if(func[index] instanceof Comissionado) {
 			//System.err.println("1");
 		}
 		
-		
+		func[index].setSaved(true);
+		Command.saveS(func);
+		setVisible(false);
 		return;
 						
 	}
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					return;
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -165,7 +160,7 @@ public class SignUP extends JFrame {
 			  public void keyPressed(KeyEvent e) {
 	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
 	            	POPUP(func, index);
-	               
+	                
 	            }
 	        }
 		});
@@ -189,46 +184,29 @@ public class SignUP extends JFrame {
 		
 		SalaryField = new JTextField();
 		SalaryField.setBounds(77, 419, 57, 24);
-		SalaryField.addKeyListener(new KeyAdapter() {
-			@Override
-			  public void keyPressed(KeyEvent e) {
-	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
-	            	POPUP(func, index);
-		               
-	            }
-	        }
-		});
 		SalaryField.setBackground(SystemColor.textHighlightText);
-		
-		
-		
-		SalaryField.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				try {
-					DBsalary = Double.parseDouble(SalaryField.getText());
-					errotext.setText("");
-					invalidenumber = false;
-					
-				} catch(NumberFormatException e) {
-					
-					invalidenumber = true;
-					errotext.setText("invalid number");
-				}
-			}
-		});
 		SalaryField.setColumns(10);
+		SalaryField.setText("");
 		errotext = new JLabel("");
 		errotext.setBounds(272, 426, 0, 0);
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setBounds(457, 337, 93, 158);
-		
+		 
+		SalaryField.addKeyListener(new KeyAdapter() {
+			@Override
+			  public void keyPressed(KeyEvent e) {
+	            if(e.getKeyCode() == KeyEvent.VK_ENTER){
+	            	POPUP(func, index);
+	               
+	            }
+	        }
+		});
+
 		btnSalvar.addActionListener(new ActionListener() {
 			//ação
 			public void actionPerformed(ActionEvent arg0) {
 				POPUP(func, index);
-	               
 			}
 		});
 		
@@ -239,6 +217,7 @@ public class SignUP extends JFrame {
 		
 		comboBox.setBounds(287, 199, 140, 20);
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Horista", "Assalariado", "Comissionado"}));
+		comboBox.setSelectedIndex(1);
 	
 		
 		
@@ -296,7 +275,7 @@ public class SignUP extends JFrame {
 		codeLabel.setBounds(507, 11, 67, 14);
 		contentPane.add(codeLabel);
 		
-		codeLabel.setText("2019" + index);
+		codeLabel.setText("2019" + index); 
 		
 		JLabel ScodeLabel = new JLabel((String) null);
 		ScodeLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));

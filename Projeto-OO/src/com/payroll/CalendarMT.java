@@ -19,25 +19,28 @@ public class CalendarMT {
 		 else return Integer.toString(value);
 	 }
 	 
-	 public static void passHour() {
+	 public static void passHour(Funcionario[] func) {
 		 
 		 int auxiliandinho = Ahora;
 		 
 		 Ahora = (Ahora + 1) % 24;
 	     if(Ahora == 0 && auxiliandinho == 23)
 	     {
-	         //PAY_DAY = true;
+	    	 for(int i = 0; i < 50; i++) {
+	    		 func[i].setCheckIN(false);
+	    		 func[i].setCheckOUT(false);
+	    	 }
 	         timeChange();
 	     }
 	 }
-	 public static void passMinute() {
+	 public static void passMinute(Funcionario[] func) {
 		 
 		 int auxiliandinho = Aminuto;
 		 
 		 Aminuto = (Aminuto + 1) % 60;
 	     if(Aminuto == 59 && auxiliandinho == 58)
 	     {
-	    	 passHour();
+	    	 passHour(func);
 	     }
 	 }
      
@@ -73,23 +76,23 @@ public class CalendarMT {
 	            Aano += 1;
 	            //PAY_DAY = true;
 	        }
-	        Adia = Adia%30 + 1;
+	        Adia = Adia%30 + 1; 
 
 	        if(aux == 30 && Adia == 1)
 	        {
-	            Ames = (Ames%12 + 1);
+	            Ames = (Ames%12 + 1);  
 	            //PAY_DAY = true;
 	        }
 	        //findVALIDPAYDAY();
 	    }	
 	 
-	 public static void clock(JLabel l1, JLabel l2, JLabel l3) {
+	 public static void clock(JLabel l1, JLabel l2, JLabel l3, Funcionario[] func) {
 		 Thread clock = new Thread() {
 			 
 			 public void run() {
 				 try {
 					 for(;;) {
-					passMinute();
+					passMinute(func);
 					l1.setText(CalendarMT.valueToString(CalendarMT.Adia) + "/"  + CalendarMT.valueToString(CalendarMT.Ames)
 					+ "/"  + CalendarMT.valueToString(CalendarMT.Aano)); 
 					l2.setText(CalendarMT.valueToString(CalendarMT.Ahora) + ":" + CalendarMT.valueToString(CalendarMT.Aminuto)); 

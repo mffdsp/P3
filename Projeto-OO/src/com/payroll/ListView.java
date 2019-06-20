@@ -68,7 +68,7 @@ public class ListView extends JFrame {
 		JList hlist = new JList();
 		hlist.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		hlist.setForeground(Color.BLACK);
-		hlist.setBackground(Color.WHITE);
+		hlist.setBackground(Color.WHITE); 
 		hlist.setBorder(new CompoundBorder());
 		hlist.setSelectedIndices(new int[] {2});
 		hlist.setBounds(135, 11, 385, 244);

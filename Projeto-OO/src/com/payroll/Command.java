@@ -6,25 +6,34 @@ public class Command {
 	
 	static int SSindex = 0;
 	static int UNDOAC = 0;
+	static int AgendaIndex = 0;
 	static SaveState[][] SS = new SaveState[50][50];
 	
 	static void saveS(Funcionario[] func) {
 		
     	SSindex += 1;
     	for(int i = 0; i < 50; i++) {
-			if(func[i] != null)
+			if(func[i] != null) 
 			{
 				SS[i][SSindex] = new SaveState();
 				SS[i][SSindex].setName(func[i].getName());
 				SS[i][SSindex].setSalary(func[i].getSalary());
 				SS[i][SSindex].setAdress(func[i].getAdress());
 				SS[i][SSindex].setPayMode(func[i].getPayMode());
-				SS[i][SSindex].setType(func[i].getType());
+				SS[i][SSindex].setType(func[i].getType()); 
 				SS[i][SSindex].setSindicaty(func[i].isSindicaty());
 				SS[i][SSindex].setCode(func[i].getCode());
 				SS[i][SSindex].setScode(func[i].getSindicatycode());
 				SS[i][SSindex].setSaved(func[i].isSaved());
+				SS[i][SSindex].setCheckIN(func[i].isCheckIN());
+				SS[i][SSindex].setCheckOUT(func[i].isCheckOUT());
+				SS[i][SSindex].setAindex(Command.AgendaIndex);
+				if(func[i] instanceof Horista) {
+					SS[i][SSindex].setSalarioBase(((Horista) func[i]).getSalarioBase());
+				}
+				
 			}
+			
 		}
     	
 	}
@@ -47,12 +56,18 @@ public class Command {
 					teste[i].setCode(SS[i][SSindex].getCode());
 					teste[i].setSindicatycode(SS[i][SSindex].getScode());
 					teste[i].setSaved(SS[i][SSindex].isSaved());
+					teste[i].setCheckIN(SS[i][SSindex].isCheckIN());
+					teste[i].setCheckOUT(SS[i][SSindex].isCheckOUT());
+					if(teste[i] instanceof Horista) {
+						((Horista) teste[i]).setSalarioBase(SS[i][SSindex].getSalarioBase());
+					}
+					
 				}
 			}
 		} catch(Exception ex2) {
 			System.out.println(ex2.getMessage());
 			JOptionPane.showMessageDialog(null ,
-					"Não há ações para desfazer", "Empty Stack!", JOptionPane.INFORMATION_MESSAGE);
+					"Não há ações para desfazer", "Empty Stack!", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
@@ -75,13 +90,20 @@ public class Command {
 					teste[i].setCode(SS[i][SSindex].getCode());
 					teste[i].setSindicatycode(SS[i][SSindex].getScode());
 					teste[i].setSaved(SS[i][SSindex].isSaved());
+					teste[i].setCheckIN(SS[i][SSindex].isCheckIN());
+					teste[i].setCheckOUT(SS[i][SSindex].isCheckOUT());
+				
+					if(teste[i] instanceof Horista) {
+						((Horista) teste[i]).setSalarioBase(SS[i][SSindex].getSalarioBase());
+					}
+					
 					
 				}
 			}
 		} catch(Exception ex2) {
 			System.out.println(ex2.getMessage());
 			JOptionPane.showMessageDialog(null ,
-					"Não há ações para refazer", "End of Stack!", JOptionPane.INFORMATION_MESSAGE);
+					"Não há ações para refazer", "End of Stack!", JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}

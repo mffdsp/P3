@@ -61,7 +61,7 @@ public class EditView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public EditView(Funcionario[] func, String action) {
+	public EditView(Funcionario[] func, String action , Agenda[] agenda) {
 		
 		setResizable(false);
 		setTitle("Insira o Código de Acesso");
@@ -85,36 +85,46 @@ public class EditView extends JFrame {
 		codeField.setBounds(20, 22, 168, 37);
 		
 		contentPane.add(codeField);
-		int code = 0;
 		
 		
 		JButton btnIr = new JButton("IR");
 		
 		btnIr.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int indice = getIndex(codeField.getText());
-				boolean notvalid = func[indice] == null || Integer.parseInt(codeField.getText()) < 20190 || !func[indice].isSaved();
+				int indice = 0;
+				boolean notvalid = true;
+				try {
+					int teste = Integer.parseInt(codeField.getText());
+					indice = getIndex(codeField.getText());
+					notvalid = func[indice] == null || Integer.parseInt(codeField.getText()) < 20190 || !func[indice].isSaved();
+				}
+				catch(Exception e0) {
+					System.err.print(e0);
+					JOptionPane.showMessageDialog(null ,
+							"Formato inválido", "ERRO", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				
 				if(action.equals("editar"))
 				{
 					if(notvalid)
 					{
 						JOptionPane.showMessageDialog(null ,
-								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+								"Código incorreto", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					//JOptionPane.showMessageDialog(null, texto1.getText());
 					else {
 						setVisible(false);
-						new realEdit(func, indice).setVisible(true);
+						new realEdit(func, indice, agenda).setVisible(true);
 					}
 				}
-				if(action.equals("remover"))
+				if(action.equals("remover"))  
 				{
-					
+					 
 					if(notvalid)
 					{
 						JOptionPane.showMessageDialog(null ,
-								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+								"Código incorreto", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					//JOptionPane.showMessageDialog(null, texto1.getText());
 					else {
@@ -130,29 +140,38 @@ public class EditView extends JFrame {
 					if(notvalid)
 					{
 						JOptionPane.showMessageDialog(null ,
-								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+								"Código incorreto", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					//JOptionPane.showMessageDialog(null, texto1.getText());
 					else {
-						func[indice] = null;
-						JOptionPane.showMessageDialog(null ,
-						"Funcionário removido com sucesso", "Remover", JOptionPane.INFORMATION_MESSAGE);
+						if(func[indice].isSindicaty()) {
+							new TaxaS(func, indice).setVisible(true);
+						}
+						else {
+							JOptionPane.showMessageDialog(null ,
+									"Funcionário não está associado ao sindicato\n"
+									+ "Para Associar-se Dirija-se a edição de dados", "ERRO", JOptionPane.ERROR_MESSAGE);
+						}
 						setVisible(false);
 					}
 				}
 				if(action.equals("Lvenda"))
 				{
-				
 					if(notvalid)
 					{
 						JOptionPane.showMessageDialog(null ,
-								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+								"Código incorreto", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					//JOptionPane.showMessageDialog(null, texto1.getText());
 					else {
-						func[indice] = null;
-						JOptionPane.showMessageDialog(null ,
-						"Funcionário removido com sucesso", "Remover", JOptionPane.INFORMATION_MESSAGE);
+						if(func[indice] instanceof Comissionado) {
+							new VenderView(func, indice).setVisible(true);
+						}
+						else {
+							JOptionPane.showMessageDialog(null ,
+									"Funcionário não é do tipo Comissionado\n"
+									+ "Para modificar, Dirija-se a edição de dados", "ERRO", JOptionPane.ERROR_MESSAGE);
+						}
 						setVisible(false);
 					}
 				}
@@ -161,11 +180,11 @@ public class EditView extends JFrame {
 					if(notvalid)
 					{
 						JOptionPane.showMessageDialog(null ,
-								"Código incorreto", "ERRO", JOptionPane.INFORMATION_MESSAGE);
+								"Código incorreto", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
 					//JOptionPane.showMessageDialog(null, texto1.getText());
 					else {
-						new BaterPonto(func[indice]).setVisible(true);
+						new BaterPonto(func, indice).setVisible(true);
 						setVisible(false);
 					}
 				}

@@ -14,7 +14,11 @@ public class SaveState{
 	private String code;
 	private String Scode;
 	private boolean saved = false;
-	
+	private boolean checkIN = false;
+	private boolean checkOUT = false;
+	private double salarioBase = 0; 
+	private boolean Asaved = false;
+	private int Aindex = 0;
 	public String getName() {
 		return name;
 	}
@@ -68,6 +72,36 @@ public class SaveState{
 	}
 	public void setSaved(boolean saved) {
 		this.saved = saved;
+	}
+	public boolean isCheckIN() {
+		return checkIN;
+	}
+	public void setCheckIN(boolean checkIN) {
+		this.checkIN = checkIN;
+	}
+	public boolean isCheckOUT() {
+		return checkOUT;
+	}
+	public void setCheckOUT(boolean checkOUT) {
+		this.checkOUT = checkOUT;
+	}
+	public double getSalarioBase() {
+		return salarioBase;
+	}
+	public void setSalarioBase(double salarioBase) {
+		this.salarioBase = salarioBase;
+	}
+	public boolean isAsaved() {
+		return Asaved;
+	}
+	public void setAsaved(boolean asaved) {
+		Asaved = asaved;
+	}
+	public int getAindex() {
+		return Aindex;
+	}
+	public void setAindex(int aindex) {
+		Aindex = aindex;
 	}
 	
 

@@ -3,21 +3,24 @@ package com.payroll;
 import java.util.Date;
 
 public abstract class Funcionario{
-	
+	 
 	protected String name;
 	protected String adress;
 	protected double salary;
 	protected String payMode;
 	protected String type;
 	protected int DtInicial;
-	protected boolean sindicaty;
+	protected boolean sindicaty = false;
 	protected String code;
 	protected String Scode;
-	protected boolean saved = false;
+	protected boolean saved = false; 
 	protected int timeIN = 0;
 	protected int timeOUT = 0;
 	protected int WH = 0;
-	
+	private boolean checkIN = false;
+	private boolean checkOUT = false;
+	private boolean custom = false;
+	private int agendaID = -1; 
 	
 	public void setWH(int WH){
 		this.WH += WH;
@@ -96,5 +99,46 @@ public abstract class Funcionario{
 	public void setSaved(boolean saved) {
 		this.saved = saved;
 	}
-
+	public boolean isCheckOUT() {
+		return checkOUT;
+	}
+	public void setCheckOUT(boolean checkOUT) {
+		this.checkOUT = checkOUT;
+	}
+	public boolean isCheckIN() {
+		return checkIN;
+	}
+	public void setCheckIN(boolean checkIN) {
+		this.checkIN = checkIN;
+	}
+	public boolean isCustom() {
+		return custom;
+	}
+	public void setCustom(boolean custom) {
+		this.custom = custom;
+	}
+	public int getAgendaID() {
+		return agendaID;
+	}
+	public void setAgendaID(int agendaID) {
+		this.agendaID = agendaID;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

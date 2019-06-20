@@ -88,7 +88,7 @@ public class PayView extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				hlist.setModel(DLMH);
 			}
-		});
+		}); 
 		btnNewButton.setBounds(10, 11, 115, 59);
 		contentPane.add(btnNewButton);
 		
