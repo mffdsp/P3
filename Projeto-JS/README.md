@@ -5,14 +5,17 @@
       
       
 
-
 <p align="center">
   <img src = "https://i.stack.imgur.com/INdOQ.gif" align = "center" >
 </p>
+
+
+
+<!---
 <p align="center">
   <img src = "https://loading.io/spinners/progress/lg.progress-bar-preloader.gif" align = "center" >
 </p>
-
+--->
 ```
 ................
 
