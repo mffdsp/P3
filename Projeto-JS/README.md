@@ -1,6 +1,6 @@
 
                             "--------------------------------------------------------"
-                            "------                   WORKING                   -----"
+                            "------                   in progress               -----"
                             "--------------------------------------------------------"
       
       
@@ -9,10 +9,9 @@
 <p align="center">
   <img src = "https://i.stack.imgur.com/INdOQ.gif" align = "center" >
 </p>
-
-OLDCOMMITS = https://github.com/mffdsp/P3/tree/master/Projeto-OO
-
-Projeto compactado = https://drive.google.com/drive/u/3/folders/1vTLpowv-iHf6_XOzYuu3SbPPea9WW3EJ
+<p align="center">
+  <img src = "https://loading.io/spinners/progress/lg.progress-bar-preloader.gif" align = "center" >
+</p>
 
 ```
 ................
