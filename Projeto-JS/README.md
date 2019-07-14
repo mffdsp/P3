@@ -5,8 +5,10 @@
       
       
 
-<img src = "https://i.stack.imgur.com/INdOQ.gif" align = "center" >
 
+<p align="center">
+  <img src = "https://i.stack.imgur.com/INdOQ.gif" align = "center" >
+</p>
 
 OLDCOMMITS = https://github.com/mffdsp/P3/tree/master/Projeto-OO
 
