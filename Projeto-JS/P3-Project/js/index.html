@@ -1,11 +1,20 @@
 <html>
 
 <head>
-<link rel = "stylesheet" type = "text/css" href = "/css/main.css">
-<title>Blank Project</title>
+<meta charset="utf-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Site do Teus</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<link rel = "stylesheet" type = "text/css" href = "/css/main.scss">
+<script
+  type="text/javascript"
+  src="/js/index.js">
+</script>
+
 </head>
 
 <body>
+
     <header class = "mainMenu">
     <main>
         <div class = "h1">
@@ -25,21 +34,72 @@
     <main>
         <div class="h2">
                     <div class="menu">
-                        <ul>
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/">Home</a></li>
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/""">Feed</a></li>
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/""">Chat</a></li>
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/""">Something1</a></li>
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/""">Something2</a></li>
-                        </ul>
+                            <input type="button" value="Adicionar P." onClick="containerON()">
+                            <input type="button" value="Editar P." onClick="containerOFF()">
+                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/">Chat</a></li>
+                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/">Something1</a></li>
+                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/">Something2</a></li>
                         
                     </div>
                     <div class="search">
                             <input placeholder = "Busca algo ai" type="text" />
                     </div>
                     
+                    
+            </div>
+            
+            <!-- <div class= "form">
+                <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+                  Nome: <input type="text" name="nome" /><br />
+                  Sobrenome: <input type="text" name="sobrenome" /><br />  
+                  Idade: <input type="age" name="email_usuario" /><br />
+                       <input class = "bt" type="submit" value="Enviar" />
+                </form>
+            </div> -->
+           
+            <div class= "form" id = "container">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Formulário</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME" id="formNOME"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formIDADE">Idade</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="number" min="18" max="105" value="25" name = "formIDADE" id = "formIDADE"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formENDERECO">Endereço</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formENDERECO" id="formENDERECO"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formSINTOMAS">Sintomas</label>
+                          </div>
+                          <div class="column-9 column input" >
+                                <input type="text" name="formSINTOMAS" id="formSINTOMAS">
+                          </div>
+                      </div>
+                    </fieldset>
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveForm(form)">
+                  </form>
+                 
             </div>
     </main>
+        
 </body>
    
 </html>
