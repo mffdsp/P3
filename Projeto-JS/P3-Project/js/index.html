@@ -5,10 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Site do Teus</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<link rel = "stylesheet" type = "text/css" href = "/css/main.scss">
+<link rel = "stylesheet" type = "text/css" href = "/css/main.css">
+<script type="text/javascript" DEFER="DEFER">
+    function setDisabled() {
+        $('#container3').hide();
+        $('#container2').hide();
+        $('#container1').hide();
+        $('#containerINICIAL').hide();
+    }
+    // Chamada da função
+    setDisabled();
+    </script>
 <script
   type="text/javascript"
   src="/js/index.js">
+  src="/js/Paciente.js">
 </script>
 
 </head>
@@ -19,7 +30,7 @@
     <main>
         <div class = "h1">
             <div class = "logo">
-                <img src ="/img/mainIcon64.png"/>
+                <img src ="/img/mainICbg.png"/>
             </div>
             <div class = "support">
                 <ul>
@@ -32,22 +43,26 @@
     </main>
     </header>
     <main>
-        <div class="h2">
-                    <div class="menu">
-                            <input type="button" value="Adicionar P." onClick="containerON()">
-                            <input type="button" value="Editar P." onClick="containerOFF()">
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/">Chat</a></li>
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/">Something1</a></li>
-                            <li><a href = "https://sites.google.com/a/ic.ufal.br/comp215/">Something2</a></li>
-                        
-                    </div>
-                    <div class="search">
-                            <input placeholder = "Busca algo ai" type="text" />
-                    </div>
-                    
-                    
+            <div>
+                <b>
+                    <input type="button" value="Adicionar Paciente" onClick="addBTN()">
+                </b>
+                <b>
+                    <input type="button" value="Editar Informações" onClick="editBTN()">
+                </b>
+                <b>
+                    <input type="button" value="Editar P." onClick="containerOFF()">
+                </b>
+                <b>
+                    <input type="button" value="Editar P." onClick="containerOFF()">
+                </b>
+                <b>
+                    <input type="button" value="Editar P." onClick="containerOFF()">
+                </b>
+                <b>
+                    <input type="button" value="Editar P." onClick="containerOFF()">
+                </b>
             </div>
-            
             <!-- <div class= "form">
                 <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
                   Nome: <input type="text" name="nome" /><br />
@@ -57,7 +72,9 @@
                 </form>
             </div> -->
            
-            <div class= "form" id = "container">
+            
+
+            <div class= "form" id = "container1">
                 <form action="PayslipServlet" method="get">
                     <fieldset class = "field" id = "fields">
                         <legend>Formulário</legend>
@@ -90,13 +107,79 @@
                               <label for="formSINTOMAS">Sintomas</label>
                           </div>
                           <div class="column-9 column input" >
-                                <input type="text" name="formSINTOMAS" id="formSINTOMAS">
+                                <input type="text" name="formSINTOMAS" id="formSINTOMAS" placeholder = "Ex. Febre, Dor">
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formSANGUE">T. sanguíneo</label>
+                        </div>
+                        <div class="column-2 column input">
+                            <input type="text" name="formSANGUE" id="formSANGUE" placeholder = "Ex. AB+"><br/><br/>
+                        </div>
+                        <div class="column-3 column labelW">
+                            <label id= "erro"></label>
+                        </div>
+                        <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formCODE">Código de Acesso</label>
+                            </div>
+                            <div class="column-2 column input">
+                                <label type="text" name="formCODE" id="formCODE" >20190</label> <br/> <br/>
+                            </div>
+                        </div>
+                    </div>
+                    </fieldset>
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveForm(form)">            
+                  </form>
+                 
+                  
+            </div>
+
+            <div class= "form" id = "container2">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Editar</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="editBUSCA">Busca</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="editBUSCA" id="editBUSCA"><br/><br/>
                           </div>
                       </div>
                     </fieldset>
-                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveForm(form)">
-                  </form>
-                 
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="search()">            
+                  </form>   
+            </div>
+
+            <div class= "form" id = "container3">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>EDIÇAO REAL</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="editREAL">edit</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="editREAL" id="editREAL"><br/><br/>
+                          </div>
+                      </div>
+                    </fieldset>
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="search()">            
+                  </form>   
+            </div>
+            <div class= "form" id = "containerINICIAL">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>INICIO</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label>edit</label>
+                          </div>
+                      </div>
+                    </fieldset>  
+                  </form>   
             </div>
     </main>
         
