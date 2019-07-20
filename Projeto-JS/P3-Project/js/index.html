@@ -6,16 +6,7 @@
 <title>Site do Teus</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <link rel = "stylesheet" type = "text/css" href = "/css/main.css">
-<script type="text/javascript" DEFER="DEFER">
-    function setDisabled() {
-        $('#container3').hide();
-        $('#container2').hide();
-        $('#container1').hide();
-        $('#containerINICIAL').hide();
-    }
-    // Chamada da função
-    setDisabled();
-    </script>
+
 <script
   type="text/javascript"
   src="/js/index.js">
@@ -42,25 +33,27 @@
         </div>
     </main>
     </header>
-    <main>
+<main>
+       
             <div>
-                <b>
-                    <input type="button" value="Adicionar Paciente" onClick="addBTN()">
+                
+                <b >
+                    <input type="button" class = "begin" value="Adicionar Paciente" onClick="addBTN()">
                 </b>
                 <b>
-                    <input type="button" value="Editar Informações" onClick="editBTN()">
+                    <input type="button" class = "begin" value="Editar Informações" onClick="editBTN()">
                 </b>
                 <b>
-                    <input type="button" value="Cadastrar Doença" onClick="doencaBTN()">
+                    <input type="button" class = "begin" value="Cadastrar Doença" onClick="doencaBTN()">
                 </b>
                 <b>
-                    <input type="button" value="Editar P." onClick="containerOFF()">
+                    <input type="button" class = "begin" value="Listar Doenças" onClick="ldoencaBTN()">
                 </b>
                 <b>
-                    <input type="button" value="Editar P." onClick="containerOFF()">
+                    <input type="button" class = "begin"value="Editar P." onClick="containerOFF()">
                 </b>
                 <b>
-                    <input type="button" value="Editar P." onClick="containerOFF()">
+                    <input type="button" class = "begin"value="Editar P." onClick="containerOFF()">
                 </b>
             </div>
             <!-- <div class= "form">
@@ -86,6 +79,14 @@
                               <input type="text" name="formNOME" id="formNOME"><br/><br/>
                           </div>
                       </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formCPF">CPF</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formCPF" placeholder="666.666.666-66" id = "formCPF"><br/><br/>
+                            </div>
+                        </div>
                       <div class="row">
                           <div class="column-3 column label">
                               <label for="formIDADE">Idade</label>
@@ -120,14 +121,6 @@
                         <div class="column-3 column labelW">
                             <label id= "erro"></label>
                         </div>
-                        <div class="row">
-                            <div class="column-3 column label">
-                                <label for="formCODE">Código de Acesso</label>
-                            </div>
-                            <div class="column-2 column input">
-                                <label type="text" name="formCODE" id="formCODE" >20190</label> <br/> <br/>
-                            </div>
-                        </div>
                     </div>
                     </fieldset>
                     <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveForm(form)">            
@@ -137,20 +130,21 @@
             </div>
 
             <div class= "form" id = "container2">
-                <form action="PayslipServlet" method="get">
-                    <fieldset class = "field" id = "fields">
-                        <legend>Editar</legend>
-                      <div class="row">
+               
+                    <div class = buscarBTN>
                           <div class="column-3 column label">
                               <label for="editBUSCA">Busca</label>
                           </div>
                           <div class="column-9 column input">
                               <input type="text" name="editBUSCA" id="editBUSCA"><br/><br/>
                           </div>
+ 
+                            <input name="btns" id="btns" style="margin-top: 10px; margin-left: 215px; margin-right: 0px; " type="button" value="Buscar" onClick="search()">   
                       </div>
-                    </fieldset>
-                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="search()">            
-                  </form>   
+                      <div class="column-9 labelY">
+                            <label id= "errosearch" ></label>
+                      </div>
+  
             </div>
 
             <div class= "form" id = "container3">
@@ -165,6 +159,7 @@
                               <input type="text" name="formNOME3" id="formNOME3"><br/><br/>
                           </div>
                       </div>
+                      
                       <div class="row">
                           <div class="column-3 column label">
                               <label for="formIDADE3">Idade</label>
@@ -215,7 +210,7 @@
                               <label for="formNOME4">Patologia</label>
                           </div>
                           <div class="column-9 column input">
-                              <input type="text" name="formNOME4" id="formNOME4"><br/><br/>
+                              <input type="text" name="formNOME4" id="formNOME4" ><br/><br/>
                           </div>
                       </div>
                       <div class="row">
@@ -266,8 +261,88 @@
             <div class= "form" id = "containerINICIAL">
                    
             </div>
+        <div id = "doenca" class = "doenca">
+                
+            <div id="myDIV" class="header">
+                <h2 style="margin:5px">Lista de Patologias</h2> 
+             </div>
+      
+            <ul2 id="myUL">
+               
+            </ul2>
+
+        </div>
+
+
+        <div class= "form" id = "container5">
+            <form action="PayslipServlet" method="get">
+                <fieldset class = "field" id = "fields">
+                    <legend>Informações</legend>
+                  <div class="row">
+                      <div class="column-3 column label">
+                          <label for="formNOME5">Patologia</label>
+                      </div>
+                      <div class="column-9 column input">
+                          <input type="text" name="formNOME5" id="formNOME5" readonly><br/><br/>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formAPARICAO5">%Aparição</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formAPARICAO5" placeholder = "Comum, Raro, Muito Raro" id="formAPARICAO5" readonly><br/><br/>
+                    </div>
+                </div>
+                  <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formDOR5">Locais de dor</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formDOR5" placeholder="Ex. Pulmao, cabeça" id="formDOR5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formSINTOMAS5">P sintomas</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formSINTOMAS5" id="formSINTOMAS5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formPREV5">Prevenção</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formPREV5"  placeholder = "ex. Vacina" id="formPREV5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formTRATAMENTO5">Tratamento</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formTRATAMENTO5" placeholder = "ex. Anti-histamínico, Descongestionante nasal, Anti-inflamatórios" id="formTRATAMENTO5"readonly ><br/><br/>
+                    </div>
+                </div>
+                </fieldset>      
+              </form>   
+        </div>
+
     </main>
         
 </body>
-   
+<script>
+    function apagar(){
+        $('#container1').hide();
+        $('#container2').hide();
+        $('#container4').hide();
+        $('#container3').hide();
+        $('#doenca').hide();
+        $('#container5').hide();
+        $('#containerINICIAL').show();
+        }
+        apagar();
+    </script>
 </html>
