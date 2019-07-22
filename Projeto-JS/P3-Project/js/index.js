@@ -129,7 +129,7 @@ function realedit(){
   document.getElementById("formENDERECO3").value = paciente[INDEX].endereco;
   document.getElementById("formSINTOMAS3").value = paciente[INDEX].sintomas;
   document.getElementById("formSANGUE3").value = paciente[INDEX].tipoS;
-  document.getElementById("formCPF").value = paciente[INDEX].CPF;
+  document.getElementById("formCPF3").value = paciente[INDEX].CPF;
   $('#container2').hide();
   $('#container3').show();
 }
@@ -271,6 +271,7 @@ function verdoenca(busca){
 }
 
 function listarD(busca){
+
   $('#doenca').hide();
   $('#container5').show();
   alert(doenca[busca].nome);
@@ -284,60 +285,133 @@ function listarD(busca){
 }
 //botoes
 
-function addBTN () { 
-  $('#container1').show();
+function hideALL(){
+
+  $('#container1').hide();
   $('#container2').hide();
   $('#container3').hide();
   $('#container5').hide();
   $('#container4').hide();
+  $('#container6').hide()
+  $('#containerINICIAL').hide();
   $('#doenca').hide();
   $('#containerINICIAL').hide();
+  $('#contact_b').hide();
+  $('#container7').hide();
+}
+function addBTN () { 
+
+  document.getElementById("bt1").style.backgroundColor = "#f44336";
+  document.getElementById("bt2").style.backgroundColor = "#363b48";
+  document.getElementById("bt3").style.backgroundColor = "#363b48";
+  document.getElementById("bt4").style.backgroundColor = "#363b48";
+  document.getElementById("bt5").style.backgroundColor = "#363b48";
+
+  hideALL();
+  $('#container1').show();
+
 }
 
 function editBTN () { 
-  $('#container1').hide();
+
+  document.getElementById("bt1").style.backgroundColor = "#363b48";
+  document.getElementById("bt2").style.backgroundColor = "#f44336";
+  document.getElementById("bt3").style.backgroundColor = "#363b48";
+  document.getElementById("bt4").style.backgroundColor = "#363b48";
+  document.getElementById("bt5").style.backgroundColor = "#363b48";
+
+  hideALL();
   $('#container2').show();
-  $('#container3').hide();
-  $('#container4').hide();
-  $('#container5').hide();
-  $('#containerINICIAL').hide();
-  $('#doenca').hide();
+  
   document.getElementById("errosearch").innerHTML = "";
   
 }
 function doencaBTN(){
-  $('#container1').hide();
+
+  document.getElementById("bt1").style.backgroundColor = "#363b48";
+  document.getElementById("bt2").style.backgroundColor = "#363b48";
+  document.getElementById("bt3").style.backgroundColor = "#f44336";
+  document.getElementById("bt4").style.backgroundColor = "#363b48";
+  document.getElementById("bt5").style.backgroundColor = "#363b48";
+
+  hideALL();
   $('#container4').show();
-  $('#container3').hide();
-  $('#container2').hide();
-  $('#container5').hide();
-  $('#doenca').hide();
-  $('#containerINICIAL').hide();
 
 }
 function backToBegin(){
-  $('#container1').hide();
-  $('#container2').hide();
-  $('#container4').hide();
-  $('#container3').hide();
-  $('#container5').hide();
+  hideALL();
   $('#containerINICIAL').show();
-  $('#doenca').hide();
-
 }
 
 function ldoencaBTN(){
   
-  $('#container1').hide();
-  $('#container2').hide();
-  $('#container4').hide();
-  $('#container3').hide();
-  $('#containerINICIAL').hide();
-  $('#container5').hide();
+  document.getElementById("bt1").style.backgroundColor = "#363b48";
+  document.getElementById("bt2").style.backgroundColor = "#363b48";
+  document.getElementById("bt3").style.backgroundColor = "#363b48";
+  document.getElementById("bt4").style.backgroundColor = "#f44336";
+  document.getElementById("bt5").style.backgroundColor = "#363b48";
+
+
+  hideALL();
   $('#doenca').show();
   primitiveDOC()
 
 }
 
+function medicamentoBTN(){
 
+  document.getElementById("bt1").style.backgroundColor = "#363b48";
+  document.getElementById("bt2").style.backgroundColor = "#363b48";
+  document.getElementById("bt3").style.backgroundColor = "#363b48";
+  document.getElementById("bt4").style.backgroundColor = "#363b48";
+  document.getElementById("bt5").style.backgroundColor = "#f44336";
+
+  hideALL();
+  $('#container6').show();
+
+
+}
 //botoes
+
+
+function contact(){
+
+  hideALL();
+  $('#container7').show();
+
+}
+jQuery(function($)  
+{
+    $("#contact_form").submit(function()
+    {
+        var email = $("#email").val(); // get email field value
+        var phone = $("#phone").val(); // get email field value
+        var name = $("#name").val(); // get name field value
+        var msg = $("#msg").val(); // get message field value
+        $.ajax(
+        {
+            type: "POST",
+            headers: {
+                'Authorization':'',
+                'Content-Type':'application/json'},
+            url: "https://mandrillapp.com/api/1.0/messages/send.json",
+            data: {
+                'key': 'sVRLFidC1A7K56TuUkyUQg',
+                'email': email,
+                'phone': phone,
+                'name': name,
+                'message': msg
+            }
+        })
+        .done(function(response) {
+            alert('Your message has been sent. Thank you!'); // show success message
+            $("#name").val(''); // reset field after successful submission
+            $("#email").val(''); // reset field after successful submission
+            $("#msg").val(''); // reset field after successful submission
+        })
+        .fail(function(response) {
+            alert('Error sending message.');
+        });
+        return false; // prevent page refresh
+    });
+});

@@ -27,45 +27,40 @@
                 <ul>
                     <li class = "settings"><a href = "https://sites.google.com/a/ic.ufal.br/comp215/"><img src="/img/settings.png" alt=""></a></li>
                     <li class = "ask"><a href = "https://sites.google.com/a/ic.ufal.br/comp215/"><img src="/img/ask.png" alt=""></a></li>
-                    <li class = "custService"><a href = "https://sites.google.com/a/ic.ufal.br/comp215/"><img src="/img/customer-service.png" alt=""></a></li>
+                    <li class = "custService"><a onclick="contact()"><img src="/img/customer-service.png" alt=""></a></li>
                 </ul>
             </div>
         </div>
-    </main>
+       
+    </main> 
+    
     </header>
+   
 <main>
        
-            <div>
-                
-                <b >
-                    <input type="button" class = "begin" value="Adicionar Paciente" onClick="addBTN()">
-                </b>
-                <b>
-                    <input type="button" class = "begin" value="Editar Informações" onClick="editBTN()">
-                </b>
-                <b>
-                    <input type="button" class = "begin" value="Cadastrar Doença" onClick="doencaBTN()">
-                </b>
-                <b>
-                    <input type="button" class = "begin" value="Listar Doenças" onClick="ldoencaBTN()">
-                </b>
-                <b>
-                    <input type="button" class = "begin"value="Editar P." onClick="containerOFF()">
-                </b>
-                <b>
-                    <input type="button" class = "begin"value="Editar P." onClick="containerOFF()">
-                </b>
+            <div class = "barrinha">
+                <ul>
+                    <li>
+                        <input type="button" class = "begin" value="Adicionar Paciente" id = "bt1" onClick="addBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Editar Informações" id = "bt2" onClick="editBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Cadastrar Doença" id = "bt3" onClick="doencaBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Listar Doenças" id = "bt4" onClick="ldoencaBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin"value="Adicionar Med." id = "bt5"onClick="medicamentoBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin"value="Editar P." id = "bt6" onClick="containerOFF()">
+                    </li>
+                </ul>
+                   
             </div>
-            <!-- <div class= "form">
-                <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
-                  Nome: <input type="text" name="nome" /><br />
-                  Sobrenome: <input type="text" name="sobrenome" /><br />  
-                  Idade: <input type="age" name="email_usuario" /><br />
-                       <input class = "bt" type="submit" value="Enviar" />
-                </form>
-            </div> -->
-           
-            
 
             <div class= "form" id = "container1">
                 <form action="PayslipServlet" method="get">
@@ -76,7 +71,7 @@
                               <label for="formNOME">Nome</label>
                           </div>
                           <div class="column-9 column input">
-                              <input type="text" name="formNOME" id="formNOME"><br/><br/>
+                              <input type="text" name="formNOME" id="formNOME" required="" ><br/><br/>
                           </div>
                       </div>
                       <div class="row">
@@ -108,9 +103,12 @@
                               <label for="formSINTOMAS">Sintomas</label>
                           </div>
                           <div class="column-9 column input" >
+                                <textarea class="form-control" id="formSINTOMAS" name="formSINTOMAS" cols="32" rows="5"></textarea><br/><br/>
+                                <!--
                                 <input type="text" name="formSINTOMAS" id="formSINTOMAS" placeholder = "Ex. Febre, Dor">
+                                -->
                           </div>
-                      </div>
+                      </div><br/><br/><br/><br/>
                       <div class="row">
                         <div class="column-3 column label">
                             <label for="formSANGUE">T. sanguíneo</label>
@@ -125,8 +123,7 @@
                     </fieldset>
                     <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveForm(form)">            
                   </form>
-                 
-                  
+                     
             </div>
 
             <div class= "form" id = "container2">
@@ -159,7 +156,14 @@
                               <input type="text" name="formNOME3" id="formNOME3"><br/><br/>
                           </div>
                       </div>
-                      
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formCPF3">CPF</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formCPF3" id="formCPF3" readonly><br/><br/>
+                            </div>
+                        </div>
                       <div class="row">
                           <div class="column-3 column label">
                               <label for="formIDADE3">Idade</label>
@@ -202,9 +206,10 @@
            
 
             <div class= "form" id = "container4">
+                    
                 <form action="PayslipServlet" method="get">
                     <fieldset class = "field" id = "fields">
-                        <legend>Adicionar Doença</legend>
+                        <legend>Inserir Doença</legend>
                       <div class="row">
                           <div class="column-3 column label">
                               <label for="formNOME4">Patologia</label>
@@ -218,7 +223,7 @@
                             <label for="formAPARICAO4">%Aparição</label>
                         </div>
                         <div class="column-9 column input">
-                            <input type="text" name="formAPARICAO4" placeholder = "Comum, Raro, Muito Raro" id="formAPARICAO4"><br/><br/>
+                            <input type="text" name="formAPARICAO4" placeholder = "Minima, Média, Elevada" id="formAPARICAO4"><br/><br/>
                         </div>
                     </div>
                       <div class="row">
@@ -234,7 +239,7 @@
                             <label for="formSINTOMAS4">P sintomas</label>
                         </div>
                         <div class="column-9 column input">
-                            <input type="text" name="formSINTOMAS4" id="formSINTOMAS4"><br/><br/>
+                            <input type="text" name="formSINTOMAS4" id="formSINTOMAS4" required     ><br/><br/>
                         </div>
                     </div>
                     <div class="row">
@@ -242,7 +247,7 @@
                             <label for="formPREV4">Prevenção</label>
                         </div>
                         <div class="column-9 column input">
-                            <input type="text" name="formPREV4"  placeholder = "ex. Vacina" id="formPREV4"><br/><br/>
+                            <input type="text" name="formPREV4"  placeholder = "ex. Vacina" id="formPREV4" required><br/><br/>
                         </div>
                     </div>
                     <div class="row">
@@ -253,26 +258,30 @@
                             <input type="text" name="formTRATAMENTO4" placeholder = "ex. Anti-histamínico, Descongestionante nasal, Anti-inflamatórios" id="formTRATAMENTO4"><br/><br/>
                         </div>
                     </div>
-
+                    <button class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveDOENCA()">Send</button>
                     </fieldset>
-                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveDOENCA()">            
+                   
                   </form>   
             </div>
-            <div class= "form" id = "containerINICIAL">
+            <div class= "espform" id = "containerINICIAL">
                    
             </div>
-        <div id = "doenca" class = "doenca">
-                
-            <div id="myDIV" class="header">
-                <h2 style="margin:5px">Lista de Patologias</h2> 
-             </div>
-      
-            <ul2 id="myUL">
-               
-            </ul2>
 
-        </div>
-
+            <!---   
+                Sâo preenchidas com o js.
+            -->
+            <div id = "doenca">
+                <div id="myDIV" class="header">
+                    <h2 >Lista de Patologias</h2> 
+                </div>
+          
+                <ul2 id="myUL">
+                </ul2>
+            </div>
+            <!---   
+                Sâo preenchidas com o js.
+            -->
+            
 
         <div class= "form" id = "container5">
             <form action="PayslipServlet" method="get">
@@ -329,20 +338,102 @@
                 </fieldset>      
               </form>   
         </div>
-
-    </main>
         
+        <div class= "form" id = "container6">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Adicionar Medicamento</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME6">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME6" id="formNOME6" placeholder="Ex. Anti-histamínico"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formTRATA6">Trata</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formTRATA6" id="formTRATA6" placeholder="Doenças ou Sintomas"><br/><br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="column-3 column label">
+                                    <label for="formUSO6">Uso</label>
+                                </div>
+                                <div class="column-9 column input">
+                                    <input type="text" name="formUSO6" id="formUSO6" placeholder="Ex. Via oral" required><br/><br/>
+                                </div>
+                        </div>
+                    </fieldset>      
+                  </form>   
+            </div>
+
+
+            <div class="form" id = "container7">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                            <legend class="text-center">Contact Us</legend>
+                
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="name">Name</label>  
+                              <div class="col-md-5">
+                              <input id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                              
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="email">Phone</label>  
+                              <div class="col-md-5">
+                              <input id="phone" name="phone" type="text" placeholder="Enter your phone number" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="email">Email</label>  
+                              <div class="col-md-5">
+                              <input id="email" name="email" type="text" placeholder="Enter your email address" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                            
+                            <!-- Textarea -->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="msg">Message</label>
+                              <div class="col-md-5">                     
+                                <textarea class="form-control" id="msg" name="msg" cols="30" rows="6"></textarea>
+                              </div>
+                            </div>
+                            
+                            <!-- Button -->
+                            <div class="form-group text-center" >
+                              <label class="col-md-4 control-label" for="submit"></label>
+                              <div class="col-md-4">
+                                <button id="submit" name="submit" class="btn btn-primary">Send Message</button>
+                              </div>
+                            </div>
+                            
+                    </fieldset>
+                </form>
+            </div>
+               
+                
+                
+    </main>
+    
 </body>
 <script>
-    function apagar(){
-        $('#container1').hide();
-        $('#container2').hide();
-        $('#container4').hide();
-        $('#container3').hide();
-        $('#doenca').hide();
-        $('#container5').hide();
+    function start(){
+        hideALL();
         $('#containerINICIAL').show();
         }
-        apagar();
+        start();
     </script>
 </html>
