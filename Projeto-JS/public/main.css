@@ -1,0 +1,439 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    cursor: url('ss.png') auto;
+    background: url('backG.jpg');
+
+    
+}
+
+.mainMenu{
+    width: 100%;
+    background-color: red;
+    background-color: #B0C4DE;
+    height: 100px;
+}
+
+.begin{
+    background-color: red;
+}
+.row{
+    margin-top: 20px;
+}
+main{
+    margin: 0 auto;
+    width: 980px;
+    height: 980px;
+    
+    position: relative;
+}
+.logo{
+    margin-left: 10px;
+    float: left;
+    position: relative;
+    width: 70%;
+
+}
+.form{
+    width: 100%;
+    height: 100%;  
+    background-color: #B0C4DE;
+    position: relative;
+
+}
+.espform{
+    width: 100%;
+    height: 100%;  
+    background-color: white;
+    position: relative;
+
+}
+
+.entrada{
+    height: 50%;
+}
+.field{
+    margin-top: 10px;
+}
+.blankINPUT{
+    margin-left: 20%;
+}
+.bt{
+    margin-top: 15px; 
+    height: 50%;
+}
+.support ul li{
+    margin-left: 10px;
+    display: inline-block;
+    list-style: none;
+
+}
+
+
+.form-horizontal{
+    margin-top: 60px;
+    width: 300px;
+    padding: 50px;
+    background: #ffffff;
+    border: 10px solid #f2f2f2;
+}
+.support{
+    padding: 15px;
+    width: 18%;
+    float: right;
+}
+b{
+    display:inline-block;
+    text-decoration:none;
+    padding:10px 4px;
+    color:#333;
+    font:15px arial, sans-serif;
+}
+b:hover{
+    padding: 6px;
+}
+.saveB{
+    float: right;
+}
+.menu ul li{
+    display: inline-block;
+    color: #8b8b8b;
+}
+
+.menu ul li a{
+    margin-top: 5px;
+    color: #8b8b8b;
+    margin-left: 30px;
+    text-decoration: none;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.menu{
+    width: 80%;
+    float: left;
+}
+.search{
+    margin-top: 15px;
+    width: 20%;
+    float: right;
+
+}
+.search input{
+    height: 25px;
+}
+.barrinha ul{
+    list-style: none;
+}
+.barrinha ul li{
+    float: left;
+}
+.barrinha input{
+    width: 100px;
+
+}
+
+textarea {
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    box-shadow: 1px 1px 2px #333333;    
+    -moz-box-shadow: 1px 1px 2px #333333;
+    -webkit-box-shadow: 1px 1px 2px #333333;
+    resize: none;
+    background: white;
+}
+#container1 , #container3 , #containerINICIAL, #container4 , #container5{
+    position: relative;
+    top: 100px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 600px;
+    height: 620px;
+    margin: auto;
+    box-shadow: 0px 0px 10px black;
+    padding: 80px;
+    box-sizing: border-box; 
+}
+#container7{
+    position: relative;
+    top: 100px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 600px;
+    height: 500px;
+    margin: auto;
+    padding: 80px;
+    box-sizing: border-box; 
+    box-shadow: 0px 0px 10px black;
+
+}
+#doenca{
+    position: relative;
+    top: 80px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 600px;
+    height: 500px;
+    margin: auto;
+    padding: 80px;
+    box-sizing: border-box; 
+
+}
+.buscarBTN{
+    margin-top: -5%;
+    left: 0%;  
+}
+.buscando{
+    color: black;
+    align-content: center;
+}
+#container2{
+
+    margin-left: auto;
+    margin-right: auto;
+    top: 10%;
+    width: 60%;
+    height: 20%;
+    box-shadow: 0px 0px 10px black;
+    padding: 80px;
+    box-sizing: border-box; 
+}
+
+#containerINICIAL{
+    background-image : url('HPC.png');
+    background-size: 400px 190px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#container6{
+    background: #B0C4DE;
+    position: relative;
+    top: 100px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    width: 500px;
+    height: 350px;
+    margin: auto;
+    box-shadow: 0px 0px 10px black;
+    padding: 80px;
+    box-sizing: border-box; 
+    background-image : url('pills.png');
+    background-size: 80px 80px;
+    background-repeat: no-repeat;
+    background-position: 20% top;
+}
+
+input[type=text]:hover, textarea:hover{ 
+    background: #ffffff; border:1px solid #990000;
+}
+input[type=text], input[type= number]{   
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    box-shadow: 1px 1px 2px #333333;    
+    -moz-box-shadow: 1px 1px 2px #333333;
+    -webkit-box-shadow: 1px 1px 2px #333333;
+    background: white;
+    border:1px solid #000000;
+    width:150px
+}
+
+input[type=button]{
+    color: #fff;
+    border:1px solid #ccc;
+    background-color:#363b48;
+    text-align: center;    
+    width: 150px;
+  
+    margin-left: 5%;
+    height: 60px;
+    font-size: 90%;
+}
+
+.row {
+  clear: both;
+}
+
+.row2{
+    widows: 50%;
+    margin-left: 5px;
+}
+.column-2 {   
+    width: 20%;    
+}
+
+.column-3 {    
+    width: 25%;    
+}
+
+.column-9 {    
+    width: 75%;    
+}
+.column-12{
+    width: 30%;    
+}
+.column-15{
+    width: 50%;    
+}
+.label {
+    padding-top: 7px;
+    text-align: right;    
+}
+.labelW {
+    padding-top: 7px;
+    color: red;
+    text-align: right;    
+}
+.labelY {
+    width: 85%;   
+    padding-top: 15px;
+    color: red;
+    text-align: right;    
+}
+.label:after {
+    content: ':';
+    padding-right: 5px;
+}
+
+.column {
+    float: left;
+    height: 45px;    
+}
+
+.input input {
+    width: 80%;
+    height: 30px;    
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+.sintinput input{
+    width: 80%;
+    height: 30px;    
+    padding-left: 5px;
+    padding-left: 5px;
+    box-sizing: border-box;
+
+}
+.label2 {
+    height: 50px;
+    width: 50%;
+    padding-top: 7px;
+    text-align: right;       
+    color: red;
+}
+
+/* Include the padding and border in an element's total width and height */
+
+  
+  /* Remove margins and padding from the list */
+  ul2 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style the list items */
+  ul2 li {
+    cursor: pointer;
+    position: relative;
+    padding: 12px 8px 12px 40px;
+    list-style-type: none;
+    background: #eee;
+    font-size: 18px;
+    transition: 0.2s;
+    
+    /* make the list items unselectable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Set all odd list items to a different color (zebra-stripes) */
+  ul2 li:nth-child(odd) {
+    background: #f9f9f9;
+  }
+  
+  /* Darker background-color on hover */
+  ul2 li:hover {
+    background: #ddd;
+  }
+  
+  /* When clicked on, add a background color and strike out text */
+  ul2 li.checked {
+    background: #888;
+    color: #fff;
+    text-decoration: line-through;
+  }
+  
+  /* Add a "checked" mark when clicked on */
+  ul2 li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 10px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+  }
+  
+  /* Style the close button */
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 12px 16px 12px 16px;
+  }
+  
+  .close:hover {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  /* Style the header */
+  .header {
+    background-color: #f44336;
+    padding: 30px 40px;
+    color: white;
+    text-align: center;
+  }
+  
+  /* Clear floats after the header */
+  .header:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the input */
+  
+  /* Style the "Add" button */
+  .addBtn {
+    padding: 10px;
+    width: 25%;
+    background: #d9d9d9;
+    color: #555;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 0;
+  }
+  
+  .addBtn:hover {
+    background-color: #bbb;
+  }
+
+#myDIV{
+      margin-top: 0px;
+  }

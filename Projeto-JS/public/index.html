@@ -1,0 +1,451 @@
+<html>
+
+<head>
+<meta charset="utf-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Site do TeASus</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<link rel = "stylesheet" type = "text/css" href = "main.css">
+
+<script
+  type="text/javascript"
+  src="index.js">
+  src="Paciente.js">
+
+</script>
+
+</head>
+
+<body>
+     <!-- update the version number as needed -->
+     <script defer src="/__/firebase/6.3.5/firebase-app.js"></script>
+     <!-- include only the Firebase features as you need -->
+     <script defer src="/__/firebase/6.3.5/firebase-auth.js"></script>
+     <script defer src="/__/firebase/6.3.5/firebase-database.js"></script>
+     <script defer src="/__/firebase/6.3.5/firebase-messaging.jss"></script>
+     <script defer src="/__/firebase/6.3.5/firebase-storage.js"></script>
+     <!-- initialize the SDK after all desired features are loaded -->
+     <script defer src="/__/firebase/init.js"></script>
+    
+    <header class = "mainMenu">
+    <main>
+        <div class = "h1">
+            <div class = "logo">
+                <img src ="mainICbg.png">
+            </div>
+            <div class = "support">
+                <ul>
+                    <li class = "settings"><a href = "https://sites.google.com/a/ic.ufal.br/comp215/"><img src="settings.png" alt=""></a></li>
+                    <li class = "ask"><a href = "https://sites.google.com/a/ic.ufal.br/comp215/"><img src="ask.png" alt=""></a></li>
+                    <li class = "custService"><a onclick="contact()"><img src="customer-service.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+       
+    </main> 
+    
+    </header>
+   
+<main>
+       
+            <div class = "barrinha">
+                <ul>
+                    <li>
+                        <input type="button" class = "begin" value="Adicionar Paciente" id = "bt1" onClick="addBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Editar Informações" id = "bt2" onClick="editBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Cadastrar Doença" id = "bt3" onClick="doencaBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Listar Doenças" id = "bt4" onClick="ldoencaBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin"value="Adicionar Med." id = "bt5"onClick="medicamentoBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin"value="Editar P." id = "bt6" onClick="containerOFF()">
+                    </li>
+                </ul>
+                   
+            </div>
+
+            <div class= "form" id = "container1">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Formulário</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME" id="formNOME" required="" ><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formCPF">CPF</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formCPF" placeholder="666.666.666-66" id = "formCPF"><br/><br/>
+                            </div>
+                        </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formIDADE">Idade</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="number" min="18" max="105" value="25" name = "formIDADE" id = "formIDADE"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formENDERECO">Endereço</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formENDERECO" id="formENDERECO"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formSINTOMAS">Sintomas</label>
+                          </div>
+                          <div class="column-9 column input" >
+                                <textarea class="form-control" id="formSINTOMAS" name="formSINTOMAS" cols="32" rows="5"></textarea><br/><br/>
+                                <!--
+                                <input type="text" name="formSINTOMAS" id="formSINTOMAS" placeholder = "Ex. Febre, Dor">
+                                -->
+                          </div>
+                      </div><br/><br/><br/><br/>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formSANGUE">T. sanguíneo</label>
+                        </div>
+                        <div class="column-2 column input">
+                            <input type="text" name="formSANGUE" id="formSANGUE" placeholder = "Ex. AB+"><br/><br/>
+                        </div>
+                        <div class="column-3 column labelW">
+                            <label id= "erro"></label>
+                        </div>
+                    </div>
+                    </fieldset>
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveForm(form)">            
+                  </form>
+                     
+            </div>
+
+            <div class= "form" id = "container2">
+               
+                    <div class = buscarBTN>
+                          <div class="column-3 column label">
+                              <label for="editBUSCA">Busca</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="editBUSCA" id="editBUSCA"><br/><br/>
+                          </div>
+ 
+                            <input name="btns" id="btns" style="margin-top: 10px; margin-left: 215px; margin-right: 0px; " type="button" value="Buscar" onClick="search()">   
+                      </div>
+                      <div class="column-9 labelY">
+                            <label id= "errosearch" ></label>
+                      </div>
+  
+            </div>
+
+            <div class= "form" id = "container3">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Formulário de Edição</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME3">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME3" id="formNOME3"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formCPF3">CPF</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formCPF3" id="formCPF3" readonly><br/><br/>
+                            </div>
+                        </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formIDADE3">Idade</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="number" min="18" max="105" value="25" name = "formIDADE3" id = "formIDADE3"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formENDERECO3">Endereço</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formENDERECO3" id="formENDERECO3"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formSINTOMAS3">Sintomas</label>
+                          </div>
+                          <div class="column-9 column input" >
+                                <input type="text" name="formSINTOMAS3" id="formSINTOMAS3" placeholder = "Ex. Febre, Dor">
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formSANGUE3">T. sanguíneo</label>
+                        </div>
+                        <div class="column-2 column input">
+                            <input type="text" name="formSANGUE3" id="formSANGUE3" placeholder = "Ex. AB+"><br/><br/>
+                        </div>
+                        <div class="column-3 column labelW">
+                            <label id= "erro"></label>
+                        </div>
+                    </div>
+                    </fieldset>
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveEdit()">            
+                  </form>   
+            </div>
+           
+
+            <div class= "form" id = "container4">
+                    
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Inserir Doença</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME4">Patologia</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME4" id="formNOME4" ><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formAPARICAO4">%Aparição</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formAPARICAO4" placeholder = "Minima, Média, Elevada" id="formAPARICAO4"><br/><br/>
+                        </div>
+                    </div>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formDOR4">Locais de dor</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formDOR4" placeholder="Ex. Pulmao, cabeça" id="formDOR4"><br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formSINTOMAS4">P sintomas</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formSINTOMAS4" id="formSINTOMAS4" required     ><br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formPREV4">Prevenção</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formPREV4"  placeholder = "ex. Vacina" id="formPREV4" required><br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formTRATAMENTO4">Tratamento</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formTRATAMENTO4" placeholder = "ex. Anti-histamínico, Descongestionante nasal, Anti-inflamatórios" id="formTRATAMENTO4"><br/><br/>
+                        </div>
+                    </div>
+                    <button class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveDOENCA()">Send</button>
+                    </fieldset>
+                   
+                  </form>   
+            </div>
+            <div class= "espform" id = "containerINICIAL">
+                   
+            </div>
+
+            <!---   
+                Sâo preenchidas com o js.
+            -->
+            <div id = "doenca">
+                <div id="myDIV" class="header">
+                    <h2 >Lista de Patologias</h2> 
+                </div>
+          
+                <ul2 id="myUL">
+                </ul2>
+            </div>
+            <!---   
+                Sâo preenchidas com o js.
+            -->
+            
+
+        <div class= "form" id = "container5">
+            <form action="PayslipServlet" method="get">
+                <fieldset class = "field" id = "fields">
+                    <legend>Informações</legend>
+                  <div class="row">
+                      <div class="column-3 column label">
+                          <label for="formNOME5">Patologia</label>
+                      </div>
+                      <div class="column-9 column input">
+                          <input type="text" name="formNOME5" id="formNOME5" readonly><br/><br/>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formAPARICAO5">%Aparição</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formAPARICAO5" placeholder = "Comum, Raro, Muito Raro" id="formAPARICAO5" readonly><br/><br/>
+                    </div>
+                </div>
+                  <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formDOR5">Locais de dor</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formDOR5" placeholder="Ex. Pulmao, cabeça" id="formDOR5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formSINTOMAS5">P sintomas</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formSINTOMAS5" id="formSINTOMAS5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formPREV5">Prevenção</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formPREV5"  placeholder = "ex. Vacina" id="formPREV5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formTRATAMENTO5">Tratamento</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formTRATAMENTO5" placeholder = "ex. Anti-histamínico, Descongestionante nasal, Anti-inflamatórios" id="formTRATAMENTO5"readonly ><br/><br/>
+                    </div>
+                </div>
+                </fieldset>      
+              </form>   
+        </div>
+        
+        <div class= "form" id = "container6">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Adicionar Medicamento</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME6">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME6" id="formNOME6" placeholder="Ex. Anti-histamínico"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formTRATA6">Trata</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formTRATA6" id="formTRATA6" placeholder="Doenças ou Sintomas"><br/><br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="column-3 column label">
+                                    <label for="formUSO6">Uso</label>
+                                </div>
+                                <div class="column-9 column input">
+                                    <input type="text" name="formUSO6" id="formUSO6" placeholder="Ex. Via oral" required><br/><br/>
+                                </div>
+                        </div>
+                    </fieldset>      
+                  </form>   
+            </div>
+
+
+            <div class="form" id = "container7">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                            <legend class="text-center">Contact Us</legend>
+                
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="name">Name</label>  
+                              <div class="col-md-5">
+                              <input id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                              
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="email">Phone</label>  
+                              <div class="col-md-5">
+                              <input id="phone" name="phone" type="text" placeholder="Enter your phone number" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="email">Email</label>  
+                              <div class="col-md-5">
+                              <input id="email" name="email" type="text" placeholder="Enter your email address" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                            
+                            <!-- Textarea -->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="msg">Message</label>
+                              <div class="col-md-5">                     
+                                <textarea class="form-control" id="msg" name="msg" cols="30" rows="6"></textarea>
+                              </div>
+                            </div>
+                            
+                            <!-- Button -->
+                            <div class="form-group text-center" >
+                              <label class="col-md-4 control-label" for="submit"></label>
+                              <div class="col-md-4">
+                                <button id="submit" name="submit" class="btn btn-primary">Send Message</button>
+                              </div>
+                            </div>
+                            
+                    </fieldset>
+                </form>
+            </div>
+               
+                
+                
+    </main>
+    
+</body>
+<script>
+    // function start(){
+    //     hideALL();
+    //     $('#containerINICIAL').show();
+    //     }
+    hideALL();
+    $('#containerINICIAL').show();
+    // start();
+    </script>
+</html>
