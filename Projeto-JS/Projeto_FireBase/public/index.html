@@ -1,0 +1,770 @@
+<html>
+
+<head>
+<meta charset="utf-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Site do TeASus</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<link rel = "stylesheet" type = "text/css" href = "main.css">
+
+<script  src="index.js"></script>
+
+</head>
+
+<body>
+     <!-- update the version number as needed -->
+     <script defer src="/__/firebase/6.3.5/firebase-app.js"></script>
+     <!-- include only the Firebase features as you need -->
+     <script defer src="/__/firebase/6.3.5/firebase-auth.js"></script>
+     <script defer src="/__/firebase/6.3.5/firebase-database.js"></script>
+     <script defer src="/__/firebase/6.3.5/firebase-messaging.jss"></script>
+     <script defer src="/__/firebase/6.3.5/firebase-storage.js"></script>
+     <!-- initialize the SDK after all desired features are loaded -->
+     <script defer src="/__/firebase/init.js"></script>
+    
+    <header class = "mainMenu">
+    <main>
+        <div class = "h1">
+            <div class = "logo">
+                <img src ="mainICbg.png">
+            </div>
+            <div class = "support">
+                <ul>
+                    <li class = "settings"><a href = "https://sites.google.com/a/ic.ufal.br/comp215/"><img src="settings.png" alt=""></a></li>
+                    <li class = "ask"><a href = "https://sites.google.com/a/ic.ufal.br/comp215/"><img src="ask.png" alt=""></a></li>
+                    <li class = "custService"><a onclick="contact()"><img src="customer-service.png" alt=""></a></li>
+                </ul>
+            </div>
+        </div>
+       
+    </main> 
+    
+    </header>
+   
+<main>
+       
+            <div class = "barrinha">
+                <ul>
+                    <li>
+                        <input type="button" class = "begin" value="Adicionar Paciente" id = "bt1" onClick="addBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Editar Informações" id = "bt2" onClick="editBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Cadastrar Doença" id = "bt3" onClick="doencaBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin" value="Listar Doenças" id = "bt4" onClick="ldoencaBTN()">
+                    </li>
+                    <li>
+                        <input type="button" class = "begin"value="Adicionar Med." id = "bt5"onClick="medicamentoBTN()">
+                    </li>
+                </ul>
+                   
+            </div>
+
+            <div class= "form" id = "container1">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Formulário</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME" id="formNOME" required="" ><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formCPF">CPF</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formCPF" placeholder="666.666.666-66" id = "formCPF"><br/><br/>
+                            </div>
+                        </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formIDADE">Idade</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="number" min="18" max="105" value="25" name = "formIDADE" id = "formIDADE"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formENDERECO">Endereço</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formENDERECO" id="formENDERECO"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formSINTOMAS">Sintomas</label>
+                          </div>
+                          <div class="column-9 column input" >
+                                <textarea class="form-control" id="formSINTOMAS" name="formSINTOMAS" cols="32" rows="5"></textarea><br/><br/>
+                                <!--
+                                <input type="text" name="formSINTOMAS" id="formSINTOMAS" placeholder = "Ex. Febre, Dor">
+                                -->
+                          </div>
+                      </div><br/><br/><br/><br/>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formSANGUE">T. sanguíneo</label>
+                        </div>
+                        <div class="column-2 column input">
+                            <input type="text" name="formSANGUE" id="formSANGUE" placeholder = "Ex. AB+"><br/><br/>
+                        </div>
+                        <div class="column-3 column labelW">
+                            <label id= "erro"></label>
+                        </div>
+                    </div>
+                    </fieldset>
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveForm(form)">            
+                  </form>
+                     
+            </div>
+
+            <div class= "form" id = "container2">
+               
+                    <div class = buscarBTN>
+                          <div class="column-3 column label">
+                              <label for="editBUSCA">Busca</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="editBUSCA" id="editBUSCA"><br/><br/>
+                          </div>
+ 
+                            <input name="btns" id="btns" style="margin-top: 10px; margin-left: 215px; margin-right: 0px; " type="button" value="Buscar" onClick="search()">   
+                      </div>
+                      <div class="column-9 labelY">
+                            <label id= "errosearch" ></label>
+                      </div>
+  
+            </div>
+
+            <div class= "form" id = "container3">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Formulário de Edição</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME3">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME3" id="formNOME3"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formCPF3">CPF</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formCPF3" id="formCPF3" readonly><br/><br/>
+                            </div>
+                        </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formIDADE3">Idade</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="number" min="18" max="105" value="25" name = "formIDADE3" id = "formIDADE3"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formENDERECO3">Endereço</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formENDERECO3" id="formENDERECO3"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formSINTOMAS3">Sintomas</label>
+                          </div>
+                          <div class="column-9 column input" >
+                                <input type="text" name="formSINTOMAS3" id="formSINTOMAS3" placeholder = "Ex. Febre, Dor">
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formSANGUE3">T. sanguíneo</label>
+                        </div>
+                        <div class="column-2 column input">
+                            <input type="text" name="formSANGUE3" id="formSANGUE3" placeholder = "Ex. AB+"><br/><br/>
+                        </div>
+                        <div class="column-3 column labelW">
+                            <label id= "erro"></label>
+                        </div>
+                    </div>
+                    </fieldset>
+                    <input class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveEdit()">            
+                  </form>   
+            </div>
+           
+
+            <div class= "form" id = "container4">
+                    
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Inserir Doença</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME4">Patologia</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME4" id="formNOME4" ><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formAPARICAO4">%Aparição</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formAPARICAO4" placeholder = "Minima, Média, Elevada" id="formAPARICAO4"><br/><br/>
+                        </div>
+                    </div>
+                      <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formDOR4">Locais de dor</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formDOR4" placeholder="Ex. Pulmao, cabeça" id="formDOR4"><br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formSINTOMAS4">P sintomas</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formSINTOMAS4" id="formSINTOMAS4" required     ><br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formPREV4">Prevenção</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formPREV4"  placeholder = "ex. Vacina" id="formPREV4" required><br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="column-3 column label">
+                            <label for="formTRATAMENTO4">Tratamento</label>
+                        </div>
+                        <div class="column-9 column input">
+                            <input type="text" name="formTRATAMENTO4" placeholder = "ex. Anti-histamínico, Descongestionante nasal, Anti-inflamatórios" id="formTRATAMENTO4"><br/><br/>
+                        </div>
+                    </div>
+                    <button class = "saveB" type="button" value="Submit" id = "Submit" onClick="saveDOENCA()">Send</button>
+                    </fieldset>
+                   
+                  </form>   
+            </div>
+            <div class= "espform" id = "containerINICIAL">
+                   
+            </div>
+
+            <!---   
+                Sâo preenchidas com o js.
+            -->
+            <div id = "doenca">
+                <div id="myDIV" class="header">
+                    <h2 >Lista de Patologias</h2> 
+                </div>
+          
+                <ul2 id="myUL">
+                </ul2>
+            </div>
+            <!---   
+                Sâo preenchidas com o js.
+            -->
+            
+
+        <div class= "form" id = "container5">
+            <form action="PayslipServlet" method="get">
+                <fieldset class = "field" id = "fields">
+                    <legend>Informações</legend>
+                  <div class="row">
+                      <div class="column-3 column label">
+                          <label for="formNOME5">Patologia</label>
+                      </div>
+                      <div class="column-9 column input">
+                          <input type="text" name="formNOME5" id="formNOME5" readonly><br/><br/>
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formAPARICAO5">%Aparição</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formAPARICAO5" placeholder = "Comum, Raro, Muito Raro" id="formAPARICAO5" readonly><br/><br/>
+                    </div>
+                </div>
+                  <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formDOR5">Locais de dor</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formDOR5" placeholder="Ex. Pulmao, cabeça" id="formDOR5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formSINTOMAS5">P sintomas</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formSINTOMAS5" id="formSINTOMAS5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formPREV5">Prevenção</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formPREV5"  placeholder = "ex. Vacina" id="formPREV5" readonly><br/><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column-3 column label">
+                        <label for="formTRATAMENTO5">Tratamento</label>
+                    </div>
+                    <div class="column-9 column input">
+                        <input type="text" name="formTRATAMENTO5" placeholder = "ex. Anti-histamínico, Descongestionante nasal, Anti-inflamatórios" id="formTRATAMENTO5"readonly ><br/><br/>
+                    </div>
+                </div>
+                </fieldset>      
+              </form>   
+        </div>
+        
+        <div class= "form" id = "container6">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                        <legend>Adicionar Medicamento</legend>
+                      <div class="row">
+                          <div class="column-3 column label">
+                              <label for="formNOME6">Nome</label>
+                          </div>
+                          <div class="column-9 column input">
+                              <input type="text" name="formNOME6" id="formNOME6" placeholder="Ex. Anti-histamínico"><br/><br/>
+                          </div>
+                      </div>
+                      <div class="row">
+                            <div class="column-3 column label">
+                                <label for="formTRATA6">Trata</label>
+                            </div>
+                            <div class="column-9 column input">
+                                <input type="text" name="formTRATA6" id="formTRATA6" placeholder="Doenças ou Sintomas"><br/><br/>
+                            </div>
+                        </div>
+                        <div class="row">
+                                <div class="column-3 column label">
+                                    <label for="formUSO6">Uso</label>
+                                </div>
+                                <div class="column-9 column input">
+                                    <input type="text" name="formUSO6" id="formUSO6" placeholder="Ex. Via oral" required><br/><br/>
+                                </div>
+                        </div>
+                    </fieldset>      
+                  </form>   
+            </div>
+
+
+            <div class="form" id = "container7">
+                <form action="PayslipServlet" method="get">
+                    <fieldset class = "field" id = "fields">
+                            <legend class="text-center">Contact Us</legend>
+                
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="name">Name</label>  
+                              <div class="col-md-5">
+                              <input id="name" name="name" type="text" placeholder="Enter your name" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                              
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="email">Phone</label>  
+                              <div class="col-md-5">
+                              <input id="phone" name="phone" type="text" placeholder="Enter your phone number" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                            
+                            <!-- Text input-->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="email">Email</label>  
+                              <div class="col-md-5">
+                              <input id="email" name="email" type="text" placeholder="Enter your email address" class="form-control input-md" required="">
+                                
+                              </div>
+                            </div>
+                            
+                            <!-- Textarea -->
+                            <div class="form-group">
+                              <label class="col-md-4 control-label" for="msg">Message</label>
+                              <div class="col-md-5">                     
+                                <textarea class="form-control" id="msg" name="msg" cols="30" rows="6"></textarea>
+                              </div>
+                            </div>
+                            
+                            <!-- Button -->
+                            <div class="form-group text-center" >
+                              <label class="col-md-4 control-label" for="submit"></label>
+                              <div class="col-md-4">
+                                <button id="submit" name="submit" class="btn btn-primary">Send Message</button>
+                              </div>
+                            </div>
+                            
+                    </fieldset>
+                </form>
+            </div>
+               
+                
+                
+    </main>
+    
+</body>
+<script>
+
+    function hideALL(){
+    document.getElementById("container7").style.display = "none";
+    document.getElementById("container1").style.display = "none";
+    document.getElementById("container2").style.display = "none";
+    document.getElementById("container3").style.display = "none";
+    document.getElementById("container4").style.display = "none";
+    document.getElementById("container5").style.display = "none";
+    document.getElementById("container6").style.display = "none";
+    document.getElementById("containerINICIAL").style.display = "none"; 
+    document.getElementById("doenca").style.display = "none"; 
+    document.getElementById("container7").style.display = "none";
+    }
+    function start(){
+        hideALL();
+        document.getElementById("containerINICIAL").style.display = "block"; 
+
+    }
+    start();
+
+    function addBTN () { 
+    document.getElementById("bt1").style.backgroundColor = "#f44336";
+    document.getElementById("bt2").style.backgroundColor = "#363b48";
+    document.getElementById("bt3").style.backgroundColor = "#363b48";
+    document.getElementById("bt4").style.backgroundColor = "#363b48";
+    document.getElementById("bt5").style.backgroundColor = "#363b48";
+    
+    hideALL();
+    document.getElementById("container1").style.display = "block";
+
+    }
+  function resetALL(){
+
+    document.getElementById("formCPF").value = "";
+    document.getElementById("formNOME").value = "";
+    document.getElementById("formIDADE").value = "";
+    document.getElementById("formENDERECO").value = "";
+    document.getElementById("formSINTOMAS").value = "";
+    document.getElementById("formSANGUE").value = "";
+    document.getElementById("formNOME4").value =  "";
+    document.getElementById("formAPARICAO4").value =  "";
+    document.getElementById("formDOR4").value =   "";
+    document.getElementById("formSINTOMAS4").value =  "";
+    document.getElementById("formPREV4").value =  "";
+    document.getElementById("formTRATAMENTO4").value =  "";
+
+  }
+
+  var paciente = [];
+  var doenca = [];
+  var CONT = 0;
+  var CONT2 = 5;
+  var CONTDOC = 0;
+
+function saveForm(form) {
+
+var fname = form.formNOME.value;
+var fage = form.formIDADE.value;
+var fadress = form.formENDERECO.value;
+var fsintomas = form.formSINTOMAS.value;
+var fsintomas = form.formSINTOMAS.value;
+var fCPF = form.formCPF.value;
+
+try{
+  paciente[CONT] = new Object();
+  var fsangue = form.formSANGUE.value;
+  if(!(fsangue == "A+"||
+    fsangue == "B+" ||
+    fsangue == "O+" ||
+    fsangue == "AB+" ||
+    fsangue == "A-" ||
+    fsangue == "B-" ||
+    fsangue == "O-" ||
+    fsangue == "AB-"))
+    {
+      throw new Exception("ERRO");
+    }else  document.getElementById("erro").innerHTML = "";
+  }
+  catch(e){
+      document.getElementById("erro").innerHTML = "Tipo incorreto!";
+      logMyErrors(e); 
+      
+  }
+
+if(fname == "" || fage == "" || fadress == "" || fsangue == "" || fsintomas == ""){
+    alert("Todos os dados devem ser preenchidos!");
+    return;
+} 
+
+paciente[CONT] = new Paciente(fname, fage, fadress, fsangue, fsintomas, fCPF);
+
+  if(paciente[CONT] instanceof Paciente){
+    alert("Paciente adicionado com os dados:" + 
+    "\nNOME: " + paciente[CONT].nome + 
+    "\nIDADE: " + paciente[CONT].idade +
+    "\nENDEREÇO: " + paciente[CONT].endereco +
+    "\nSINTOMAS: " + paciente[CONT].idade +
+    "\nTipo Sang.: " + paciente[CONT].tipoS + 
+    "\nCpf.: " + paciente[CONT].CPF );
+  }
+  
+
+
+CONT += 1;
+backToBegin();
+resetALL();
+
+}
+function resetALL(){
+
+document.getElementById("formCPF").value = "";
+document.getElementById("formNOME").value = "";
+document.getElementById("formIDADE").value = "";
+document.getElementById("formENDERECO").value = "";
+document.getElementById("formSINTOMAS").value = "";
+document.getElementById("formSANGUE").value = "";
+document.getElementById("formNOME4").value =  "";
+document.getElementById("formAPARICAO4").value =  "";
+document.getElementById("formDOR4").value =   "";
+document.getElementById("formSINTOMAS4").value =  "";
+document.getElementById("formPREV4").value =  "";
+document.getElementById("formTRATAMENTO4").value =  "";
+
+}
+var INDEX = 0;
+
+function search(){
+    INDEX = 0;
+    var find = false;
+    for(var i = 0; i < 5; i++){
+      if(paciente[i] instanceof Paciente){
+        if(paciente[i].CPF == document.getElementById("editBUSCA").value && !find){
+          find = true;
+          document.getElementById("errosearch").innerHTML = "";
+          INDEX = i;
+          realedit();
+        }
+        
+      }
+    }
+    document.getElementById("errosearch").innerHTML = "CPF não encontrado!";
+      
+  }
+  function realedit(){
+    document.getElementById("formNOME3").value = paciente[INDEX].nome;
+    document.getElementById("formIDADE3").value =  paciente[INDEX].idade;
+    document.getElementById("formENDERECO3").value = paciente[INDEX].endereco;
+    document.getElementById("formSINTOMAS3").value = paciente[INDEX].sintomas;
+    document.getElementById("formSANGUE3").value = paciente[INDEX].tipoS;
+    document.getElementById("formCPF3").value = paciente[INDEX].CPF;
+    document.getElementById("container2").style.display = "none";
+    document.getElementById("container3").style.display = "block";
+  }
+
+  function saveEdit(){
+    if(!window.confirm("Deseja confirmar as alterações?")){
+      return;
+    }else 
+
+    paciente[INDEX].nome =  document.getElementById("formNOME3").value ;
+    paciente[INDEX].idade =  document.getElementById("formIDADE3").value ;
+    paciente[INDEX].endereco =  document.getElementById("formENDERECO3").value ;
+    paciente[INDEX].sintomas =  document.getElementById("formSINTOMAS3").value ;
+    paciente[INDEX].tipoS =  document.getElementById("formSANGUE3").value ;
+
+    alert('Alterações Feitas com sucesso.');
+    backToBegin();
+
+  }
+  function saveDOENCA(){
+    doenca[CONT2] = new Object();
+    var nome =  document.getElementById("formNOME4").value;
+    var aparicao =  document.getElementById("formAPARICAO4").value;
+    var dor =  document.getElementById("formDOR4").value;
+    var sintomas =  document.getElementById("formSINTOMAS4").value;
+    var prevencao =  document.getElementById("formPREV4").value;
+    var tratamento =  document.getElementById("formTRATAMENTO4").value;
+    if(nome == "" || aparicao == "" || dor == "" || sintomas == "" || prevencao == "" || tratamento == ""){
+      alert("Todos os dados devem ser preenchidos!");
+      return;
+    }
+    for(var i = 0; i < 10; i++){
+      if(doenca[i] instanceof Doenca && nome.toLowerCase() == (doenca[i].nome).toLowerCase()){
+        alert("ERRO!\nDoença já cadastrada no sistema!");
+        return;
+      }
+    }
+  
+    doenca[CONT2] = new Doenca(nome, aparicao, dor, sintomas, prevencao, tratamento);
+
+    var elemento_pai = document.getElementById("myUL");
+    var titulo = document.createElement('li');
+
+    // Criando o nó de texto de outra forma
+    titulo.textContent = nome;
+    titulo.id = CONT2;
+    
+    titulo.onclick = function () {
+      verdoenca(titulo.id);
+  };
+
+    // Inserir (anexar) o elemento filho (titulo) ao elemento pai (body)
+    elemento_pai.appendChild(titulo);
+
+    alert('Salvo com sucesso!');
+    resetALL();
+    backToBegin();
+    CONT2 += 1;
+  }
+  function addElement(value, nome){
+    var elemento_pai = document.getElementById("myUL");
+    var titulo = document.createElement('li');
+    
+      titulo.textContent = nome;
+      titulo.id = value;
+      titulo.onclick = function () {
+        verdoenca(titulo.id);
+      };
+      elemento_pai.appendChild(titulo);
+  }
+  var justOnly = false;
+  function primitiveDOC(){
+    if(justOnly){
+      return;
+    }
+    justOnly = true;
+    var nome = ["Cancer", "Aids", "Gripe", "Lupus", "Hanseniase"];
+    var aparicao = [10,50,30,10,65];
+    var dor = ["Pe", "cabeça", "Orelha", "fígado", "Asa"];
+    var sintomas = ["dor", "febre", "febre", "febre", "febre"];
+    var prevencao = ["vacina", "vacina", "vacina, vacina", "vacina", "vacina"];
+    var tratamento = ["Soro", "Soro", "Soro", "Soro", "Soro", "Soro"];
+
+    for(var i  = 0; i < 5; i++){
+      doenca[i] = new Object();
+      doenca[i] = new Doenca(nome[i], aparicao[i], dor[i], sintomas[i], prevencao[i], tratamento[i]);
+      addElement(i, nome[i]);
+    
+    }
+    i = 0;
+  }
+
+  function verdoenca(busca){
+    var achou = false;
+    for(var i = 0; i < 100; i++){
+      if(i == busca){
+        achou = true;
+        listarD(busca);
+      
+      }
+    }
+    if(!achou){
+      alert("Não encontrado!");
+    }
+  }
+
+  function listarD(busca){
+    
+    document.getElementById("doenca").style.display = "none";
+    document.getElementById("container5").style.display = "block";
+    
+    document.getElementById("formNOME5").value = doenca[busca].nome;
+    document.getElementById("formAPARICAO5").value = doenca[busca].aparicao;
+    document.getElementById("formDOR5").value = doenca[busca].dor;
+    document.getElementById("formSINTOMAS5").value = doenca[busca].sintomas;
+    document.getElementById("formPREV5").value = doenca[busca].prevencao;
+    document.getElementById("formTRATAMENTO5").value = doenca[busca].tratamento;
+
+  }
+function backToBegin(){
+    hideALL();
+    document.getElementById("containerINICIAL").style.display = "block";
+  }
+function editBTN () { 
+
+document.getElementById("bt1").style.backgroundColor = "#363b48";
+document.getElementById("bt2").style.backgroundColor = "#f44336";
+document.getElementById("bt3").style.backgroundColor = "#363b48";
+document.getElementById("bt4").style.backgroundColor = "#363b48";
+document.getElementById("bt5").style.backgroundColor = "#363b48";
+
+hideALL();
+document.getElementById("container2").style.display = "block";
+
+document.getElementById("errosearch").innerHTML = "";
+
+}
+function doencaBTN(){
+
+document.getElementById("bt1").style.backgroundColor = "#363b48";
+document.getElementById("bt2").style.backgroundColor = "#363b48";
+document.getElementById("bt3").style.backgroundColor = "#f44336";
+document.getElementById("bt4").style.backgroundColor = "#363b48";
+document.getElementById("bt5").style.backgroundColor = "#363b48";
+
+hideALL();
+document.getElementById("container4").style.display = "block";
+
+}
+  function ldoencaBTN(){
+    
+    document.getElementById("bt1").style.backgroundColor = "#363b48";
+    document.getElementById("bt2").style.backgroundColor = "#363b48";
+    document.getElementById("bt3").style.backgroundColor = "#363b48";
+    document.getElementById("bt4").style.backgroundColor = "#f44336";
+    document.getElementById("bt5").style.backgroundColor = "#363b48";
+
+
+    hideALL();
+    document.getElementById("doenca").style.display = "block";
+    primitiveDOC()
+
+  }
+
+  function medicamentoBTN(){
+
+    document.getElementById("bt1").style.backgroundColor = "#363b48";
+    document.getElementById("bt2").style.backgroundColor = "#363b48";
+    document.getElementById("bt3").style.backgroundColor = "#363b48";
+    document.getElementById("bt4").style.backgroundColor = "#363b48";
+    document.getElementById("bt5").style.backgroundColor = "#f44336";
+
+    hideALL();
+    document.getElementById("container6").style.display = "block";
+
+
+  }
+  //botoes
+  function contact(){
+
+    hideALL();
+    document.getElementById("container7").style.display = "block";
+
+  }
+    </script>
+</html>
